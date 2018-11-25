@@ -1,6 +1,6 @@
-# programmingproject proposal
-# Bente de Bruin
-# Studentnumber: 11017503
+# Programmingproject proposal
+### Bente de Bruin
+### Studentnumber: 11017503
 
 ### Problem statement
 In this project I'd like to highlight the EPI per country. EPI stands for environmental perfomance index. The following sentence is quoted from their website: ''The 2018 EPI provides a quantitative basis for comparing, analyzing, and understanding environmental performance for 180 countries. We score and rank these countries on their environmental performance using the most recent year of data available as well as data from approximately a decade earlier.'' source: https://epi.envirocenter.yale.edu/2018/report/category/hlt I think this is important to visualize because in my opinion, more people will become aware of the way their country scores as it comes to environmental performance. In stead of reading a whole report on these issues, it can now be seen through a clear visualization. 

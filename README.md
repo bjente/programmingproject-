@@ -35,13 +35,13 @@ External components that will be used:
 3. Some library to help me create a clickable wordlmap: [Worldmap](http://datamaps.github.io/) However, I'm not exactly sure if I can use this and if there is a particular library for this.
 4. Pandas
 
-**Hardest part**
+### Hardest part
 The hardest part of this project will be implementing the clickable worldmap if I'm not allowed to use a library for this. Furthermore, I didn't work with interaction before so I think that will be a challenge too. I cannot go into further detail about this interaction part, since I don't know yet how hard this is to implement using D3. This also applies to use of libraries. I'm not sure what all the possibilities of D3 are. Also, if I do choose to use the raw data, it'll be a challenge to retrieve all the data I need and want for all 180 countries. This is something I should take into consideration. I must have a clear question so that I can properly process this data and turn it into a useful addition to my main visualization. 
 
-**Working with the data**
+### Working with the data
 The data I retrieved from [EPI](https://epi.envirocenter.yale.edu/epi-downloads) is already in a CSV format. This means that I'll have to convert it to JSON. I assume that this won't be the hardest part, since I already have a working CSV to JSON converter written in python, using Pandas. I have to use data from the baseline year and the current year, but since there is a database which is **only** about the current year, I can use this database in combination with the database which contains both the values for current and baseline year. I can filter out the current year in this database so that I have one database about current year and one database about baseline year. Furthermore, as mentioned above, I have access to the raw data. This raw data was used to calculate the EPI score. This gives me the opportunity to go into further detail about the EPI score and educate my users in a better way.
 
-**Example**
+### Example
 ['Unicef'](https://works.periscopic.com/unicef-child-violence/#all) This is an example of a clickable worldmap. Also, this map contains colors which indicate something about that country. I think this is clearly visualized. A difficult part about this worldmap however, is the fact that it is a globe and the user is able to turn around this globe. This is, I'd say *nice to have*, but not necessary. 
 
 

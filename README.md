@@ -8,7 +8,7 @@ In this project I'd like to highlight the EPI per country. EPI stands for enviro
 
 ### Solution
 I want to make at least three clear visualizations of the environmental performance index per country, understandable for everybody. In the image below, you can see my visual sketch. I gathered images from internet and created a sort of collage of how I want my visualization to look and work. 
-![Data visualization sketch](/documents/minor/datavisualizationsketch.png "Sketch")
+![Data visualization sketch](/programmingprojct/datavisualizationsketch.png "Sketch")
 
 1. The minimum viable product will contain:
   - A clickable worldmap. The countries will have different colors. The colors correspond to their EPI score.

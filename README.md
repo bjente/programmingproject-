@@ -26,7 +26,7 @@ I want to make at least three visualizations. On the front page, the user is ask
  
   
 2. *Nice to have:*
-  - In stead of the checkbox as the beginning of the site, a well designed frontpage. (See my visual sketch)
+  - In stead of the checkbox as the beginning of the site, a well designed frontpage which leads you to the rest of the page.
   - Several pie charts which display what factors contribute to the happiness score to what extent. 
   - A dropdown menu for the scatterplots where the user can choose between three years. The scatterplots will change according to the year that is being chosen.
  

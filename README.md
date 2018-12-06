@@ -49,7 +49,9 @@ The data I'll retrieve from Kaggle and OECD is already in a CSV format. This mea
 
 ### Example
 1.['What makes us happy'](https://charts.animateddata.co.uk/whatmakesushappy/) In this visualization we see an interactive scatterplot which I like a lot, especially designwise. I'd also like to implement a trendline and the fact that the corresponding country is visible when you hover over a dot with your mouse is something that I like as well. 
+
 2.['Pie chart'](http://d3pie.org/) Normally, I don't think pie charts are very clear but the fact that you can see the percentages and the ticks with their corresponding country in this pie chart, makes this one a lot better, in my opinion.
+
 3.['Bar chart'](https://data.oecd.org/healthstat/suicide-rates.htm#indicator-chart) I think this is a perfect and clear way to visualize a bar chart. Especially the countries on the x-axis are readable. The readability of the countries is something I struggled with in my own bar chart. 
 
 

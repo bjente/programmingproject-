@@ -21,7 +21,7 @@ I want to make at least three visualizations. On the front page, the user is ask
 1. The minimum viable product will contain:
   - A checkbox menu containing the following sentence: 'I'm feeling...' and below three options; happy, sad, both
   - Two bar charts: one about the happiness score per country, one about suicide rates per country.
-  - An interactive scatterplots with on the x-axis the world happiness scores and on the y-axis the suicide rates per country
+  - A scatterplot with on the x-axis the world happiness scores and on the y-axis the suicide rates per country
   - A scatterplot with on the x-axis the extent to which life expectancy contributed to the calculation of the Happiness Score     and on the y-axis the life expectancy.
  
   

@@ -47,7 +47,7 @@ The hardest part of this project will be implementing interactive elements. I ha
 ### Working with the data
 The data I'll retrieve from Kaggle and OECD is already in a CSV format. This means that I'll have to convert it to JSON. I assume that this won't be the hardest part, since I already have a working CSV to JSON converter written in python, using Pandas. 
 
-### Example
+### Examples
 1.['What makes us happy'](https://charts.animateddata.co.uk/whatmakesushappy/) In this visualization we see an interactive scatterplot which I like a lot, especially designwise. I'd also like to implement a trendline and the fact that the corresponding country is visible when you hover over a dot with your mouse is something that I like as well. 
 
 2.['Pie chart'](http://d3pie.org/) Normally, I don't think pie charts are very clear but the fact that you can see the percentages and the ticks with their corresponding country in this pie chart, makes this one a lot better, in my opinion.

@@ -3,47 +3,53 @@
 ### Studentnumber: 11017503
 
 ### Problem statement
-In this project I'd like to highlight the EPI per country. EPI stands for environmental perfomance index. The following sentence is quoted from their website: *''The 2018 EPI provides a quantitative basis for comparing, analyzing, and understanding environmental performance for 180 countries. We score and rank these countries on their environmental performance using the most recent year of data available as well as data from approximately a decade earlier.''* source: https://epi.envirocenter.yale.edu/2018/report/category/hlt I think this is important to visualize because in my opinion, more people will become aware of the way their country scores as it comes to environmental performance. In stead of reading a whole report on these issues, it can now be seen through a clear visualization. 
+'Feeling happy, feeling sad'. 
+In this project I'd like to make an interactive website in which I want to give the user the opportunity to choose between a 'happy' version and a 'sad' version. In the happy version, I'd like to illustrate the numbers of the world happiness report. In the sad version I want to illustrate death rates, for example suicide rates, infant mortality and life expectancy. I want to give the user insight in these numbers because in my opinion it's kind of peculiar to rate things such as happiness and save them in a big database. If your country scores high on the average happiness score, you kind of have to feel happy too, even if that's not the case at all. This database shows for me that there is kind of an obsession with happiness going on. Why do we have to rate these things? Comparing these ratings is at the same time interesting but also a bit weird. Perhaps some users can relate to the ratings, maybe they don't agree at all. The contradictive 'sad' part, I added more as a 'joke'.  
 
 
 ### Solution
-I want to make at least three clear visualizations of the environmental performance index per country, understandable for everybody. In the image below, you can see my visual sketch. I gathered images from internet and created a sort of collage of how I want my visualization to look and work. You can find this visualization in the doc folder.
-Image sources:
-- [World map] (https://fr.wikipedia.org/wiki/Fichier:Newworldmap_grayscale.svg)
-- [Horizontal bar chart] (https://konradsobon.gitbooks.io/mandrill-primer/content/horizontal_bar_chart.html)
-- [Vertical bar chart] (https://www.qimacros.com/excel-charts-qimacros/excel-bar-graph/)
+I want to make at least three visualizations. On the front page, the user is asked how he/she feels: happy, sad or both. 
+
+1. If the user chooses happy, a bar chart about the world happiness scores per country appears. Nice to have would be if the user can click on a specific bar to get more insight in the score for that specific country. This will be shown in a pie chart. There are several variables that contribute to the happiness score of a certain country. For example: the extent to which GDP contributes to the calculation of the Happiness Score and the extent to which family contributes to the calculation of the Happiness Score. 
+
+2. If the user chooses sad, a bar chart about suicide rates per country appears. 
+
+3. If the user chooses both, two scatterplot appear, one with on the x-axis the world happiness scores and on the y-axis suicide rates per country and one with on the x-axis the extent to which life expectancy contributed to the calculation of the happiness score and on the y-axis the life expectancy.
 
 
 1. The minimum viable product will contain:
-  - A clickable worldmap. The countries will have different colors. The colors correspond to their EPI score.
-  - A slide bar. The user can slide to the baseline year or the current year. The colors of the countries in the worldmap will     change with the slide.
-  - A barchart with on the y-axis the categories and on the x-axis the score. This is for one specific country, on which the       user has clicked.
-  - A barchart with on the y-axis the scores and on the x-axis the countries. This barchart is about one specific category. 
+  - A checkbox menu containing the following sentence: 'I'm feeling...' and below three options; happy, sad, both
+  - Two bar charts: one about the happiness score per country, one about suicide rates per country.
+  - An interactive scatterplots with on the x-axis the world happiness scores and on the y-axis the suicide rates per country
+  - A scatterplot with on the x-axis the extent to which life expectancy contributed to the calculation of the Happiness Score     and on the y-axis the life expectancy.
+ 
   
 2. *Nice to have:*
-  - A checkbox for filtering. If the user has chosen one specific category, he/she has to be able to filter out specific           countries, so that the user can compare the scores of *n* different countries.
-  - In stead of the *comparison* bar chart, I can implement a different bar chart or another visualization. The user can click     on a specific category, 
-    and information on how this particular EPI score was calculated will appear. Since I have access to the raw data that was     used in calculation of the EPI, I can provide the user with information on how the particular score for the category           was calculated. 
-
+  - In stead of the checkbox as the beginning of the site, a well designed frontpage. (See my visual sketch)
+  - Several pie charts which display what factors contribute to the happiness score to what extent. 
+  - A dropdown menu for the scatterplots where the user can choose between three years. The scatterplots will change according to the year that is being chosen.
+ 
 Link to the data sources that will be used:
-1. [EPI](https://epi.envirocenter.yale.edu/epi-downloads).
-I will use the 2018 EPI Scores – Current & Baseline CSV file and perhaps also the raw data files.
+1. [World happiness report](https://www.kaggle.com/unsdsn/world-happiness#2017.csv).
+2. [Suicide rates](https://data.oecd.org/healthstat/suicide-rates.htm#indicator-chart).
+3. [Life expectancy](https://data.oecd.org/healthstat/life-expectancy-at-birth.htm#indicator-chart)
 
 External components that will be used:
 1. d3-tip
 2. d3-bar
-3. Some library to help me create a clickable wordlmap: [Worldmap](http://datamaps.github.io/) However, I'm not exactly sure if I can use this and if there is a particular library for this.
+3. d3pie
 4. Pandas
+5. Bootstrap
 
 ### Hardest part
-The hardest part of this project will be implementing the clickable worldmap if I'm not allowed to use a library for this. Furthermore, I didn't work with interaction before so I think that will be a challenge too. I cannot go into further detail about this interaction part, since I don't know yet how hard this is to implement using D3. This also applies to use of libraries. I'm not sure what all the possibilities of D3 are. Also, if I do choose to use the raw data, it'll be a challenge to retrieve all the data I need and want for all 180 countries. This is something I should take into consideration. I must have a clear question so that I can properly process this data and turn it into a useful addition to my main visualization. 
+The hardest part of this project will be implementing interactive elements. I had a hard time implementing these during the latest assignment, so that will be challenging. Another challenging part will be keeping my github and code tidy and organized. Working with javascript classes is something I'll have to dive in order to do this correctly. Because I had a hard time preprocessing data with Javascript, I decided that I'm going to use pandas and python to preprocess my data. 
 
 ### Working with the data
-The data I retrieved from [EPI](https://epi.envirocenter.yale.edu/epi-downloads) is already in a CSV format. This means that I'll have to convert it to JSON. I assume that this won't be the hardest part, since I already have a working CSV to JSON converter written in python, using Pandas. I have to use data from the baseline year and the current year, but since there is a database which is **only** about the current year, I can use this database in combination with the database which contains both the values for current and baseline year. I can filter out the current year in this database so that I have one database about current year and one database about baseline year. Furthermore, as mentioned above, I have access to the raw data. This raw data was used to calculate the EPI score. This gives me the opportunity to go into further detail about the EPI score and educate my users in a better way.
+The data I'll retrieve from Kaggle and OECD is already in a CSV format. This means that I'll have to convert it to JSON. I assume that this won't be the hardest part, since I already have a working CSV to JSON converter written in python, using Pandas. 
 
 ### Example
-['Unicef'](https://works.periscopic.com/unicef-child-violence/#all) This is an example of a clickable worldmap. Also, this map contains colors which indicate something about that country. I think this is clearly visualized. A difficult part about this worldmap however, is the fact that it is a globe and the user is able to turn around this globe. This is, I'd say *nice to have*, but not necessary. 
-
-
+['What makes us happy'](https://charts.animateddata.co.uk/whatmakesushappy/) In this visualization we see an interactive scatterplot which I like a lot, especially designwise. I'd also like to implement a trendline and the fact that the corresponding country is visible when you hover over a dot with your mouse is something that I like as well. 
+['Pie chart'](http://d3pie.org/) Normally, I don't think pie charts are very clear but the fact that you can see the percentages and the ticks with their corresponding country in this pie chart, makes this one a lot better, in my opinion.
+['Bar chart'](https://data.oecd.org/healthstat/suicide-rates.htm#indicator-chart) I think this is a perfect and clear way to visualize a bar chart. Especially the countries on the x-axis are readable. The readability of the countries is something I struggled with in my own bar chart. 
 
 

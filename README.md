@@ -7,7 +7,6 @@
 
 In this project I'd like to make an interactive website in which I want to give the user the opportunity to choose between a 'happy' version and a 'sad' version. In the happy version, I'd like to illustrate the numbers of the world happiness report. In the sad version I want to illustrate death rates, for example suicide rates, infant mortality and life expectancy. I want to give the user insight in these numbers because in my opinion it's kind of peculiar to rate things such as happiness and save them in a big database. If your country scores high on the average happiness score, you kind of have to feel happy too, even if that's not the case at all. This database shows for me that there is kind of an obsession with happiness going on. Why do we have to rate these things? Comparing these ratings is at the same time interesting but also a bit weird. Perhaps some users can relate to the ratings, maybe they don't agree at all. The contradictive 'sad' part, I added more as a 'joke'.  
 
-
 ### Solution
 I want to make at least three visualizations. On the front page, the user is asked how he/she feels: happy, sad or both. 
 

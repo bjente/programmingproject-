@@ -15,11 +15,12 @@ I want to make at least three visualizations. On the front page, the user is ask
 
 2. If the user chooses sad, a bar chart about suicide rates per country appears. 
 
-3. If the user chooses both, two scatterplots appear, one with on the x-axis the world happiness scores and on the y-axis suicide rates per country and one with on the x-axis the extent to which life expectancy contributed to the calculation of the happiness score and on the y-axis the life expectancy.
+3. If the user chooses both, the user can choose from two scatterplots from a dropdown menu. One scatterplot with on the x-axis the world happiness scores and on the y-axis suicide rates per country and one with on the x-axis the extent to which life expectancy contributed to the calculation of the happiness score and on the y-axis the life expectancy.
 
 
 1. The minimum viable product will contain:
   - A checkbox menu containing the following sentence: 'I'm feeling...' and below three options; happy, sad, both
+  - A dropdown menu where the user can choose between two scatterplots
   - Two bar charts: one about the happiness score per country, one about suicide rates per country.
   - Pie charts which show how the happiness score is calculated
   - A scatterplot with on the x-axis the world happiness scores and on the y-axis the suicide rates per country

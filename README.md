@@ -10,7 +10,7 @@ In this project I'd like to make an interactive website in which I want to give 
 ### Solution
 I want to make at least three visualizations. On the front page, the user is asked how he/she feels: happy, sad or both. 
 
-1. If the user chooses happy, a bar chart about the world happiness scores per country appears. If the user clicks on a specific bar, he'll get more insight in the score for that specific country. This will be shown in a pie chart. There are several variables that contribute to the happiness score of a certain country. For example: the extent to which GDP contributes to the calculation of the Happiness Score and the extent to which family contributes to the calculation of the Happiness Score. 
+1. If the user chooses happy, a bar chart about the world happiness scores per country appears. If the user clicks on a specific bar, he'll get more insight in the score for that specific country. This will be shown in a bubble chart. There are several variables that contribute to the happiness score of a certain country. For example: the extent to which GDP contributes to the calculation of the Happiness Score and the extent to which family contributes to the calculation of the Happiness Score. 
 
 2. If the user chooses sad, a bar chart about suicide rates per country appears. 
 
@@ -21,7 +21,7 @@ I want to make at least three visualizations. On the front page, the user is ask
   - A checkbox menu containing the following sentence: 'I'm feeling...' and below three options; happy, sad, both
   - A dropdown menu where the user can choose between two scatterplots
   - Two bar charts: one about the happiness score per country, one about suicide rates per country.
-  - Pie charts which show how the happiness score is calculated
+  - Bubble charts which show how the happiness score is calculated
   - A scatterplot with on the x-axis the world happiness scores and on the y-axis the suicide rates per country
   - A scatterplot with on the x-axis the extent to which life expectancy contributed to the calculation of the Happiness Score     and on the y-axis the life expectancy.
  

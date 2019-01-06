@@ -11,23 +11,23 @@ In this project I'd like to make an interactive website in which I want to give 
 ### Solution
 I want to make at least three visualizations. On the front page, the user is asked how he/she feels: happy, sad or both. 
 
-1. If the user chooses happy, a bar chart about the world happiness scores per country appears. Nice to have would be if the user can click on a specific bar to get more insight in the score for that specific country. This will be shown in a pie chart. There are several variables that contribute to the happiness score of a certain country. For example: the extent to which GDP contributes to the calculation of the Happiness Score and the extent to which family contributes to the calculation of the Happiness Score. 
+1. If the user chooses happy, a bar chart about the world happiness scores per country appears. If the user clicks on a specific bar, he'll get more insight in the score for that specific country. This will be shown in a pie chart. There are several variables that contribute to the happiness score of a certain country. For example: the extent to which GDP contributes to the calculation of the Happiness Score and the extent to which family contributes to the calculation of the Happiness Score. 
 
 2. If the user chooses sad, a bar chart about suicide rates per country appears. 
 
-3. If the user chooses both, two scatterplot appear, one with on the x-axis the world happiness scores and on the y-axis suicide rates per country and one with on the x-axis the extent to which life expectancy contributed to the calculation of the happiness score and on the y-axis the life expectancy.
+3. If the user chooses both, two scatterplots appear, one with on the x-axis the world happiness scores and on the y-axis suicide rates per country and one with on the x-axis the extent to which life expectancy contributed to the calculation of the happiness score and on the y-axis the life expectancy.
 
 
 1. The minimum viable product will contain:
   - A checkbox menu containing the following sentence: 'I'm feeling...' and below three options; happy, sad, both
   - Two bar charts: one about the happiness score per country, one about suicide rates per country.
+  - Pie charts which show how the happiness score is calculated
   - A scatterplot with on the x-axis the world happiness scores and on the y-axis the suicide rates per country
   - A scatterplot with on the x-axis the extent to which life expectancy contributed to the calculation of the Happiness Score     and on the y-axis the life expectancy.
  
   
 2. *Nice to have:*
   - In stead of the checkbox as the beginning of the site, a well designed frontpage which leads you to the rest of the page.
-  - Several pie charts which display what factors contribute to the happiness score to what extent. 
   - A dropdown menu for the scatterplots where the user can choose between three years. The scatterplots will change according to the year that is being chosen.
  
 Link to the data sources that will be used:
@@ -37,10 +37,8 @@ Link to the data sources that will be used:
 
 External components that will be used:
 1. d3-tip
-2. d3-bar
-3. d3pie
-4. Pandas
-5. Bootstrap
+2. Pandas
+3. Bootstrap
 
 ### Hardest part
 The hardest part of this project will be implementing interactive elements. I had a hard time implementing these during the latest assignment, so that will be challenging. Another challenging part will be keeping my github and code tidy and organized. Working with javascript classes is something I'll have to dive in order to do this correctly. Because I had a hard time preprocessing data with Javascript, I decided that I'm going to use pandas and python to preprocess my data. 

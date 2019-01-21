@@ -38,5 +38,6 @@ Down below I listed some artist/works that inspired me.
 
 
 
-Bente de Bruin 
-Studentnumber: 11017503
+
+##### Bente de Bruin 
+##### Studentnumber: 11017503

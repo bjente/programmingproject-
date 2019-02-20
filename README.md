@@ -46,23 +46,33 @@ The sketches are quite experimental and I don't know if I will succeed, but at l
 First and foremost, I need to Arduino library for Processing. I already have that installed. Secondly I need to dive into building electrical circuits. I do have a workshop at my school where I can freely use electrical components and ask for help with these kind of projects. I need different kinds of sensors, which are also available at my academies workshop.
 
 ### **Planning**
-18 - 24 february: Getting started with Arduino and building electrical circuits, reading 'Arduino Projects Book'
-25 february - 3 march: Getting started with Arduino and building electrical circuits, reading 'Arduino Projects Book'
-4 - 10 march: Start with building first project of choice. (Start with the simplest project)
-11 - 17 march: Building first project of choice.
+- 18 - 24 february: Getting started with Arduino and building electrical circuits, reading 'Arduino Projects Book'
+- 25 february - 3 march: Getting started with Arduino and building electrical circuits, reading 'Arduino Projects Book'
+- 4 - 10 march: Start with building first project of choice. (Start with the simplest project)
+- 11 - 17 march: Building first project of choice.
+
 **Check-up date: 15 march. Send information to Martijn Stegeman** 
-18 - 24 march: Building first project of choice.
+
+- 18 - 24 march: Building first project of choice.
+
 **Check-up date: 22 march. Send information to Martijn Stegeman** 
-25 - 31 march: Start with building second project of choice.
-1 - 7 april: Building second project of choice.
+
+- 25 - 31 march: Start with building second project of choice.
+- 1 - 7 april: Building second project of choice.
+
 **Check-up date: 5 april. Send information to Martijn Stegeman** 
-8 - 14 april: Building second project of choice.
-15 - 21 april: Building second project of choice.
+
+- 8 - 14 april: Building second project of choice.
+- 15 - 21 april: Building second project of choice.
+
 **Check-up date: 19 april. Send information to Martijn Stegeman** 
-22 - 28 april: Building second project of choice. 
-29 april - 31 may: Finalizing first and second project, documentating work and process, preparing presentation.
+
+- 22 - 28 april: Building second project of choice. 
+- 29 april - 31 may: Finalizing first and second project, documentating work and process, preparing presentation.
 *Nice to have*: Build a third project.
+
 **Check-up date: 3 may. Send information to Martijn Stegeman** 
+
 **Check-up date: 24 may. Visiting UvA for assessment (?)** 
 
 

@@ -16,7 +16,7 @@ The first two weeks I'll be spending practicing the basics of Arduino and buildi
 
 After that, I will start making the different sketches. For these sketches I want to use everyday products and turn them into something surprising. 
 
-When something is old or broke we normally throw it immediately away. I think that's a pity sometimes. What if I can make it into something 'fun'? I want to transform products that otherwise would end up being garbage into funny, interactive objects.
+When something is old we normally throw it immediately away. I think that's a pity sometimes. What if I can make it into something 'fun'? I want to transform products that otherwise would end up being garbage into funny, interactive objects.
 
 - Example 1: The kiwi razor.
 

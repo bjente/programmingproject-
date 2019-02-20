@@ -11,26 +11,26 @@ This platform is called Arduino. It is a microcontroller on which you can build 
 For this project, I'd like to get a thorough understanding of Arduino. To achieve this, I want to make at least **two** projects, which I call 'sketches' from now on. By the end, I'll have two or three of sketches and hopefully a complete understanding of the Arduino platform ánd Processing. For now, I have some ideas for sketches which I list down below. Some simple, some more complex. I don't know which I will make yet. I will figure that out in consultation with my tech assistant.
 
 
-- **What will these sketches look like?**
+#### **What will these sketches look like?**
 The first two weeks I'll be spending practicing the basics of Arduino and building electroninc circuits. I will use the Arduino Projects Book: [https://bastiaanvanhengel.files.wordpress.com/2016/06/arduino_projects_book.pdf] and the Arduino Cookbook: [https://www.elektor.nl/arduino-cookbook?gclid=CjwKCAiAkrTjBRAoEiwAXpf9CeLkqyIwT8gDWaTwTKv-KPNfdHclsN7lRe55W40SSFuvKonU54BIVxoCw20QAvD_BwE]
 
 After that, I will start making the different sketches. For these sketches I want to use everyday products and turn them into something surprising. 
 
 Problem statement: When something is old or broke we normally throw it immediately away. I think that's a pity sometimes. What if I can make it into something 'fun'? I want to transform products that otherwise would end up being garbage into funny, interactive objects.
 
-Example 1: The kiwi razor. 
+- Example 1: The kiwi razor. 
 Problem statement: I belong to the rare group of people that eat their kiwis with the peel still on it. The kiwi gold is perfect: it comes with a smooth and soft skin. No hairs, just softness. But you are not always in the posession of a gold kiwi, sometimes you get a green one. These ones come with a slightly hairier skin. Therefore, I'd like to have a kiwi razor. 
 It will consists out of a spinning pole, with on the top the kiwi. Next to the pole is a moving arm with at the end a razorblade. If the user passes a specific border, a spot will light up and the kiwi razor will be visible. 
 
-Example 2: Collecting weather data from a specific date over 5 years. (A weather installation)
+- Example 2: Collecting weather data from a specific date over 5 years. (A weather installation)
 Problem statement: Over the years I did a good job at collecting fans. I don't know why, but everytime I moved into a new house, people left their fans. For this sketch, I want to collect weather data from a specific date over 5 to 10 years. Not just weather data, but data about the wind power and amount of sunshine in particular. The user can choose a year from a menu. According to the weather data from this day, the fans will start to blow and a lamp will start to shine (or not). If the wind power was very strong at, for example 11th february 1997, the fans will create lots of wind. Nice to have would be if I add a variable 'rain' as well and make a Processing sketch of rain falling down. Ofcourse, it needs to look realistic.
 
-Example 3: A swarm of bees and a bottle of pesticide. 
+- Example 3: A swarm of bees and a bottle of pesticide. 
 Problem statement: The bee is an endangered species. If they will go to extinct, it will be a great loss for the bees themself, but also for us. I want to make a suggestion of a swarm of bees. My weapon of choice in this case would be electric toothbrushes. In the beginning you will here a cacophony of buzzing. The bees are vibrant and loud. When time passes and more pesticide is released, the buzzing slowly stops. 
 [https://www.trouw.nl/home/wetenschappers-ontdekken-waarom-bijen-massaal-sterven~a48ce765/]
 [https://www.rtlnieuws.nl/node/691196]
 
-Example 4: A paper dispenser and a tree.
+- Example 4: A paper dispenser and a tree.
 For this project I'd like to use a paper dispenser. Next to it, there is (a virtual) tree. If the user walks past the paper dispenser, the tree collapses a bit. 
 
 #### **Difficulties**

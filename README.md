@@ -38,12 +38,12 @@ The bee is an endangered species. If they will go to extinct, it will be a great
 For this project I'd like to use a paper dispenser. Next to it, there is (a virtual) tree. If the user walks past the paper dispenser, the tree collapses a bit. 
 
 ### **Difficulties**
-There are tons of difficulties in these sketches. How will I connect everything with eachother? Will I succeed in hacking the everyday products? How will they be able to talk with my Arduino and Processing sketches? These are all questions that come to mind. Luckily, I have people who can help me with, for example hacking everyday projects. This is called 'circuit bending'. The programming is something that I can do completely on my own. 
+There are tons of difficulties in these sketches. How will I connect everything with each other? Will I succeed in hacking the everyday products? How will they be able to talk with my Arduino and Processing sketches? These are all questions that come to mind. Luckily, I have people who can help me with, for example hacking everyday projects. This is called 'circuit bending'. The programming is something that I can do completely on my own. 
 The sketches are quite experimental and I don't know if I will succeed, but at least I want to try it. That's what this is about; trying. If I don't succeed, I have the option of doing a retake in june and just make three data visualizations in JavaScript. There is also perhaps a possibility to do a retake at my own academy. But since I really want to get started incorporating Arduino in my work, I want to try to make this a success.
 
 
 ### **Solution and necessities**
-First and foremost, I need to Arduino library for Processing. I already have that installed. Secondly I need to dive into building electrical circuits. I do have a workshop at my school where I can freely use electrical components and ask for help with these kind of projects.
+First and foremost, I need to Arduino library for Processing. I already have that installed. Secondly I need to dive into building electrical circuits. I do have a workshop at my school where I can freely use electrical components and ask for help with these kind of projects. I need different kinds of sensors, which are also available at my academies workshop.
 
 ### **Planning**
 18 - 24 february: Getting started with Arduino and building electrical circuits, reading 'Arduino Projects Book'

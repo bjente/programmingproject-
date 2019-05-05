@@ -28,8 +28,11 @@ The hardest part will be getting the data in a proper format. Besides that, I ne
 
 ### **Dataset and libraries**
 Dataset source: https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art
+
 Bootstrap
+
 World map: http://bl.ocks.org/micahstubbs/8e15870eb432a21f0bc4d3d527b2d14f
+
 D3
 
 

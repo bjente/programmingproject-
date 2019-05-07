@@ -1,7 +1,6 @@
-### Bente de Bruin
-### Student number: 11017503
-
 ## Design document
+#### Bente de Bruin
+#### Student number: 11017503
 
 ## The data source
 The dataset I'll be using is the public dataset from MoMA on their collection: https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art

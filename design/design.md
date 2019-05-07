@@ -20,11 +20,11 @@ I have to alter the variable 'date acquired' since it is in this format '1996-05
 Below, there is an example of the format of my JSON file:
 
 {"objectID": 2 {
-Artist: Otto Wagner
-Nationality: Austrian
-Gender: Male
-Department: Architecture & Design
-Date acquired: 1996
+Artist: Otto Wagner  
+Nationality: Austrian  
+Gender: Male  
+Department: Architecture & Design  
+Date acquired: 1996  
 }}
 
 ## Which visualizations represent what and how are they linked?

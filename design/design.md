@@ -32,7 +32,8 @@ My page will be a 'one pager', meaning that there are three visualizations visib
 - A heat world map
 - A bar chart
 - A bubble chart
-- Alongside the world map, you'll find a dropdown menu. Below the world map, there is a range slider with events (years).
+- Alongside the world map, you'll find a dropdown menu. 
+- Below the world map, there is a range slider with events (years).
 
 ### Heat world map
 By default, the world map illustrates the amount of works acquired per country from minimum year to maximum year for both genders.

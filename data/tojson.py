@@ -1,7 +1,7 @@
 import csv, json
 
-csvFilePath = "datacsv/output_1.csv"
-jsonFilePath = "firsthalf.json"
+csvFilePath = "cleanedmoma2.csv"
+jsonFilePath = "newjson.json"
 
 #read the csv and add the data to a dictionary
 

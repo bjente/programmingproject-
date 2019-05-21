@@ -3,14 +3,16 @@
 */
 
 window.onload = function() {
-  // var firsthalf = "../data/firsthalf.json"
-  // var secondhalf = "../data/secondhalf.json"
-  var firsthalf = "firsthalf.json"
-  var secondhalf = "secondhalf.json"
-  var requests = [d3.json(firsthalf), d3.json(secondhalf)];
+  var data = "../data/newjson.json"
+  var startyear = '1935';
+  var endyear = '2018';
+  var category = 'All categories';
+  var requests = [d3v5.json(data)];
 
   Promise.all(requests).then(function(response) {
-    console.log(requests)
+    data = response[0]
+    // hier filter functie aanroepen vanuit heatmap.js. waarden die je moet meegeven: minimum jaar, maximum jaar en categorie
+    filterMapData(startyear, endyear, category, data)
   })
   .catch(function(e){
       throw(e);

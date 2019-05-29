@@ -5,8 +5,8 @@ Studentnumber: 11017503
 
 //In deze functie maak ik de data klaar voor het goed weergeven van de worldmap
 function filterMapData(startyear, endyear, category, data) {
+
   var listWithDicts = []
-  var count = 0
 
   // werk ALLEEN met het gegeven start en end year en gekozen department
   let actualData = {};
@@ -26,7 +26,6 @@ function filterMapData(startyear, endyear, category, data) {
       }
     }
   };
-
   for (artwork in actualData){
 
     // eerst alle landen die we nu al hebben opgeslagen in een lijst zetten
@@ -52,7 +51,6 @@ function filterMapData(startyear, endyear, category, data) {
       }
     };
   };
-
   // check of er meerdere nationaliteiten in een nationaliteit zitten
   // n is de elke individuele nationaliteit in nationalities
   // je loopt over elke individuele nationaliteit met nationalities.forEach(function(n))
@@ -110,10 +108,17 @@ function drawMap(finalDict, worldCountries) {
               width = 1000 - margin.left - margin.right,
               height = 600 - margin.top - margin.bottom;
 
-  var color = d3.scaleThreshold()
-      .domain([0,10,50,100,500,1000,2000,3000,maxAmount])
-      .range(['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529']);
+  var superMax = 8083;
 
+  function convert(x){
+
+    return Math.round(x / superMax * maxAmount);
+  }
+  // als het resultaat van de convert 0 is, dan maakt d3 daar geen ticks voor want dan zouden er meerdere ticks met 0 waarde hebben dus dat maakt geen sense
+  // dit komt omdat de domains heel erg verschillen als je de jaren aanpast, domain van 1965-2018 is heel groot in vergelijking met 1965-1985 WHAT TO DO
+  var color = d3.scaleThreshold()
+      .domain([0,convert(100),convert(200),convert(300),convert(400),convert(500),convert(1000),convert(2500),maxAmount])
+      .range(['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529', '#292929']);
 
   var path = d3.geoPath();
 
@@ -136,7 +141,7 @@ function drawMap(finalDict, worldCountries) {
   finalDict.forEach(function(d) { worksPerCountry[d.Nationality] = +d.Count; });
   worldCountries.features.forEach(function(d) {
     if (d.id in worksPerCountry){
-      d.Count = worksPerCountry[d.id] }
+      d.Count = worksPerCountry[d.id]}
     else {
       d.Count = 0
     }
@@ -148,27 +153,27 @@ function drawMap(finalDict, worldCountries) {
       .data(worldCountries.features)
     .enter().append("path")
       .attr("d", path)
-      .style("fill", function(d) {return color(worksPerCountry[d.id]); })
-      .style('stroke', 'white')
+      .style("fill", function(d) {if(d.Count === 0){return 'white'}else{return color(worksPerCountry[d.id])}})
+      .style('stroke', 'black')
       .style('stroke-width', 1.5)
       .style("opacity",0.8)
       // tooltips
-        .style("stroke","white")
+        .style("stroke","black")
         .style('stroke-width', 0.3)
         .on('mouseover',function(d){
           tip.show(d);
 
           d3.select(this)
             .style("opacity", 1)
-            .style("stroke","white")
-            .style("stroke-width",3);
+            .style("stroke","#004529")
+            .style("stroke-width",2);
         })
         .on('mouseout', function(d){
           tip.hide(d);
 
           d3.select(this)
             .style("opacity", 0.8)
-            .style("stroke","white")
+            .style("stroke","black")
             .style("stroke-width",0.3);
         });
 
@@ -177,65 +182,101 @@ function drawMap(finalDict, worldCountries) {
       .attr("class", "names")
       .attr("d", path);
 
-  return [maxAmount, svg]
+  return [maxAmount, svg, allAmounts]
 };
 
-function drawLegend(maxAmount, svg) {
+function drawLegend(maxAmount, svg, allAmounts) {
+
   // LEGEND NOG AANPASSEN ALS ER ANDERE JAREN OF CATEGORIEEN ZIJN
-  var marginLegend = 50;
+  var marginLegend = 80;
   var height = 550;
   var width = 25;
   var heightRect = height / 9
 
-  // Define legend color
-  var color = d3.scaleThreshold()
-                .domain([0, 10, 50, 100, 250, 500, 1000, 2500, maxAmount])
-                .range(['#004529','#006837', '#238443', '#41ab5d', '#78c679', '#addd8e', '#d9f0a3', '#f7fcb9', '#ffffe5'])
+  var superMax = 8083;
+
+  function convert(x){
+    return Math.round(x / superMax * maxAmount);
+  }
 
 
+    var color = d3.scaleThreshold()
+        .domain([0,convert(100),convert(200),convert(300),convert(400),convert(500),convert(1000),convert(2500),maxAmount])
+        .range(['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529', '#292929']);
 
-  // Append legend to svg
+
   var legend = svg.selectAll('.legend')
                   .data(color.domain())
                   .enter()
                   .append('g')
                   .attr('class', 'legend')
-                  .attr('transform', function(d, i) { return 'translate(' + marginLegend + ',' + ((i * (heightRect)) + 20) + ')'; });
+                  .attr('transform', function(d, i) {return 'translate(' + marginLegend + ',' + ((i * (heightRect)) + 20) + ')'; });
 
-  // Draw legend colored rectangles
+
       legend.append('rect')
             .attr('x', 0)
             .attr('width', width)
             .attr('height', heightRect)
-            .style('fill', color);
+            .style('fill', function(d, i) {return color(d)});
 
-  // Set y scale
+
   var yScale = d3.scaleLinear()
-          // Set range manually because scale is not linear
-          .range([0, heightRect, (heightRect * 2), (heightRect * 3), (heightRect * 4), (heightRect * 5), (heightRect * 6), (heightRect * 7), (heightRect * 8), height])
-          .domain([maxAmount, 2500, 1000, 500, 250, 100, 50, 10, 5, 0]);
+          .range([0, heightRect, (heightRect * 2), (heightRect * 3), (heightRect * 4), (heightRect * 5), (heightRect * 6), (heightRect * 7), (heightRect * 8)])
+          .domain([0,convert(100),convert(200),convert(300),convert(400),convert(500),convert(1000),convert(2500),maxAmount])
 
-  // Scale y axis
   var yAxis = d3.axisLeft()
           .scale(yScale)
-          // Set ticks and tick values for these specific values
           .ticks(9)
-          .tickValues([0, 5, 10, 50, 100, 250, 500, 1000, 2500, maxAmount]);
+          .tickValues([0,convert(100),convert(200),convert(300),convert(400),convert(500),convert(1000),convert(2500),maxAmount]);
 
-  // Draw axis next to legend
+
   svg.append('g')
      .attr('class', 'y axis')
      .attr('transform', 'translate(' + marginLegend + ',' +  '20)')
      .call(yAxis)
 
-  // Add text to legend
+
   svg.append('g')
      .append('text')
      .attr('class', 'legend-text-map')
      .attr('y', marginLegend - 39)
      .attr('x', - height / 1.7)
      .attr('transform', 'rotate(-90)')
-     .text('More works →')
+     .text('← More works')
      .attr("font-family", "Helvetica")
 
+};
+function createRangeSlider() {
+
+
+  data = [1965, 1975, 1985, 1995, 2005, 2015, 2016, 2017, 2018]
+  var sliderRange = d3
+    .sliderBottom()
+    .min(d3.min(data))
+    .max(d3.max(data))
+    .width(600)
+    .tickFormat(d3.format('.2%'))
+    .ticks(9)
+    .default([1965, 2018])
+    .fill('#2196f3')
+    .on('onchange', val => {
+      d3.select('p#value-range').text(val.map(d3.format('.2%')).join('-'));
+    });
+
+  var gRange = d3
+    .select('div#slider-range')
+    .append('svg')
+    .attr('width', 800)
+    .attr('height', 100)
+    .append('g')
+    .attr('transform', 'translate(30,30)');
+
+  gRange.call(sliderRange);
+
+  d3.select('p#value-range').text(
+    sliderRange
+      .value()
+      .map(d3.format('.2%'))
+      .join('-')
+  );
 }

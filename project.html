@@ -9,29 +9,30 @@ Assignment: D3 Scatterplot
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Linked views</title>
+    <title>Collection of MoMA</title>
 
     <!-- Import D3 V5 -->
+    <link rel='stylesheet' href='style.css'>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script>
+    <script src='scripts/d3-tip.js'></script>
+    <!--<script>
       d3v5 = d3;
       window.d3 = null;
     </script>
 
     <!-- Import D3 V3 and TopoJSON -->
-    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <!--<script src="https://d3js.org/d3.v3.min.js"></script>-->
+    <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-    <script src="datamaps.world.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
-    <div id="container" style="position: relative; width: 1000px; height: 400px;"></div>
-    <script>
+    <!--<script>
       d3v3 = d3;
       window.d3 = null;
 
       // Test if it worked
       console.log('v3', d3v3.version);
       console.log('v5', d3v5.version);
-    </script>
+    </script>-->
     <script type="text/javascript" src="scripts/heatmap.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
 
@@ -42,8 +43,8 @@ Assignment: D3 Scatterplot
 
     <div id="pie"></div>
     <h1>Insights in the collection of MoMA</h1>
-        This page gives you insight in the collection of the Museum of Modern Art New York. <br></br>
-        <!-- <a href="https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art"> Click to view datasource</a>
+        <h4>This page gives you insight in the collection of the Museum of Modern Art New York.<br></br>
+        <a href="https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art"> Click to view datasource</a> </h4>
         <div id = "choices"></div>
 
 

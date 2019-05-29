@@ -4,15 +4,20 @@
 
 window.onload = function() {
   var data = "../data/newjson.json"
+  var worldCountries = "../data/world_countries.json"
   var startyear = '1935';
   var endyear = '2018';
   var category = 'All categories';
-  var requests = [d3v5.json(data)];
+  var requests = [d3.json(data), d3.json(worldCountries)];
 
   Promise.all(requests).then(function(response) {
     data = response[0]
+    worldCountries = response[1]
     // hier filter functie aanroepen vanuit heatmap.js. waarden die je moet meegeven: minimum jaar, maximum jaar en categorie
-    filterMapData(startyear, endyear, category, data)
+    var finalDict = filterMapData(startyear, endyear, category, data)
+    var maxAmountAndSvg = drawMap(finalDict, worldCountries)
+    // var svg = drawMap(finalDict, worldCountries)[1]
+    drawLegend(maxAmountAndSvg[0], maxAmountAndSvg[1])
   })
   .catch(function(e){
       throw(e);

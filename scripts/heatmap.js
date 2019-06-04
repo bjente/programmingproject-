@@ -39,7 +39,11 @@ function filterMapData(startyear, endyear, category, data) {
     if (!(allcountries.indexOf(data[artwork].Nationality.trim()) >= 0)){
       var countryDict = {};
       countryDict.Nationality = data[artwork].Nationality.trim();
+      countryDict.Artist = data[artwork].Artist.trim()
       countryDict.Count = 1;
+      countryDict.Males = 0;
+      countryDict.Females = 0;
+      countryDict.Unknown = 0;
       listWithDicts.push(countryDict);
     }
     // als de nationality er al wel in staat, verhogen we de count met 1
@@ -153,6 +157,8 @@ function drawMap(finalDict, worldCountries) {
       .data(worldCountries.features)
     .enter().append("path")
       .attr("d", path)
+      // HIER ADD IK DIE ID MAAR WAT MOET IK DAARMEE? ik snap d3 niet zo goed denk ik...
+      .attr("id", function(d){return d.id})
       .style("fill", function(d) {if(d.Count === 0){return 'white'}else{return color(worksPerCountry[d.id])}})
       .style('stroke', 'black')
       .style('stroke-width', 1.5)
@@ -181,6 +187,7 @@ function drawMap(finalDict, worldCountries) {
       .datum(topojson.mesh(worldCountries.features, function(a, b) { return a.id !== b.id; }))
       .attr("class", "names")
       .attr("d", path);
+
 
   return [maxAmount, svg, allAmounts]
 };
@@ -249,34 +256,4 @@ function drawLegend(maxAmount, svg, allAmounts) {
 function createRangeSlider() {
 
 
-  data = [1965, 1975, 1985, 1995, 2005, 2015, 2016, 2017, 2018]
-  var sliderRange = d3
-    .sliderBottom()
-    .min(d3.min(data))
-    .max(d3.max(data))
-    .width(600)
-    .tickFormat(d3.format('.2%'))
-    .ticks(9)
-    .default([1965, 2018])
-    .fill('#2196f3')
-    .on('onchange', val => {
-      d3.select('p#value-range').text(val.map(d3.format('.2%')).join('-'));
-    });
-
-  var gRange = d3
-    .select('div#slider-range')
-    .append('svg')
-    .attr('width', 800)
-    .attr('height', 100)
-    .append('g')
-    .attr('transform', 'translate(30,30)');
-
-  gRange.call(sliderRange);
-
-  d3.select('p#value-range').text(
-    sliderRange
-      .value()
-      .map(d3.format('.2%'))
-      .join('-')
-  );
 }

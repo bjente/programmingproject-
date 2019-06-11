@@ -3,91 +3,91 @@ Name: Bente de Bruin
 Studentnumber: 11017503
 */
 
-//In deze functie maak ik de data klaar voor het goed weergeven van de worldmap
-function filterMapData(startyear, endyear, category, data) {
-
-  var listWithDicts = []
-
-  // werk ALLEEN met het gegeven start en end year en gekozen department
-  let actualData = {};
-
-  if (category !== 'All categories'){
-    for (let a in data){
-      // maak int van dateacquired en blijf binnen range van start en end en de gekozen department
-      if ((+data[a]["DateAcquired"] >= +startyear && +data[a]["DateAcquired"] <= +endyear) && data[a]['Department'] === category){
-        actualData[a] = data[a];
-        }
-      }
-    }
-  else {
-    for (let a in data){
-      if (+data[a]["DateAcquired"] >= +startyear && +data[a]["DateAcquired"] <= +endyear) {
-        actualData[a] = data[a];
-      }
-    }
-  };
-  for (artwork in actualData){
-
-    // eerst alle landen die we nu al hebben opgeslagen in een lijst zetten
-    allcountries = []
-    for (i = 0; i < listWithDicts.length; i++) {
-      allcountries.push(listWithDicts[i].Nationality.trim())
-    };
-
-    // als huidige nationality nog niet in allcountries staat, maken we een nieuwe dict en stoppen
-    // we deze in listWithDicts
-    if (!(allcountries.indexOf(data[artwork].Nationality.trim()) >= 0)){
-      var countryDict = {};
-      countryDict.Nationality = data[artwork].Nationality.trim();
-      countryDict.Artist = data[artwork].Artist.trim()
-      countryDict.Count = 1;
-      countryDict.Males = 0;
-      countryDict.Females = 0;
-      countryDict.Unknown = 0;
-      listWithDicts.push(countryDict);
-    }
-    // als de nationality er al wel in staat, verhogen we de count met 1
-    else {
-      for (i = 0; i < listWithDicts.length; i++) {
-        if (listWithDicts[i].Nationality === data[artwork].Nationality.trim()) {
-          listWithDicts[i].Count += 1;
-        }
-      }
-    };
-  };
-  // check of er meerdere nationaliteiten in een nationaliteit zitten
-  // n is de elke individuele nationaliteit in nationalities
-  // je loopt over elke individuele nationaliteit met nationalities.forEach(function(n))
-  // Daarna kijk je per kunstwerk(= singleNat) (nationaliteit van het kunstwerk = singleNat.Nationality)
-  // in de listWithDicts of dit gelijk is aan n. Als dat zo is tel je het aandeel van die nationaliteit van het totaal
-  // nationailteiten VAN het kunstwerk op bij de count van dat land in listWithDicts
-  listWithDicts.forEach(function(potentialMultipleNat){
-
-    let nationalities = potentialMultipleNat.Nationality.split(" ");
-
-    if (nationalities.length > 1){
-      nationalities.forEach(function(n){
-
-        listWithDicts.forEach(function(singleNat){
-          if (singleNat.Nationality === n) {
-            singleNat.Count += potentialMultipleNat.Count/nationalities.length;
-            singleNat.Count = Math.round(singleNat.Count * 100) / 100;
-          }
-        })
-      })
-    }
-  })
-
-  // verwijder dubbele nationaliteiten uit listWithDicts
-  var finalListWithDicts = []
-  listWithDicts.forEach(function(potentialMultipleNat){
-    let nationalities = potentialMultipleNat.Nationality.split(" ");
-    if ((nationalities.length === 1) && potentialMultipleNat.Nationality !== 'unknown'){
-      finalListWithDicts.push(potentialMultipleNat);
-    }
-  })
-  return finalListWithDicts
-};
+// In deze functie maak ik de data klaar voor het goed weergeven van de worldmap
+// function filterMapData(startyear, endyear, category, data) {
+//
+//   var listWithDicts = []
+//
+//   // werk ALLEEN met het gegeven start en end year en gekozen department
+//   let actualData = {};
+//
+//   if (category !== 'All categories'){
+//     for (let a in data){
+//       // maak int van dateacquired en blijf binnen range van start en end en de gekozen department
+//       if ((+data[a]["DateAcquired"] >= +startyear && +data[a]["DateAcquired"] <= +endyear) && data[a]['Department'] === category){
+//         actualData[a] = data[a];
+//         }
+//       }
+//     }
+//   else {
+//     for (let a in data){
+//       if (+data[a]["DateAcquired"] >= +startyear && +data[a]["DateAcquired"] <= +endyear) {
+//         actualData[a] = data[a];
+//       }
+//     }
+//   };
+//   for (artwork in actualData){
+//
+//     // eerst alle landen die we nu al hebben opgeslagen in een lijst zetten
+//     allcountries = []
+//     for (i = 0; i < listWithDicts.length; i++) {
+//       allcountries.push(listWithDicts[i].Nationality.trim())
+//     };
+//
+//     // als huidige nationality nog niet in allcountries staat, maken we een nieuwe dict en stoppen
+//     // we deze in listWithDicts
+//     if (!(allcountries.indexOf(data[artwork].Nationality.trim()) >= 0)){
+//       var countryDict = {};
+//       countryDict.Nationality = data[artwork].Nationality.trim();
+//       // countryDict.Artist = data[artwork].Artist.trim()
+//       countryDict.Count = 1;
+//       countryDict.Males = 0;
+//       countryDict.Females = 0;
+//       countryDict.Unknown = 0;
+//       listWithDicts.push(countryDict);
+//     }
+//     // als de nationality er al wel in staat, verhogen we de count met 1
+//     else {
+//       for (i = 0; i < listWithDicts.length; i++) {
+//         if (listWithDicts[i].Nationality === data[artwork].Nationality.trim()) {
+//           listWithDicts[i].Count += 1;
+//         }
+//       }
+//     };
+//   };
+//   // check of er meerdere nationaliteiten in een nationaliteit zitten
+//   // n is elke individuele nationaliteit in nationalities
+//   // je loopt over elke individuele nationaliteit met nationalities.forEach(function(n))
+//   // Daarna kijk je per kunstwerk(= singleNat) (nationaliteit van het kunstwerk = singleNat.Nationality)
+//   // in de listWithDicts of dit gelijk is aan n. Als dat zo is tel je het aandeel van die nationaliteit van het totaal
+//   // nationailteiten VAN het kunstwerk op bij de count van dat land in listWithDicts
+//   listWithDicts.forEach(function(potentialMultipleNat){
+//
+//     let nationalities = potentialMultipleNat.Nationality.split(" ");
+//
+//     if (nationalities.length > 1){
+//       nationalities.forEach(function(n){
+//
+//         listWithDicts.forEach(function(singleNat){
+//           if (singleNat.Nationality === n) {
+//             singleNat.Count += potentialMultipleNat.Count/nationalities.length;
+//             singleNat.Count = Math.round(singleNat.Count * 100) / 100;
+//           }
+//         })
+//       })
+//     }
+//   })
+//
+//   // verwijder dubbele nationaliteiten uit listWithDicts
+//   var finalListWithDicts = []
+//   listWithDicts.forEach(function(potentialMultipleNat){
+//     let nationalities = potentialMultipleNat.Nationality.split(" ");
+//     if ((nationalities.length === 1) && potentialMultipleNat.Nationality !== 'unknown'){
+//       finalListWithDicts.push(potentialMultipleNat);
+//     }
+//   })
+//   return finalListWithDicts
+// };
 
 function drawMap(finalDict, worldCountries) {
 
@@ -157,7 +157,7 @@ function drawMap(finalDict, worldCountries) {
       .data(worldCountries.features)
     .enter().append("path")
       .attr("d", path)
-      // HIER ADD IK DIE ID MAAR WAT MOET IK DAARMEE? ik snap d3 niet zo goed denk ik...
+      // HIER ADD IK DIE ID MAAR WAT MOET IK DAARMEE?
       .attr("id", function(d){return d.id})
       .style("fill", function(d) {if(d.Count === 0){return 'white'}else{return color(worksPerCountry[d.id])}})
       .style('stroke', 'black')
@@ -168,11 +168,13 @@ function drawMap(finalDict, worldCountries) {
         .style('stroke-width', 0.3)
         .on('mouseover',function(d){
           tip.show(d);
-
           d3.select(this)
             .style("opacity", 1)
             .style("stroke","#004529")
             .style("stroke-width",2);
+        })
+        .on('click', function(d){
+          updateDonut(finalDict, d.id)
         })
         .on('mouseout', function(d){
           tip.hide(d);

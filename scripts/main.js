@@ -14,15 +14,17 @@ window.onload = function() {
     data = response[0]
     worldCountries = response[1]
     // hier filter functie aanroepen vanuit heatmap.js. waarden die je moet meegeven: minimum jaar, maximum jaar en categorie
-    var finalDict = filterMapData(startyear, endyear, category, data)
-    var maxAmountAndSvg = drawMap(finalDict, worldCountries)
+    var finalDict = filterData(startyear, endyear, category, data)
+    // var finalDict = filterMapData(startyear, endyear, category, data)
+    var maxAmountAndSvg = drawMap(finalDict[0], worldCountries)
     // var svg = drawMap(finalDict, worldCountries)[1]
     drawLegend(maxAmountAndSvg[0], maxAmountAndSvg[1], maxAmountAndSvg[2])
-    createRangeSlider()
-    var totals = filterDonutData(startyear, endyear, category, data, finalDict)
+    drawInitialDonut(finalDict[0], finalDict[1], finalDict[2], finalDict[3])
+    // createRangeSlider()
+    // var totals = filterDonutData(startyear, endyear, category, data, finalDict)
     // var amounts = calcAmounts(finalDict)
-    drawDonuts(totals[0], totals[1], totals[2], totals[3], maxAmountAndSvg[1])
-    // filterBubbleData(startyear, endyear, category, data)
+    // drawDonuts(finalDict[0], finalDict[1], finalDict[2], finalDict[3], maxAmountAndSvg[1])
+    filterBubbleData(startyear, endyear, category, data)
 
   })
   .catch(function(e){

@@ -71,3 +71,25 @@ body {
      top: 50%;
      left: 100%;
    }
+
+#header{
+  position: absolute;
+  top: 80px;
+  /* bottom: 100; */
+  right: 10;
+  width: 1000px;
+  height: 40px;
+  font-size: 20px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+#explanation{
+  color: white;
+  font-family: 'Helvetica';
+  font-size: 20px;
+
+}

@@ -40,6 +40,7 @@ Assignment: D3 Scatterplot
     </script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="scripts/filterData.js"></script>
     <script type="text/javascript" src="scripts/heatmap.js"></script>
     <script type="text/javascript" src="scripts/donut.js"></script>
     <script type="text/javascript" src="scripts/bubble.js"></script>
@@ -49,12 +50,19 @@ Assignment: D3 Scatterplot
   </head>
   <body>
 
-    <div id="pie"></div>
     <h1>Insights in the collection of MoMA</h1>
-        <h4>This page gives you insight in the collection of the Museum of Modern Art New York.<br></br>
-        <a href="https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art"> Click to view datasource</a> </h4>
+        <h4 id = "header">This page gives you insight in the collection of the Museum of Modern Art New York.</h4><br></br>
+        <!-- <a href="https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art"> Click to view datasource</a> </h4> -->
         <div id = "choices"></div>
         <div class="row align-items-center">
+          <nav class='navbar navbar-expand-sm navbar-dark fixed-top' style='background-color: #4a9e5c'>
+        <a class='navbar-brand' href='../startpage.html'>Homepage</a>
+        <ul class='navbar-nav'>
+          <!-- Link to story, visualisations and info page -->
+
+          <li class='nav-item'>
+            <a class='nav-link active' href='project.html'>Visualisations</a>
+          </li>
 
   </body>
 </html>

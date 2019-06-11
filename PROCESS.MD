@@ -33,3 +33,9 @@
 - I tried to fix the slider, didn't succeed yet.
 - I started with the donut charts, they're not finished yet. If you click on a country, it is not drawing the right donut chart yet. 
 - I thought about how to preprocess the data for the bubble chart.
+
+#### 11-06-2019
+- I fixed the on click method for the worldmap. Donuts are not properly shown yet.
+- I began filtering data for the bubble chart.
+- I did some designing for the look of my website.
+- I have to discuss with a tutor about filtering data: when should I do it?

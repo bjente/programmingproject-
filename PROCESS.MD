@@ -39,3 +39,7 @@
 - I began filtering data for the bubble chart.
 - I did some designing for the look of my website.
 - I have to discuss with a tutor about filtering data: when should I do it?
+
+#### 12-06-2019
+- I made a demo of the bubble chart, I decided that I would let in multiple artists in for now because otherwise it'd get too complicated.
+- I tried to write an update function for the donut charts, but my understanding of D3 is not good enough to do so. Therefore, I started studying the 'general update pattern' of D3. It covers the enter-update-exit pattern. I still have a hard time understanding this. 

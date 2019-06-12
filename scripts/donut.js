@@ -179,6 +179,10 @@ function drawInitialDonut(finalDict, totalFemales, totalUnknown, totalMales){
 
       data = [{"category": "Male artists", "amount": totalMales}, {"category": 'Female artists', "amount": totalFemales}, {"category": 'Unknown gender', "amount": totalUnknown}]
 
+      var pie = d3.pie()
+          .sort(null)
+          .value(function(d) { return d.amount});
+
       var arc = d3.arc()
           .outerRadius(radius - 40)
           .innerRadius(radius - 80);
@@ -187,10 +191,6 @@ function drawInitialDonut(finalDict, totalFemales, totalUnknown, totalMales){
           .outerRadius(radius - 60)
           .innerRadius(radius - 60);
 
-      // We create the pie based on the amounts of the categories.
-      var pie = d3.pie()
-          .sort(null)
-          .value(function(d) { return d.amount});
 
       var svg2 = d3.select("body").append("svg").attr("class", "pie")
                  .attr("width", w)
@@ -237,6 +237,10 @@ function updateDonut(finalDict, threeLetterCountry){
   })
   console.log(data)
 
+  var pie = d3.pie()
+      .sort(null)
+      .value(function(d) { return d.amount});
+
   var arc = d3.arc()
       .outerRadius(radius - 40)
       .innerRadius(radius - 80);
@@ -245,10 +249,7 @@ function updateDonut(finalDict, threeLetterCountry){
       .outerRadius(radius - 60)
       .innerRadius(radius - 60);
 
-  // We create the pie based on the amounts of the categories.
-  var pie = d3.pie()
-      .sort(null)
-      .value(function(d) { return d.amount});
+  // We create the pie based on the amounts of categories.
 
   var g = d3.select(".pie")
     .selectAll(".arc")
@@ -256,17 +257,17 @@ function updateDonut(finalDict, threeLetterCountry){
     .enter().append("g")
     .attr("class", "arc")
 
-   g.append("path")
-    .attr("d", arc)
-    .style("fill", function(d){
-      if (d.data.category === 'Male artists'){return "#5f93ef"} else if(d.data.category === 'Female artists'){return "#f1b7ff"}else{return "white"}
-    })
+     g.append("path")
+      .attr("d", arc)
+      .style("fill", function(d){
+        if (d.data.category === 'Male artists'){return "#5f93ef"} else if(d.data.category === 'Female artists'){return "#f1b7ff"}else{return "white"}
+      })
 
-   g.append("text")
-   .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-   .text(function(d) { return d.data.amount
-     ;})
-    .attr("dy", ".35em")
-    .style("fill", "black")
-    .style("font-size", "0.70em")
-}
+     g.append("text")
+     .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+     .text(function(d) { return d.data.amount
+       ;})
+      .attr("dy", ".35em")
+      .style("fill", "black")
+      .style("font-size", "0.70em")
+  }

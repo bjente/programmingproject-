@@ -177,8 +177,6 @@ function drawInitialDonut(finalDict, totalFemales, totalUnknown, totalMales){
       h = 500 - margin.top - margin.bottom,
       radius = w/2;
 
-
-
       data = [{"category": "Male artists", "amount": totalMales}, {"category": 'Female artists', "amount": totalFemales}, {"category": 'Unknown gender', "amount": totalUnknown}]
 
       var arc = d3.arc()
@@ -215,11 +213,12 @@ function drawInitialDonut(finalDict, totalFemales, totalUnknown, totalMales){
                	 .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
                	 .text(function(d) { return d.data.amount
                    ;})
+                  .attr("dy", ".35em")
                	 .style("fill", "black")
                   .style("font-size", "0.70em")
 
-
 }
+
 
 function updateDonut(finalDict, threeLetterCountry){
 
@@ -267,6 +266,7 @@ function updateDonut(finalDict, threeLetterCountry){
    .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
    .text(function(d) { return d.data.amount
      ;})
-   .style("fill", "black")
+    .attr("dy", ".35em")
+    .style("fill", "black")
     .style("font-size", "0.70em")
 }

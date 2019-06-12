@@ -89,7 +89,7 @@ Studentnumber: 11017503
 //   return finalListWithDicts
 // };
 
-function drawMap(finalDict, worldCountries) {
+function drawMap(finalDict, worldCountries, artistDict) {
 
   var allAmounts = []
   finalDict.forEach(function(d){
@@ -175,6 +175,7 @@ function drawMap(finalDict, worldCountries) {
         })
         .on('click', function(d){
           updateDonut(finalDict, d.id)
+          updateBubbles(artistDict, d.id)
         })
         .on('mouseout', function(d){
           tip.hide(d);

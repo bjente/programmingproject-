@@ -1,4 +1,6 @@
 function filterData(startyear, endyear, category, data){
+
+  var listWithArtistDicts = []
   var listWithDicts = []
   var listWithGenderDicts = []
   var totalFemales = 0
@@ -25,6 +27,7 @@ function filterData(startyear, endyear, category, data){
   };
   for (artwork in actualData){
 
+    allArtists = []
     // eerst alle landen die we nu al hebben opgeslagen in een lijst zetten
     allcountries = []
     for (i = 0; i < listWithDicts.length; i++) {
@@ -56,6 +59,26 @@ function filterData(startyear, endyear, category, data){
     genderDict.Nationality = data[artwork].Nationality.trim();
     genderDict.Genders = data[artwork].Gender.trim()
     listWithGenderDicts.push(genderDict);
+
+    for (i = 0; i < listWithArtistDicts.length; i++) {
+      allArtists.push(listWithArtistDicts[i].Artist.trim())
+    };
+
+    if (!(allArtists.indexOf(data[artwork].Artist.trim()) >= 0)){
+      var artistDict = {}
+      artistDict.artistCount = 1
+      artistDict.Artist = data[artwork].Artist.trim()
+      artistDict.Gender = data[artwork].Gender.trim()
+      artistDict.Nationality = data[artwork].Nationality.trim()
+      listWithArtistDicts.push(artistDict)
+    }
+    else {
+      for (i = 0; i < listWithArtistDicts.length; i++) {
+        if (listWithArtistDicts[i].Artist === data[artwork].Artist.trim()) {
+          listWithArtistDicts[i].artistCount += 1;
+        }
+      }
+    }
   }
   // check of er meerdere nationaliteiten in een nationaliteit zitten
   // n is elke individuele nationaliteit in nationalities
@@ -195,5 +218,5 @@ function filterData(startyear, endyear, category, data){
      }
    }
   })
-  return [finalListWithDicts, totalFemales, totalUnknown, totalMales]
+  return [finalListWithDicts, totalFemales, totalUnknown, totalMales, listWithArtistDicts]
 };

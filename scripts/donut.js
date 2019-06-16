@@ -21,7 +21,7 @@ function drawInitialDonut(dataDonut){
       h = 500 - margin.top - margin.bottom,
       radius = w/2;
 
-      data = [{"category": "Male artists", "amount": totalMales}, {"category": 'Female artists', "amount": totalFemales}, {"category": 'Unknown gender', "amount": totalUnknown}]
+      data = [{"category": "Male", "amount": totalMales}, {"category": 'Female', "amount": totalFemales}, {"category": 'Unknown', "amount": totalUnknown}]
 
       var pie = d3.pie()
           .sort(null)
@@ -50,7 +50,10 @@ function drawInitialDonut(dataDonut){
                  g.append("path")
                   .attr("d", arc)
                   .style("fill", function(d){
-                    if (d.data.category === 'Male artists'){return "#5f93ef"} else if(d.data.category === 'Female artists'){return "#f1b7ff"}else{return "white"}
+                    if (d.data.category === 'Male'){return "#5f93ef"} else if(d.data.category === 'Female'){return "#f1b7ff"}else{return "white"}
+                  })
+                  .on('click', function(d){
+                    updateBubbles(d.data.category)
                   })
 
                  g.append("text")

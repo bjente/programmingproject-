@@ -119,7 +119,7 @@ function drawMap(dataMapDonut, worldCountries, startyear, endyear, category) {
         })
         .on('click', function(d){
           updateDonut(values, d.id)
-          updateBubbles(artistDict, d.id)
+          updateBubblesMap(values, d.id)
         })
         .on('mouseout', function(d){
           tip.hide(d);

@@ -133,6 +133,13 @@ var childrenDict = {children: bubbleList}
 
   d3.select(self.frameElement)
       .style("height", diameter + "px");
+}
 
+function updateBubbles(gender, threeLetterCountry){
+  console.log(gender)
+  console.log(threeLetterCountry)
+}
 
+function updateBubblesMap(values, threeLetterCountry){
+  console.log(threeLetterCountry)
 }

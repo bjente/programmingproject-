@@ -43,3 +43,6 @@
 #### 12-06-2019
 - I made a demo of the bubble chart, I decided that I would let in multiple artists in for now because otherwise it'd get too complicated.
 - I tried to write an update function for the donut charts, but my understanding of D3 is not good enough to do so. Therefore, I started studying the 'general update pattern' of D3. It covers the enter-update-exit pattern. I still have a hard time understanding this. 
+
+#### Weekend 14-06-2019/16-06-2019
+- I decided to completely change my datastructure. I made JSON files with the help of the functions I wrote in filterdata.js. After consultation with student assistants, we came to the conclusion that my program was a bit slow. To solve this, I needed to pre-calculate values and I had to write them to a JSON file. This enabled me to completely remove filterdata.js. Since the data was in a different format, I had to make a couple of changes to the functions that draw the map, the donut and the bubbles. Most of the calculations are already done on forehand now. This makes the program a bit faster, but it still has to do some calculations when running, so it's still not super fast. 

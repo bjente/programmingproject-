@@ -3,97 +3,40 @@ Name: Bente de Bruin
 Studentnumber: 11017503
 */
 
-// In deze functie maak ik de data klaar voor het goed weergeven van de worldmap
-// function filterMapData(startyear, endyear, category, data) {
-//
-//   var listWithDicts = []
-//
-//   // werk ALLEEN met het gegeven start en end year en gekozen department
-//   let actualData = {};
-//
-//   if (category !== 'All categories'){
-//     for (let a in data){
-//       // maak int van dateacquired en blijf binnen range van start en end en de gekozen department
-//       if ((+data[a]["DateAcquired"] >= +startyear && +data[a]["DateAcquired"] <= +endyear) && data[a]['Department'] === category){
-//         actualData[a] = data[a];
-//         }
-//       }
-//     }
-//   else {
-//     for (let a in data){
-//       if (+data[a]["DateAcquired"] >= +startyear && +data[a]["DateAcquired"] <= +endyear) {
-//         actualData[a] = data[a];
-//       }
-//     }
-//   };
-//   for (artwork in actualData){
-//
-//     // eerst alle landen die we nu al hebben opgeslagen in een lijst zetten
-//     allcountries = []
-//     for (i = 0; i < listWithDicts.length; i++) {
-//       allcountries.push(listWithDicts[i].Nationality.trim())
-//     };
-//
-//     // als huidige nationality nog niet in allcountries staat, maken we een nieuwe dict en stoppen
-//     // we deze in listWithDicts
-//     if (!(allcountries.indexOf(data[artwork].Nationality.trim()) >= 0)){
-//       var countryDict = {};
-//       countryDict.Nationality = data[artwork].Nationality.trim();
-//       // countryDict.Artist = data[artwork].Artist.trim()
-//       countryDict.Count = 1;
-//       countryDict.Males = 0;
-//       countryDict.Females = 0;
-//       countryDict.Unknown = 0;
-//       listWithDicts.push(countryDict);
-//     }
-//     // als de nationality er al wel in staat, verhogen we de count met 1
-//     else {
-//       for (i = 0; i < listWithDicts.length; i++) {
-//         if (listWithDicts[i].Nationality === data[artwork].Nationality.trim()) {
-//           listWithDicts[i].Count += 1;
-//         }
-//       }
-//     };
-//   };
-//   // check of er meerdere nationaliteiten in een nationaliteit zitten
-//   // n is elke individuele nationaliteit in nationalities
-//   // je loopt over elke individuele nationaliteit met nationalities.forEach(function(n))
-//   // Daarna kijk je per kunstwerk(= singleNat) (nationaliteit van het kunstwerk = singleNat.Nationality)
-//   // in de listWithDicts of dit gelijk is aan n. Als dat zo is tel je het aandeel van die nationaliteit van het totaal
-//   // nationailteiten VAN het kunstwerk op bij de count van dat land in listWithDicts
-//   listWithDicts.forEach(function(potentialMultipleNat){
-//
-//     let nationalities = potentialMultipleNat.Nationality.split(" ");
-//
-//     if (nationalities.length > 1){
-//       nationalities.forEach(function(n){
-//
-//         listWithDicts.forEach(function(singleNat){
-//           if (singleNat.Nationality === n) {
-//             singleNat.Count += potentialMultipleNat.Count/nationalities.length;
-//             singleNat.Count = Math.round(singleNat.Count * 100) / 100;
-//           }
-//         })
-//       })
-//     }
-//   })
-//
-//   // verwijder dubbele nationaliteiten uit listWithDicts
-//   var finalListWithDicts = []
-//   listWithDicts.forEach(function(potentialMultipleNat){
-//     let nationalities = potentialMultipleNat.Nationality.split(" ");
-//     if ((nationalities.length === 1) && potentialMultipleNat.Nationality !== 'unknown'){
-//       finalListWithDicts.push(potentialMultipleNat);
-//     }
-//   })
-//   return finalListWithDicts
-// };
+function drawMap(dataMapDonut, worldCountries, startyear, endyear, category) {
 
-function drawMap(finalDict, worldCountries, artistDict) {
+  var values = []
 
+  if(category !== 'All categories'){
+
+    for(var key in dataMapDonut){
+
+      if(dataMapDonut[key].year >= startyear && dataMapDonut[key].year <= endyear && dataMapDonut[key].department === category){
+        values.push(dataMapDonut[key].values)
+      }
+  }
+}
+  else{
+    for(var key in dataMapDonut){
+      if(dataMapDonut[key].year >= startyear && dataMapDonut[key].year <= endyear){
+        values.push(dataMapDonut[key].values)
+      }
+    }
+  }
+  var worksPerCountry = {};
   var allAmounts = []
-  finalDict.forEach(function(d){
-    allAmounts.push(d.Count)
+
+  values.forEach(function(d){
+    d.forEach(function(e){
+      if (e.Nationality in worksPerCountry){
+        worksPerCountry[e.Nationality] += +e.Count
+        allAmounts.push(worksPerCountry[e.Nationality])
+      }
+      else {
+        worksPerCountry[e.Nationality] = +e.Count
+        allAmounts.push(worksPerCountry[e.Nationality])
+      }
+    })
   })
 
   var maxAmount = Math.max.apply(Math, allAmounts);
@@ -105,7 +48,7 @@ function drawMap(finalDict, worldCountries, artistDict) {
               .attr('class', 'd3-tip')
               .offset([-10, 0])
               .html(function(d) {
-                return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Amount of works: </strong><span class='details'>" + format(d.Count) +"</span>";
+               return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Amount of works: </strong><span class='details'>" + format(d.Count) +"</span>";
               })
 
   var margin = {top: 0, right: 0, bottom: 0, left: -100},
@@ -135,21 +78,22 @@ function drawMap(finalDict, worldCountries, artistDict) {
 
   var projection = d3.geoMercator()
                      .scale(115)
-                    .translate( [width / 1.8, height / 1.5]);
+                     .translate( [width / 1.8, height / 1.5]);
 
   var path = d3.geoPath().projection(projection);
 
   svg.call(tip);
 
-  var worksPerCountry = {};
-  finalDict.forEach(function(d) { worksPerCountry[d.Nationality] = +d.Count; });
-  worldCountries.features.forEach(function(d) {
+
+  worldCountries.features.forEach(function(d){
     if (d.id in worksPerCountry){
-      d.Count = worksPerCountry[d.id]}
+      d.Count = worksPerCountry[d.id]
+    }
     else {
       d.Count = 0
     }
-  });
+  })
+
 
   svg.append("g")
       .attr("class", "countries")
@@ -174,7 +118,7 @@ function drawMap(finalDict, worldCountries, artistDict) {
             .style("stroke-width",2);
         })
         .on('click', function(d){
-          updateDonut(finalDict, d.id)
+          updateDonut(values, d.id)
           updateBubbles(artistDict, d.id)
         })
         .on('mouseout', function(d){
@@ -192,7 +136,7 @@ function drawMap(finalDict, worldCountries, artistDict) {
       .attr("d", path);
 
 
-  return [maxAmount, svg, allAmounts]
+  return [maxAmount, svg, allAmounts, values]
 };
 
 function drawLegend(maxAmount, svg, allAmounts) {
@@ -256,7 +200,7 @@ function drawLegend(maxAmount, svg, allAmounts) {
      .attr("font-family", "Helvetica")
 
 };
-function createRangeSlider() {
 
+function createRangeSlider() {
 
 }

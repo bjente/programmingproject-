@@ -3,11 +3,37 @@ Name: Bente de Bruin
 Studentnumber: 11017503
 */
 
-function drawInitialBubble(listWithArtistDicts){
+function drawInitialBubble(dataArtist, startyear, endyear, category){
 
-childrenDict = {children: listWithArtistDicts}
 
-console.log(childrenDict)
+  var valuesBubble = []
+  if(category !== 'All categories'){
+
+    for(var key in dataArtist){
+
+      if(dataArtist[key].year >= startyear && dataArtist[key].year <= endyear && dataArtist[key].department === category){
+        valuesBubble.push(dataArtist[key].values)
+      }
+  }
+}
+  else{
+    for(var key in dataArtist){
+      if(dataMapDonut[key].year >= startyear && dataMapDonut[key].year <= endyear){
+        valuesBubble.push(dataArtist[key].values)
+      }
+    }
+  }
+
+var bubbleList = []
+
+valuesBubble.forEach(function(d){
+  d.forEach(function(e){
+    bubbleList.push(e)
+  })
+})
+
+var childrenDict = {children: bubbleList}
+
 
   var diameter = 600;
       format = d3.format(",d")
@@ -37,8 +63,12 @@ console.log(childrenDict)
       .style("font", "12px sans-serif")
       .text("tooltip");
 
+
   var nodes = d3.hierarchy(childrenDict)
-      .sum(function(d) { return d.artistCount; });
+      .sum(function(d) {
+        return d.artistCount
+    });
+
 
   var node = svg.selectAll(".node")
       .data(bubble(nodes).descendants())

@@ -3,175 +3,19 @@ Name: Bente de Bruin
 Studentnumber: 11017503
 */
 
+function drawInitialDonut(dataDonut){
 
-// function filterDonutData(startyear, endyear, category, data, finalDict) {
-//
-//   // function addToGender(gender, potentialMultipleValues){
-//   //   finalDict.forEach(function(country){
-//   //     if (country.Nationality === potentialMultipleValues.Nationality){
-//   //       country.gender += 1
-//   //     }
-//   //   })
-//   // }
-//
-//   var listWithGenderDicts = []
-//   var totalFemales = 0
-//   var totalMales = 0
-//   var totalUnknown = 0
-//   // var finalDict = []
-//
-//   // werk ALLEEN met het gegeven start en end year en gekozen department
-//   let actualData = {};
-//
-//   if (category !== 'All categories'){
-//     for (let a in data){
-//       // maak int van dateacquired en blijf binnen range van start en end en de gekozen department
-//       if ((+data[a]["DateAcquired"] >= +startyear && +data[a]["DateAcquired"] <= +endyear) && data[a]['Department'] === category){
-//         actualData[a] = data[a];
-//         }
-//       }
-//     }
-//   else {
-//     for (let a in data){
-//       if (+data[a]["DateAcquired"] >= +startyear && +data[a]["DateAcquired"] <= +endyear) {
-//         actualData[a] = data[a];
-//       }
-//     }
-//   };
-//
-//   for (artwork in actualData){
-//
-//     var genderDict = {};
-//
-//     genderDict.Nationality = data[artwork].Nationality.trim();
-//     genderDict.Genders = data[artwork].Gender.trim()
-//     listWithGenderDicts.push(genderDict);
-// }
-//   // loop over listWithGenderDicts en verander () in unknown en maak lists van genders en nationalities
-//   listWithGenderDicts.forEach(function(potentialMultipleValues){
-//
-//     let nationalities = potentialMultipleValues.Nationality.split(" ")
-//     let genders = potentialMultipleValues.Genders.split(" ")
-//     if (genders.length > 1){
-//       for (i = 0; i < genders.length; i++){
-//         if(genders[i] === "()"){
-//           genders[i] = 'unknown'
-//         }
-//       }
-//     } else {
-//       if (genders[0] === "()"){
-//         genders[0] = 'unknown'
-//       }
-//     }
-//     potentialMultipleValues.Genders = genders
-//     potentialMultipleValues.Nationality = nationalities
-//
-//     // vergelijk lengte van arrays met elkaar, genders[0] hoor bij nationalities[0] etc
-//     // we tellen 1 bij males females of unknown op van het juiste land
-//     if (potentialMultipleValues.Genders.length === potentialMultipleValues.Nationality.length){
-//       for (i = 0; i < potentialMultipleValues.Genders.length; i++){
-//         if (potentialMultipleValues.Genders[i] === 'female' || potentialMultipleValues.Genders[i] === 'Female'){
-//           finalDict.forEach(function(country){
-//             if (country.Nationality === potentialMultipleValues.Nationality[i]){
-//               country.Females += 1
-//               totalFemales += 1
-//             }
-//           })
-//         }
-//         else if (potentialMultipleValues.Genders[i] === 'male' || potentialMultipleValues.Genders[i] === 'Male'){
-//           finalDict.forEach(function(country){
-//             if (country.Nationality === potentialMultipleValues.Nationality[i]){
-//               country.Males += 1
-//               totalMales += 1
-//             }
-//           })
-//         }
-//         else {
-//           finalDict.forEach(function(country){
-//             if (country.Nationality === potentialMultipleValues.Nationality[i]){
-//               country.Unknown += 1
-//               totalUnknown += 1
-//             }
-//           })
-//         }
-//       }
-//     }
-//    else if (potentialMultipleValues.Genders.length > potentialMultipleValues.Nationality.length){
-//      for (i = 0; i < potentialMultipleValues.Nationality.length; i++){
-//
-//        if (potentialMultipleValues.Genders[i] === 'female' || potentialMultipleValues.Genders[i] === 'Female'){
-//          finalDict.forEach(function(country){
-//            if (country.Nationality === potentialMultipleValues.Nationality[i]){
-//              country.Females += 1
-//              totalFemales += 1
-//            }
-//          })
-//        }
-//        else if (potentialMultipleValues.Genders[i] === 'male' || potentialMultipleValues.Genders[i] === 'Male'){
-//          finalDict.forEach(function(country){
-//            if (country.Nationality === potentialMultipleValues.Nationality[i]){
-//              country.Males += 1
-//              totalMales += 1
-//            }
-//          })
-//        }
-//        else {
-//          finalDict.forEach(function(country){
-//            if (country.Nationality === potentialMultipleValues.Nationality[i]){
-//              country.Unknown += 1
-//              totalUnknown += 1
-//            }
-//          })
-//        }
-//      }
-//    } else {
-//      for (i = 0; i < potentialMultipleValues.Genders.length; i++)
-//      {
-//        if (potentialMultipleValues.Genders[i] === 'female' || potentialMultipleValues.Genders[i] === 'Female'){
-//          finalDict.forEach(function(country){
-//            if (country.Nationality === potentialMultipleValues.Nationality[i]){
-//              country.Females += 1
-//              totalFemales += 1
-//            }
-//          })
-//        }
-//        else if (potentialMultipleValues.Genders[i] === 'male' || potentialMultipleValues.Genders[i] === 'Male'){
-//          finalDict.forEach(function(country){
-//            if (country.Nationality === potentialMultipleValues.Nationality[i]){
-//              country.Males += 1
-//              totalMales += 1
-//            }
-//          })
-//        }
-//        else {
-//          finalDict.forEach(function(country){
-//            if (country.Nationality === potentialMultipleValues.Nationality[i]){
-//              country.Unknown += 1
-//              totalUnknown += 1
-//            }
-//          })
-//        }
-//      }
-//    }
-//   })
-//   // console.log(finalDict)
-//   return [finalDict, totalFemales, totalUnknown, totalMales]
-// };
-//
-// function calcAmounts(finalDict){
-//   var amounts = []
-//   finalDict.forEach(function(country){
-//     amounts.push({
-//       key: country.Nationality,
-//       value: [country.Males, country.Females, country.Unknown]
-//     })
-//   })
-//   return amounts
-// }
-
-function drawInitialDonut(finalDict, totalFemales, totalUnknown, totalMales){
-
-  // console.log(amounts)
+  // console.log(dataDonut)
+  totalMales = 0
+  totalFemales = 0
+  totalUnknown = 0
+  dataDonut.forEach(function(d){
+    d.forEach(function(e){
+      totalMales += e.Males
+      totalFemales += e.Females
+      totalUnknown += e.Unknown
+    })
+  })
   var margin = {top: 20, right: 20, bottom: 20, left: 20},
       w = 500 - margin.right - margin.left,
       h = 500 - margin.top - margin.bottom,
@@ -220,7 +64,7 @@ function drawInitialDonut(finalDict, totalFemales, totalUnknown, totalMales){
 }
 
 
-function updateDonut(finalDict, threeLetterCountry){
+function updateDonut(dataDonut, threeLetterCountry){
 
   // waarom update ie de donut niet...
   console.log(threeLetterCountry)
@@ -230,11 +74,21 @@ function updateDonut(finalDict, threeLetterCountry){
       h = 500 - margin.top - margin.bottom,
       radius = w/2;
 
-  finalDict.forEach(function(countryObject){
-    if (countryObject.Nationality === threeLetterCountry){
-      data = [{"category": "Male artists", "amount": countryObject.Males}, {"category": "Female artists", "amount": countryObject.Females}, {"category": "Unknown gender", "amount": countryObject.Unknown}]
-    }
+  males = 0
+  females = 0
+  unknown = 0
+
+  dataDonut.forEach(function(d){
+    d.forEach(function(e){
+      if (e.Nationality === threeLetterCountry){
+        males += e.Males
+        females += e.Females
+        unknown += e.Unknown
+      }
+    })
   })
+  data = [{"category": "Male artists", "amount": males}, {"category": "Female artists", "amount": females}, {"category": "Unknown gender", "amount": unknown}]
+
   console.log(data)
 
   var pie = d3.pie()

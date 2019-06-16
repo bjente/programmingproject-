@@ -16,6 +16,6 @@ with open (csvFilePath) as csvFile:
 
 # print(data)
 
-# write the data toa json file
+# write the data to a json file
 with open(jsonFilePath, "w") as jsonFile:
     jsonFile.write(json.dumps(data, indent = 4))

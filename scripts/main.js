@@ -3,31 +3,24 @@
 */
 
 window.onload = function() {
-  var data = "../data/newjson.json"
+  var newData = "../data/concfilesmapdonut.json"
+  var newDataArtist = "../data/concfilesartist.json"
   var worldCountries = "../data/world_countries.json"
   var startyear = '1965';
   var endyear = '2018';
   var category = 'All categories';
-  var requests = [d3.json(data), d3.json(worldCountries)];
+  var requests = [d3.json(newData), d3.json(worldCountries), d3.json(newDataArtist)];
 
   Promise.all(requests).then(function(response) {
-    data = response[0]
+    dataMapDonut = response[0]
     worldCountries = response[1]
-    console.log("data ingeladen")
-    // hier filter functie aanroepen vanuit heatmap.js. waarden die je moet meegeven: minimum jaar, maximum jaar en categorie
-    var finalDict = filterData(startyear, endyear, category, data)
-    console.log("data gefilterd")
-    // var finalDict = filterMapData(startyear, endyear, category, data)
-    var maxAmountAndSvg = drawMap(finalDict[0], worldCountries, finalDict[4])
-    // var svg = drawMap(finalDict, worldCountries)[1]
+    dataArtist = response[2]
+
+    var maxAmountAndSvg = drawMap(dataMapDonut, worldCountries, startyear, endyear, category)
+
     drawLegend(maxAmountAndSvg[0], maxAmountAndSvg[1], maxAmountAndSvg[2])
-    drawInitialDonut(finalDict[0], finalDict[1], finalDict[2], finalDict[3])
-    // createRangeSlider()
-    // var totals = filterDonutData(startyear, endyear, category, data, finalDict)
-    // var amounts = calcAmounts(finalDict)
-    // drawDonuts(finalDict[0], finalDict[1], finalDict[2], finalDict[3], maxAmountAndSvg[1])
-    drawInitialBubble(finalDict[4])
-    console.log("getekend")
+    drawInitialDonut(maxAmountAndSvg[3])
+    drawInitialBubble(dataArtist, startyear, endyear, category)
 
   })
   .catch(function(e){

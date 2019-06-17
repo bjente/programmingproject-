@@ -3,10 +3,10 @@ Name: Bente de Bruin
 Studentnumber: 11017503
 */
 
-function drawMap(dataMapDonut, worldCountries, startyear, endyear, category) {
+function drawMap(dataMapDonut, worldCountries, startyear, endyear, category, dataArtist) {
 
   var values = []
-
+  // Dit gedeelte isoleren in getdata function
   if(category !== 'All categories'){
 
     for(var key in dataMapDonut){
@@ -118,8 +118,8 @@ function drawMap(dataMapDonut, worldCountries, startyear, endyear, category) {
             .style("stroke-width",2);
         })
         .on('click', function(d){
-          updateDonut(values, d.id)
-          updateBubblesMap(values, d.id)
+          updateDonut(values, d.id, dataArtist, startyear, endyear, category)
+          updateBubblesMap(values, d.id, dataArtist, startyear, endyear, category)
         })
         .on('mouseout', function(d){
           tip.hide(d);

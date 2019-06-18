@@ -3,6 +3,8 @@ Name: Bente de Bruin
 Studentnumber: 11017503
 */
 
+var marginLegend = 80;
+
 function drawMap(dataMapDonut, worldCountries, startyear, endyear, category, dataArtist) {
 
   var values = []
@@ -118,8 +120,8 @@ function drawMap(dataMapDonut, worldCountries, startyear, endyear, category, dat
             .style("stroke-width",2);
         })
         .on('click', function(d){
-          updateDonut(values, d.id, dataArtist, startyear, endyear, category)
-          updateBubblesMap(values, d.id, dataArtist, startyear, endyear, category)
+          updateDonut(values, d.id, dataArtist, startyear, endyear, window.currentCategory)
+          updateBubblesMap(values, d.id, dataArtist, startyear, endyear, window.currentCategory)
         })
         .on('mouseout', function(d){
           tip.hide(d);
@@ -142,7 +144,6 @@ function drawMap(dataMapDonut, worldCountries, startyear, endyear, category, dat
 function drawLegend(maxAmount, svg, allAmounts) {
 
   // LEGEND NOG AANPASSEN ALS ER ANDERE JAREN OF CATEGORIEEN ZIJN
-  var marginLegend = 80;
   var height = 550;
   var width = 25;
   var heightRect = height / 9
@@ -203,4 +204,33 @@ function drawLegend(maxAmount, svg, allAmounts) {
 
 function createRangeSlider() {
 
+  var dataTime = d3.range(0, 9).map(function(d) {
+  return new Date(1965 + d, 10, 4);
+});
+
+var sliderTime = d3
+  .sliderBottom()
+  .min(d3.min(dataTime))
+  .max(d3.max(dataTime))
+  .step(100 * 60 * 60 * 24 * 365)
+  .width(300)
+  .tickFormat(d3.timeFormat('%Y'))
+  .tickValues(dataTime)
+  .default(new Date(1998, 10, 4))
+  .on('onchange', val => {
+    d3.select('p#value-time').text(d3.timeFormat('%Y')(val));
+  });
+
+var gTime = d3
+  .select('#slider-time')
+  .attr('id', 'rangeslider')
+  .append('svg')
+  .attr('width', 500)
+  .attr('height', 100)
+  .append('g')
+  .attr('transform', 'translate(' + (marginLegend + 100) + ',30)');
+
+gTime.call(sliderTime);
+
+d3.select('p#value-time').text(d3.timeFormat('%Y')(sliderTime.value()));
 }

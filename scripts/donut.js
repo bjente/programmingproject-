@@ -127,9 +127,15 @@ function updateDonut(dataDonut, threeLetterCountry, dataArtist, startyear, endye
              g.append("path")
               .attr("d", arc)
               .style("fill", function(d){
-                if (d.data.category === 'Male'){return "#5f93ef"} else if(d.data.category === 'Female'){return "#f1b7ff"}else{return "white"}
+                if (d.data.category === 'Male'){return "#5f93ef"}
+                else if(d.data.category === 'Female'){return "#f1b7ff"}
+                else{return "white"}
               })
               .on('click', function(d){
+                console.log("D DONUT", d)
+                // console.log("wat geef ik m mee", d.data.category, threeLetterCountry, dataArtist, startyear, endyear, category)
+                console.log("D.DATA.CATEGORY", d.data.category)
+                console.log("dataArtist", dataArtist)
                 updateBubbles(d.data.category, threeLetterCountry, dataArtist, startyear, endyear, category)
               })
 
@@ -142,3 +148,62 @@ function updateDonut(dataDonut, threeLetterCountry, dataArtist, startyear, endye
               .style("font-size", "0.70em")
 
   }
+
+  // function updateDonut(dataDonut, threeLetterCountry, dataArtist, startyear, endyear, category){
+  //
+  //   males = 0
+  //   females = 0
+  //   unknown = 0
+  //
+  //   dataDonut.forEach(function(d){
+  //     d.forEach(function(e){
+  //       if (e.Nationality === threeLetterCountry){
+  //         males += e.Males
+  //         females += e.Females
+  //         unknown += e.Unknown
+  //       }
+  //     })
+  //   })
+  //   data = [{"category": "Male", "amount": males}, {"category": "Female", "amount": females}, {"category": "Unknown", "amount": unknown}]
+  //
+  //   var margin = {top: 20, right: 20, bottom: 20, left: 20},
+  //       w = 500 - margin.right - margin.left,
+  //       h = 500 - margin.top - margin.bottom,
+  //       radius = w/2;
+  //
+  //   var pie = d3.pie()
+  //       .sort(null)
+  //       .value(function(d) { return d.amount});
+  //
+  //   var arc = d3.arc()
+  //       .outerRadius(radius - 40)
+  //       .innerRadius(radius - 80);
+  //
+  //   var labelArc = d3.arc()
+  //       .outerRadius(radius - 60)
+  //       .innerRadius(radius - 60);
+  //
+  //   var path = d3.select("#donutchart").select("g").selectAll(".path")
+  //         .data(pie(data));
+  //         // .attr("d", arc);
+  //
+  //   console.log(pie(data))
+  //         // path.transition().duration(200)
+  //
+  //   path.enter().append("path")
+  //     .style("fill", function(d){
+  //       if (d.data.category === 'Male'){
+  //         return "#5f93ef"
+  //       } else if( d.data.category === 'Female'){
+  //         return "#f1b7ff"
+  //       } else {
+  //         return "white"
+  //       }})
+  //     .attr("d", arc)
+  //     .attr("stroke", "white")
+  //     .attr("stroke-width", "6px");
+  //     // .each(function(d) { this._current = d; });
+  // //
+  //   path.exit().remove()
+  //
+  // }

@@ -96,3 +96,12 @@ img {
 .arc path {
   stroke: lightgrey;
 }
+
+#rangeslider{
+/* position: absolute; */
+left:-500px;
+top:680px;
+/* width:500px;
+height:100px; */
+/* background: blue; */
+}

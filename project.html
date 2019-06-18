@@ -33,11 +33,13 @@ Page with visualisations
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="scripts/categorydropdown.js"></script>
     <script type="text/javascript" src="scripts/heatmap.js"></script>
     <script type="text/javascript" src="scripts/donut.js"></script>
     <script type="text/javascript" src="scripts/bubble.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/filterData.js"></script>
+
 
     <title>Insights in the collection of MoMA</title>
   </head>
@@ -56,6 +58,30 @@ Page with visualisations
           <li class='nav-item'>
             <a class='nav-link active' href='project.html'>Visualisations</a>
           </li>
-
+          <li class='nav-item dropdown'>
+              <a class='nav-link dropdown-toggle' id='categories-drop' href='#' data-toggle='dropdown'><span id='selected'>Category</span></a>
+              <div class='dropdown-menu' id='categories'>
+                <a class='dropdown-item' value='All categories' href='#'>All categories</a>
+                <a class='dropdown-item' value='Prints & Illustrated Books' href='#'>Prints & Illustrated Books</a>
+                <a class='dropdown-item' value='Architecture & Design' href='#'>Architecture & Design</a>
+                <a class='dropdown-item' value='Photography' href='#'>Photography</a>
+                <a class='dropdown-item' value='Film' href='#'>Film</a>
+                <a class='dropdown-item' value='Media and Performance Art' href='#'>Media and Performance Art</a>
+                <a class='dropdown-item' value='Drawings' href='#'>Drawings</a>
+                <a class='dropdown-item' value='Painting & Sculpture' href='#'>Painting & Sculpture</a>
+              </div>
+               </li>
+               <li class='navbar-text navbar-center' id='navbar-category'>
+              Category:
+              <span id='currentCategory'></span>
+              <script>
+                window.currentCategory = 'All categories'
+                document.getElementById('currentCategory').textContent = window.currentCategory;
+              </script>
+            </li>
+        <div class="row align-items-center">
+          <div class="col-sm-2"><p id="value-time"></p></div>
+          <div class="col-sm"><div id="slider-time"></div></div>
+        </div>
   </body>
 </html>

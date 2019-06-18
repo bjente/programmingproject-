@@ -106,7 +106,7 @@ console.log(childrenDict)
 
   node.append("text")
       .attr("dy", ".2em")
-      .attr("class", "donuttext")
+      .attr("class", "bubbletext")
       .style("text-anchor", "middle")
       .text(function(d) {
           return d.data.Artist.substring(0, d.r / 3);
@@ -119,7 +119,7 @@ console.log(childrenDict)
 
   node.append("text")
       .attr("dy", "1.3em")
-      .attr("class", "donuttext")
+      .attr("class", "bubbletext")
       .style("text-anchor", "middle")
       .text(function(d) {
           return d.data.artistCount;
@@ -318,15 +318,20 @@ console.log(childrenDict)
 
 function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, category){
 
+
+// het append stuk van deze functie werkt niet, als ik frankrijk selecteer in de kaart en daarna op
+// mannen klik in de donutchart, maakt ie genoeg datapunten aan, maar als ik daarna op vrouwen klik,
+// maakt ie vier bubbels aan. als ik daarna weer op mannen klik, houdt het programma het bij vier bubbels,
+// terwijl ie wel meer datapunten (D) print
   var valuesBubble = []
 
   if(threeLetterCountry !== 'all'){
 
     if(category !== 'All categories'){
-
+      console.log("dit is de category", category)
       for(var key in dataArtist){
-
         if(dataArtist[key].year >= startyear && dataArtist[key].year <= endyear && dataArtist[key].department === category){
+          console.log("dit is de department", dataArtist[key].department)
           valuesBubble.push(dataArtist[key].values)
         }
     }
@@ -350,44 +355,44 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
           bubbleList.push(e)
         }
       }
-      else if(e.Nationality === threeLetterCountry && e.Gender === gender){
+      else if(e.Nationality === threeLetterCountry && e.Gender.toLowerCase() === gender.toLowerCase()){
         bubbleList.push(e)
       }
       })
     })
   }
 
-  else {
-    if(category !== 'All categories'){
-
-      for(var key in dataArtist){
-
-        if(dataArtist[key].year >= startyear && dataArtist[key].year <= endyear && dataArtist[key].department === category){
-          valuesBubble.push(dataArtist[key].values)
-        }
-    }
-  }
-    else{
-      for(var key in dataArtist){
-        if(dataMapDonut[key].year >= startyear && dataMapDonut[key].year <= endyear){
-          valuesBubble.push(dataArtist[key].values)
-        }
-      }
-      valuesBubble.forEach(function(d){
-        d.forEach(function(e){
-          var multipleGenders = e.Gender.split(" ")
-          if(multipleGenders.length > 1){
-            if(multipleGenders.includes(gender.toLowerCase())){
-              bubbleList.push(e)
-            }
-          }
-          else if(e.Nationality === threeLetterCountry && e.Gender === gender){
-            bubbleList.push(e)
-          }
-        })
-      })
-    }
-  }
+  // else {
+  //   if(category === 'All categories'){
+  //
+  //     for(var key in dataArtist){
+  //
+  //       if(dataArtist[key].year >= startyear && dataArtist[key].year <= endyear && dataArtist[key].department === category){
+  //         valuesBubble.push(dataArtist[key].values)
+  //       }
+  //   }
+  // }
+  //   else{
+  //     for(var key in dataArtist){
+  //       if(dataMapDonut[key].year >= startyear && dataMapDonut[key].year <= endyear){
+  //         valuesBubble.push(dataArtist[key].values)
+  //       }
+  //     }
+  //     valuesBubble.forEach(function(d){
+  //       d.forEach(function(e){
+  //         var multipleGenders = e.Gender.split(" ")
+  //         if(multipleGenders.length > 1){
+  //           if(multipleGenders.includes(gender.toLowerCase())){
+  //             bubbleList.push(e)
+  //           }
+  //         }
+  //         else if(e.Nationality === threeLetterCountry && e.Gender === gender){
+  //           bubbleList.push(e)
+  //         }
+  //       })
+  //     })
+  //   }
+  // }
   var childrenDict = {children: bubbleList}
   console.log("nieuwe data", childrenDict)
   var diameter = 600
@@ -408,78 +413,72 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
         return d.artistCount
     });
 
-  var node = d3.selectAll(".node")
-            .data(bubble(nodes).descendants());
-            console.log("BUBBLE", bubble(nodes).descendants())
+  console.log('BUBBLE NODES', bubble(nodes))
+  // var svg = d3.select("#bubblechart")
+  var newNode = d3.selectAll(".node")
+            .data(bubble(nodes).children)
+  // console.log("bubblenodes",bubble(nodes))
+  // console.log("BUBBLE", bubble(nodes).descendants())
+  // console.log("NODE", newNode)
+  // console.log("NODE ENTER",newNode.enter())
+  // console.log("NODE EXIT", newNode.exit())
 
+  // console.log("NEWNODE", newNode.enter().filter(function(d){console.log("FIRST D", d);return !d.children}))
+  // console.log("NEW NODE ENTER", newNode.enter())
+
+  var nodeEnter = newNode.enter().filter(function(d){return !d.children})
+
+  var newGNode = nodeEnter
+      .append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) {
+          console.log("D", d);return "translate(" + d.x + "," + d.y + ")";
+      });
+
+console.log("NODE ENTER", nodeEnter)
+console.log("NEWGNODE", newGNode)
+  // nodeEnter
+  //   .attr("r", function(d){return d.r;})
+  //   .attr("cx", function(d){ return d.x; })
+  //   .attr("cy", function(d){ return d.y; })
+  //
+  newGNode
+    .append("circle")
+    .attr("r", function(d){console.log("D r", d.r);return d.r;})
+    // .attr("cx", function(d){ return d.x; })
+    // .attr("cy", function(d){ return d.y; })
+    .style("fill", function(d,i) {
+        return color(i);
+    })
   // var node = d3.selectAll(".node")
   //   .data(
   //       bubble.nodes(classes(nodes)).filter(function (d){return !d.children;}),
   //       function(d) {return d.className} // key data based on className to keep object constancy
   //   );
 
+  newGNode
+    .append("text")
+    .attr("class", "bubbletext")
+    .text(function (d) {
+        return d.Artist + ": " + format(d.artistCount);
+    });
 
-  var circle = node.selectAll(".circle")
-  console.log("circle", circle)
-  // var text = d3.selectAll(".donuttext")
-  //           .data(bubble(nodes).descendants())
-  console.log(node.exit())
-  console.log("zonder exit", node)
-  node.exit().remove()
-    //   .style('fill', 'black')
-    // .transition(t)
-    //   .attr("r", 1e-6)
-
-  // text.exit()
-  //   .transition(t)
-  //     .attr("opacity", 1e-6)
-  //     .remove();
-
-  node
-    .transition(t)
-    .filter(function(d){
-        return  !d.children
+newNode.select("circle")
+    .transition().duration(1000)
+    .attr("r", function (d) {
+        return d.r;
     })
-    .attr("transform", function(d) {
-        return "translate(" + d.x + "," + d.y + ")";
-    })
-
-  node.selectAll(".circle")
-    .transition(t)
-    .style("fill", function(d,i) {
+    .style("fill", function (d, i) {
         return color(i);
-    })
-      .attr("r", function(d){ return d.r })
-      .attr("cx", function(d){ return d.x })
-      .attr("cy", function(d){ return d.y })
+    });
 
+newNode.transition().attr("class", "node")
+    .attr("transform", function (d) {
+    return "translate(" + d.x + "," + d.y + ")";
+});
 
-  // text
-  //   .transition(t)
-  //     .attr("x", function(d){ return d.x; })
-  //     .attr("y", function(d){ return d.y; });
-
-
-  node.enter().append("circle")
-      .attr("r", 1e-6)
-      .attr("cx", function(d){ return d.x; })
-      .attr("cy", function(d){ return d.y; })
-      .style("fill", function(d,i) {
-          return color(i);
-      })
-    .transition(t)
-    .style("fill", function(d,i) {
-        return color(i);
-    })
-      .attr("r", function(d){ return d.r });
-
-  // text.enter().append("text")
-  //     .attr("opacity", 1e-6)
-  //     .attr("x", function(d){ return d.x; })
-  //     .attr("y", function(d){ return d.y; })
-  //     .text(function(d){ return d.data.name; })
-  //   .transition(t)
-  //     .attr("opacity", 1);
+newNode.exit().remove()
+// nodeEnter.exit().remove()
 
 
 }

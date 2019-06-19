@@ -257,7 +257,6 @@ function updateMap(dataMapDonut, worldCountries, startyear, endyear, category, d
         }
     }
 
-
     newData.forEach(function(d){
         d.forEach(function(e){
             if (e.Nationality in worksPerCountry2){
@@ -296,5 +295,4 @@ countries
     .style("fill", function(d) {
         if(d.Count === 0){ return 'white'}
         else{ return color(worksPerCountry2[d.id])}})
-
 }

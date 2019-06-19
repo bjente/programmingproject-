@@ -53,35 +53,27 @@ Page with visualisations
           <nav class='navbar navbar-expand-sm navbar-dark fixed-top' style='background-color: #4a9e5c'>
         <a class='navbar-brand' href='../startpage.html'>Homepage</a>
         <ul class='navbar-nav'>
-          <!-- Link to story, visualisations and info page -->
 
+          <!-- Link to visualisations page -->
           <li class='nav-item'>
             <a class='nav-link active' href='project.html'>Visualisations</a>
           </li>
-          <li class='nav-item dropdown'>
-              <a class='nav-link dropdown-toggle' id='categories-drop' href='#' data-toggle='dropdown'><span id='selected'>Category</span></a>
-              <div class='dropdown-menu' id='categories'>
-                <a class='dropdown-item' value='All categories' href='#'>All categories</a>
-                <a class='dropdown-item' value='Prints & Illustrated Books' href='#'>Prints & Illustrated Books</a>
-                <a class='dropdown-item' value='Architecture & Design' href='#'>Architecture & Design</a>
-                <a class='dropdown-item' value='Photography' href='#'>Photography</a>
-                <a class='dropdown-item' value='Film' href='#'>Film</a>
-                <a class='dropdown-item' value='Media and Performance Art' href='#'>Media and Performance Art</a>
-                <a class='dropdown-item' value='Drawings' href='#'>Drawings</a>
-                <a class='dropdown-item' value='Painting & Sculpture' href='#'>Painting & Sculpture</a>
-              </div>
-               </li>
-               <li class='navbar-text navbar-center' id='navbar-category'>
-              Category:
-              <span id='currentCategory'></span>
-              <script>
-                window.currentCategory = 'All categories'
-                document.getElementById('currentCategory').textContent = window.currentCategory;
-              </script>
-            </li>
-        <div class="row align-items-center">
+           <select id="dropdown-menu">
+             <option value="All categories">All categories</option>
+             <option value="Prints & Illustrated Books">Prints & Illustrated Books</option>
+             <option value="Architecture & Design">Architecture & Design</option>
+             <option value="Photography">Photography</option>
+             <option value="Film">Film</option>
+             <option value="Media and Performance Art">Media and Performance Art</option>
+             <option value="Drawings">Drawings</option>
+             <option value="Painting & Sculpture">Painting & Sculpture</option>
+           </select>
+           <p id="selected-dropdown"></p>
+
+        <!-- <div class="row align-items-center">
           <div class="col-sm-2"><p id="value-time"></p></div>
           <div class="col-sm"><div id="slider-time"></div></div>
-        </div>
+        </div> -->
+        
   </body>
 </html>

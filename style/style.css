@@ -94,14 +94,15 @@ img {
 }
 
 .arc path {
-  stroke: lightgrey;
+  stroke: white;
+  stroke-width: 6px;
 }
 
-#rangeslider{
+/* #rangeslider{ */
 /* position: absolute; */
-left:-500px;
-top:680px;
+/* left:-500px;
+top:680px; */
 /* width:500px;
 height:100px; */
 /* background: blue; */
-}
+/* } */

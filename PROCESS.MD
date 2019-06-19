@@ -50,3 +50,8 @@
 #### 18-06-2019
 - I made an update function for both the bubble and the donutchart. The update function for the bubble chart is not working properly yet. I have an idea why, I will discuss this tomorrow with a tutor.
 - I added a default time slider and a dropdown menu. I think I'll implement two time sliders. One represents the startyear, the other represents the end year.
+
+#### 19-06-2019
+- I fixed the update function for the bubble chart and I fixed the update function for the donutchart. However, the update bubble function only works when a country is clicked and when a gender is selected from the donutchart. It doesn't respond yet if only a country is clicked. I want to add a transition to the donutchart update function as well.
+- I created an update function for the colors of the map. 
+- I added a dropdown menu. The colors of the map respond to which category is chosen from the dropdown menu. 

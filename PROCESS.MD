@@ -55,3 +55,9 @@
 - I fixed the update function for the bubble chart and I fixed the update function for the donutchart. However, the update bubble function only works when a country is clicked and when a gender is selected from the donutchart. It doesn't respond yet if only a country is clicked. I want to add a transition to the donutchart update function as well.
 - I created an update function for the colors of the map. 
 - I added a dropdown menu. The colors of the map respond to which category is chosen from the dropdown menu. 
+
+#### 20-06-2019
+- Today, I made some huge steps. I decided that I wasn't filtering my data correctly. I had to inverse my logic and I decided to copy my programmingproject folder to made some drastic changes to the program. In stead of adding data to a new list, I decided to begin with copying the JSON data and removing entries I didn't need. Every update function now uses my filterdata function. Filterdata calls different functions to get data in the proper format for the specific graphs. The updatefunctions are all working. Every graph responds to the dropdown menu, both the donut- and the bubblechart change according to which country has been clicked in the map, and my bubblechart changes if you click on the donutchart. 
+- I decided to add two reset buttons, so that you don't get stuck in one country and one gender. 
+- I still have to add checkboxes to specify the time range. 
+- I want to add text blocks with some explanation on the graphs.

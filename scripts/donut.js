@@ -3,30 +3,33 @@ Name: Bente de Bruin
 Studentnumber: 11017503
 */
 
-function drawInitialDonut(dataDonut, dataArtist, startyear, endyear, category){
+function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
 
-  // console.log(dataDonut)
-  totalMales = 0
-  totalFemales = 0
-  totalUnknown = 0
-
-  dataDonut.forEach(function(d){
-    d.forEach(function(e){
-      totalMales += e.Males
-      totalFemales += e.Females
-      totalUnknown += e.Unknown
-    })
-  })
   var margin = {top: 20, right: 20, bottom: 20, left: 20},
       w = 500 - margin.right - margin.left,
       h = 500 - margin.top - margin.bottom,
       radius = w/2;
 
       data = [{"category": "Male", "amount": totalMales}, {"category": 'Female', "amount": totalFemales}, {"category": 'Unknown', "amount": totalUnknown}]
-      threeLetterCountry = 'all'
+
+      var color = d3.scaleOrdinal()
+          .range(["#5f93ef", "#f1b7ff", "black"]);
+
       var pie = d3.pie()
           .sort(null)
           .value(function(d) { return d.amount});
+
+      var tooltip = d3.select("body")
+          .append("div")
+              .attr('id', 'donuttip')
+              .style("position", "absolute")
+              .style("z-index", "10")
+              .style("visibility", "hidden")
+              .style("color", "white")
+              .style("padding", "8px")
+              .style("background-color", "rgba(0, 0, 0, 0.75)")
+              .style("border-radius", "6px")
+              .style("font", "15px sans-serif");
 
       var arc = d3.arc()
           .outerRadius(radius - 40)
@@ -56,39 +59,56 @@ function drawInitialDonut(dataDonut, dataArtist, startyear, endyear, category){
                   .style("fill", function(d){
                     if (d.data.category === 'Male'){
                         return "#5f93ef"}
-                        else if(d.data.category === 'Female'){ return "#f1b7ff"}
-                        else{ return "white"}
+                        else if(d.data.category === 'Female'){
+                        return "#f1b7ff"}
+                        else{ return "black"}
                   })
+                  .on("mouseover", function(d) {
+                          tooltip.text(d.data.category + " " + "artists" + " " + "Amount of works:" + " " + d.data.amount);
+                          tooltip.style("visibility", "visible");
+                  })
+                  .on("mousemove", function() {
+                      return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+                  })
+                  .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
                   .on('click', function(d){
-                    updateBubbles(d.data.category, threeLetterCountry, dataArtist, startyear, endyear, category)
+                      gender = d.data.category
+                    updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, category)
                   })
 
+      var legendG = svg2.selectAll(".legend")
+                        .data(pie(data))
+                        .enter().append("g")
+                        .attr("transform", function(d,i){
+                          return "translate(" + -20 + "," + (i * 25 - 35) + ")";
+                        })
+                        .attr("class", "legend");
 
-                 g.append("text")
-               	 .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-               	 .text(function(d) { return d.data.amount
-                   ;})
-                  .attr("dy", ".35em")
-               	  .style("fill", "black")
-                  .style("font-size", "0.70em")
+                  legendG.append("rect")
+                         .attr("width", 10)
+                         .attr("height", 10)
+                         .attr("fill", function(d, i) {
+                           return color(i);
+                         })
+                         .attr("stroke", "white")
+                         .attr("stroke-width", "2px");
 
+                  legendG.append("text")
+                         .text(function(d){
+                           return d.data.category;
+                         })
+                         .style("font-size", 12)
+                         .attr("y", 9)
+                         .attr("x", 20);
 }
 
-  function updateDonut(dataDonut, threeLetterCountry, dataArtist, startyear, endyear, category){
+  function updateDonut(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut){
 
-    males = 0
-    females = 0
-    unknown = 0
+      var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut)
+      var males = newData[5]
+      var females = newData[6]
+      var unknown = newData[7]
 
-    dataDonut.forEach(function(d){
-      d.forEach(function(e){
-        if (e.Nationality === threeLetterCountry){
-          males += e.Males
-          females += e.Females
-          unknown += e.Unknown
-        }
-      })
-    })
     data = [{"category": "Male", "amount": males}, {"category": "Female", "amount": females}, {"category": "Unknown", "amount": unknown}]
 
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
@@ -111,26 +131,35 @@ function drawInitialDonut(dataDonut, dataArtist, startyear, endyear, category){
     var path = d3.select("#donutchart").select("g").selectAll(".path")
           .data(pie(data));
 
-    var text = d3.select("#donutchart").select("g").selectAll("text")
-    console.log("text",text)
+    var tooltip = d3.select("#donuttip")
 
     path.enter()
         .append("path")
-            .style("fill", function(d){
+        .style("fill", function(d){
             if (d.data.category === 'Male'){
-              return "#5f93ef"
+                return "#5f93ef"
             } else if( d.data.category === 'Female'){
-              return "#f1b7ff"
+                return "#f1b7ff"
             } else {
-              return "white"
+                return "black"
             }})
-          .attr("d", arc)
-          .on('click', function(d){
-            updateBubbles(d.data.category, threeLetterCountry, dataArtist, startyear, endyear, category)
-          })
-          .attr("stroke", "white")
-          .attr("stroke-width", "6px");
-
+        .on("mouseover", function(d) {
+    tooltip.text(d.data.category + " " + "artists" + " " + "Amount of works:" + " " + d.data.amount);
+    tooltip.style("visibility", "visible");
+})
+        .on("mousemove", function() {
+            return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+        })
+        .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+        .on('click', function(d){
+            console.log("GENDER",gender)
+            console.log("realgen", d.data.category)
+            gender = d.data.category
+            updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, category)
+        })
+        .attr("d", arc)
+        .attr("stroke", "white")
+        .attr("stroke-width", "6px");
 
     path.exit().remove()
 

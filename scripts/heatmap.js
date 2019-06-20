@@ -5,46 +5,10 @@ Studentnumber: 11017503
 
 var marginLegend = 80;
 var superMax = 8083;
-var values = [];
 
-function drawMap(dataMapDonut, worldCountries, startyear, endyear, category, dataArtist) {
+function drawMap(worksPerCountry, maxAmount, worldCountries, allAmounts) {
 
-var worksPerCountry = {};
-var allAmounts = [];
 var format = d3.format(",");
-
-// Dit gedeelte isoleren in getdata function
-if(category !== 'All categories'){
-
-    for(var key in dataMapDonut){
-
-        if(dataMapDonut[key].year >= startyear && dataMapDonut[key].year <= endyear && dataMapDonut[key].department === category){
-            values.push(dataMapDonut[key].values)
-        }
-    }
-}
-else {
-    for(var key in dataMapDonut){
-        if(dataMapDonut[key].year >= startyear && dataMapDonut[key].year <= endyear){
-            values.push(dataMapDonut[key].values)
-        }
-    }
-}
-
-values.forEach(function(d){
-    d.forEach(function(e){
-        if (e.Nationality in worksPerCountry){
-            worksPerCountry[e.Nationality] += +e.Count
-            allAmounts.push(worksPerCountry[e.Nationality])
-}
-    else{
-        worksPerCountry[e.Nationality] = +e.Count
-        allAmounts.push(worksPerCountry[e.Nationality])
-        }
-    })
-})
-
-var maxAmount = Math.max.apply(Math, allAmounts);
 
 // Set tooltips
 var tip = d3.tip()
@@ -120,8 +84,13 @@ d3.select(this)
     .style("stroke-width",2);
 })
 .on('click', function(d){
-    updateDonut(values, d.id, dataArtist, startyear, endyear, category)
-    updateBubblesMap(values, d.id, dataArtist, startyear, endyear, category)
+    // In updatedonut dan weer filterdata aanroepen en daarmee nieuwe donut tekenen
+    // en hetzelfde geldt voor bubblemap
+    // ik kan dus filterdata aanroepen vanuit elke update functie en met die nieuwe data het nieuwe figuur tekenen!!!
+    currentCountry = d.id
+    updateDonut(d.id, category, startyear, endyear, dataArtist, dataMapDonut)
+    console.log('gendertjeee', gender)
+    updateBubbles(gender, d.id, dataArtist, startyear, endyear, category)
     })
 
 .on('mouseout', function(d){
@@ -139,7 +108,7 @@ svg.append("path")
     .attr("d", path);
 
 
-return [maxAmount, svg, allAmounts, values]
+return [maxAmount, svg, allAmounts]
 };
 
 function drawLegend(maxAmount, svg, allAmounts) {
@@ -234,43 +203,14 @@ gTime.call(sliderTime);
 d3.select('p#value-time').text(d3.timeFormat('%Y')(sliderTime.value()));
 }
 
-function updateMap(dataMapDonut, worldCountries, startyear, endyear, category, dataArtist){
+function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries){
+
+    var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut)
+    var worksPerCountry = newData[1]
+    var maxAmount = newData[2]
+    var allAmounts = newData[3]
 
     var path = d3.geoPath();
-    var worksPerCountry2 = {}
-    var newData = []
-    var allAmounts2 =[]
-
-    if (category !== 'All categories'){
-        for(var key in dataMapDonut){
-
-            if(dataMapDonut[key].year >= startyear && dataMapDonut[key].year <= endyear && dataMapDonut[key].department === category){
-                newData.push(dataMapDonut[key].values)
-            }
-        }
-    }
-    else {
-        for(var key in dataMapDonut){
-            if(dataMapDonut[key].year >= startyear && dataMapDonut[key].year <= endyear){
-                newData.push(dataMapDonut[key].values)
-            }
-        }
-    }
-
-    newData.forEach(function(d){
-        d.forEach(function(e){
-            if (e.Nationality in worksPerCountry2){
-                worksPerCountry2[e.Nationality] += +e.Count
-                allAmounts2.push(worksPerCountry2[e.Nationality])
-    }
-        else{
-            worksPerCountry2[e.Nationality] = +e.Count
-            allAmounts2.push(worksPerCountry2[e.Nationality])
-            }
-        })
-    })
-
-    var maxAmount = Math.max.apply(Math, allAmounts2);
 
     function convert(x){
     return Math.round(x / superMax * maxAmount);
@@ -281,8 +221,8 @@ function updateMap(dataMapDonut, worldCountries, startyear, endyear, category, d
         .range(['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529', '#292929']);
 
     worldCountries.features.forEach(function(d){
-        if (d.id in worksPerCountry2){
-            d.Count = worksPerCountry2[d.id]
+        if (d.id in worksPerCountry){
+            d.Count = worksPerCountry[d.id]
         }
     else{
         d.Count = 0
@@ -294,5 +234,5 @@ var countries = d3.selectAll(".pathcountries")
 countries
     .style("fill", function(d) {
         if(d.Count === 0){ return 'white'}
-        else{ return color(worksPerCountry2[d.id])}})
+        else{ return color(worksPerCountry[d.id])}})
 }

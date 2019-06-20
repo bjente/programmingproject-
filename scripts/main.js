@@ -5,7 +5,9 @@
 var startyear = '1965';
 var endyear = '2018';
 var category = 'All categories';
-var threeLetterCountry = 'DEU'
+var threeLetterCountry = 'All'
+var gender = 'All'
+var currentCountry
 
 window.onload = function() {
 
@@ -18,14 +20,14 @@ window.onload = function() {
     dataMapDonut = response[0]
     worldCountries = response[1]
     dataArtist = response[2]
+    var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut)
+    var maxAmountAndSvg = drawMap(newData[1], newData[2], worldCountries, newData[3], dataMapDonut, dataArtist)
+    drawInitialDonut(newData[4], newData[5], newData[6], newData[7])
+    drawInitialBubble(newData[8], startyear, endyear, category)
     dropDownChange(dataMapDonut, threeLetterCountry, worldCountries, startyear, endyear, dataArtist)
-    var maxAmountAndSvg = drawMap(dataMapDonut, worldCountries, startyear, endyear, category, dataArtist)
-
+    buttonClick(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries)
     drawLegend(maxAmountAndSvg[0], maxAmountAndSvg[1], maxAmountAndSvg[2])
-    drawInitialDonut(maxAmountAndSvg[3], dataArtist, category)
-    drawInitialBubble(dataArtist, startyear, endyear, category)
-    createRangeSlider()
-    // categorydropdown()
+    
   })
   .catch(function(e){
       throw(e);

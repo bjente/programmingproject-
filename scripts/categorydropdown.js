@@ -10,10 +10,12 @@ function dropDownChange(dataMapDonut, threeLetterCountry, worldCountries, starty
        var selected = d3.select("#dropdown-menu").node().value;
        category = selected
        console.log( selected );
-
+       //NOG IETS DOEN MET NO DATA AVAILABLE bijv als je klikt op algerije en dan op architecture en design, daar is geen data van
+       // console.log('THREELC', threeLetterCountry)
+       // console.log("CURRENTCOUNTRY", currentCountry)
        updateMap(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries)
-       updateDonut(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut)
-       updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, category)
+       updateDonut(currentCountry, category, startyear, endyear, dataArtist, dataMapDonut)
+       updateBubbles(gender, currentCountry, dataArtist, startyear, endyear, category)
    })
 }
 

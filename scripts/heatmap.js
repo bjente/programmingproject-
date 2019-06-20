@@ -170,39 +170,6 @@ svg.append('g')
 
 };
 
-function createRangeSlider() {
-
-var dataTime = d3.range(0, 9).map(function(d) {
-return new Date(1965 + d, 10, 4);
-});
-
-var sliderTime = d3
-    .sliderBottom()
-    .min(d3.min(dataTime))
-    .max(d3.max(dataTime))
-    .step(100 * 60 * 60 * 24 * 365)
-    .width(300)
-    .tickFormat(d3.timeFormat('%Y'))
-    .tickValues(dataTime)
-    .default(new Date(1998, 10, 4))
-    .on('onchange', val => {
-        d3.select('p#value-time').text(d3.timeFormat('%Y')(val));
-    });
-
-var gTime = d3
-    .select('#slider-time')
-    .attr('id', 'rangeslider')
-    .append('svg')
-        .attr('width', 500)
-        .attr('height', 100)
-        .append('g')
-        .attr('transform', 'translate(' + (marginLegend + 100) + ',30)');
-
-gTime.call(sliderTime);
-
-d3.select('p#value-time').text(d3.timeFormat('%Y')(sliderTime.value()));
-}
-
 function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries){
 
     var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut)

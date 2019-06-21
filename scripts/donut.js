@@ -72,8 +72,8 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
                   })
                   .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
                   .on('click', function(d){
-                      gender = d.data.category
-                    updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, category)
+                      currentGender = d.data.category
+                    updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory)
                   })
 
       var legendG = svg2.selectAll(".legend")
@@ -104,12 +104,14 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
 
   function updateDonut(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut){
 
-      var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut)
+      var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, currentGender)
       var males = newData[5]
       var females = newData[6]
       var unknown = newData[7]
 
     data = [{"category": "Male", "amount": males}, {"category": "Female", "amount": females}, {"category": "Unknown", "amount": unknown}]
+
+    console.log("alllll gend",data)
 
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
         w = 500 - margin.right - margin.left,
@@ -152,10 +154,11 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
         })
         .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
         .on('click', function(d){
-            console.log("GENDER",gender)
+            // console.log("GENDER",gender)
             console.log("realgen", d.data.category)
-            gender = d.data.category
-            updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, category)
+            console.log("cur catte donut", currentCategory)
+            currentGender = d.data.category
+            updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory)
         })
         .attr("d", arc)
         .attr("stroke", "white")

@@ -8,14 +8,18 @@ function dropDownChange(dataMapDonut, threeLetterCountry, worldCountries, starty
    d3.select("select")
      .on("change",function(d){
        var selected = d3.select("#dropdown-menu").node().value;
-       category = selected
+       currentCategory = selected
        console.log( selected );
-       //NOG IETS DOEN MET NO DATA AVAILABLE bijv als je klikt op algerije en dan op architecture en design, daar is geen data van
-       // console.log('THREELC', threeLetterCountry)
-       // console.log("CURRENTCOUNTRY", currentCountry)
-       updateMap(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries)
-       updateDonut(currentCountry, category, startyear, endyear, dataArtist, dataMapDonut)
-       updateBubbles(gender, currentCountry, dataArtist, startyear, endyear, category)
+       console.log('dit is de category VOOR update map', currentCategory)
+       updateMap(threeLetterCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut, worldCountries)
+       updateDonut(currentCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut)
+       // console.log("cur gen", currentGender)
+       // console.log("cur coun", currentCountry)
+       // console.log('dataart', dataArtist)
+       // console.log('cur start', currentStartyear)
+       // console.log('cur end', currentEndyear)
+       // console.log('cur cat', currentCategory)
+       updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory)
    })
 }
 
@@ -24,17 +28,24 @@ function buttonClick(threeLetterCountry, category, startyear, endyear, dataArtis
      button.on("click", function(d){
          threeLetterCountry = 'All'
          currentCountry = 'All'
-         var currentCategory = d3.select("#dropdown-menu").node().value
-         updateMap(threeLetterCountry, currentCategory, startyear, endyear, dataArtist, dataMapDonut, worldCountries)
-         updateDonut(threeLetterCountry, currentCategory, startyear, endyear, dataArtist, dataMapDonut)
-         updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, category)
+         currentCategory = getCurrentCategory()
+         updateMap(threeLetterCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut, worldCountries)
+         updateDonut(threeLetterCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut)
+         updateBubbles(gender, threeLetterCountry, dataArtist, currentStartyear, currentEndyear, currentCategory)
     })
 
     var buttonGender = d3.select("#resetbuttongenders")
         buttonGender.on("click", function(d){
             gender = 'All'
-            currentCategory = d3.select("#dropdown-menu").node().value
-            console.log('COUNTRY', currentCountry)
-            updateBubbles(gender, currentCountry, dataArtist, startyear, endyear, currentCategory)
+            currentGender = 'All'
+            currentCategory = getCurrentCategory()
+            updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory)
     })
+}
+
+function getCurrentCategory(){
+
+    var currentCategory = d3.select("#dropdown-menu").node().value
+
+return currentCategory
 }

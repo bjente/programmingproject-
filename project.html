@@ -27,8 +27,9 @@ Page with visualisations
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="scripts/getdataready.js"></script>
     <script type="text/javascript" src="scripts/categorydropdown.js"></script>
+    <script type="text/javascript" src="scripts/timeslider.js"></script>
+    <script type="text/javascript" src="scripts/getdataready.js"></script>
     <script type="text/javascript" src="scripts/heatmap.js"></script>
     <script type="text/javascript" src="scripts/donut.js"></script>
     <script type="text/javascript" src="scripts/bubble.js"></script>
@@ -40,39 +41,58 @@ Page with visualisations
   </head>
   <body>
 
-    <h1>Insights in the collection of MoMA</h1>
+        <h1>Insights in the collection of MoMA</h1>
         <h4 id = "header">This page gives you insight in the collection of the Museum of Modern Art New York.</h4><br></br>
         <!-- <a href="https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art"> Click to view datasource</a> </h4> -->
         <div id = "choices"></div>
         <div class="row align-items-center">
-          <nav class='navbar navbar-expand-sm navbar-dark fixed-top' style='background-color: #4a9e5c'>
-        <a class='navbar-brand' href='../startpage.html'>Homepage</a>
-        <ul class='navbar-nav'>
+            <nav class='navbar navbar-expand-sm navbar-dark fixed-top' style='background-color: #4a9e5c'>
+                <a class='navbar-brand' href='../startpage.html'>Homepage</a>
+                <ul class='navbar-nav'>
 
-          <!-- Link to visualisations page -->
-          <li class='nav-item'>
-            <a class='nav-link active' href='project.html'>Visualisations</a>
-          </li>
-           <select id="dropdown-menu">
-             <option value="All categories">All categories</option>
-             <option value="Prints & Illustrated Books">Prints & Illustrated Books</option>
-             <option value="Architecture & Design">Architecture & Design</option>
-             <option value="Photography">Photography</option>
-             <option value="Film">Film</option>
-             <option value="Media and Performance Art">Media and Performance Art</option>
-             <option value="Drawings">Drawings</option>
-             <option value="Painting & Sculpture">Painting & Sculpture</option>
-           </select>
-           <p id="selected-dropdown"></p>
+                <!-- Link to visualisations page -->
+                <li class='nav-item'>
+                <a class='nav-link active' href='project.html'>Visualisations</a>
+                </li>
+                <select id="dropdown-menu">
+                <option value="All categories">All categories</option>
+                <option value="Prints & Illustrated Books">Prints & Illustrated Books</option>
+                <option value="Architecture & Design">Architecture & Design</option>
+                <option value="Photography">Photography</option>
+                <option value="Film">Film</option>
+                <option value="Media and Performance Art">Media and Performance Art</option>
+                <option value="Drawings">Drawings</option>
+                <option value="Painting & Sculpture">Painting & Sculpture</option>
+                </select>
+                <p id="selected-dropdown"></p>
 
-           <!-- <select id="resetbutton"> -->
-           <div id = "resetbutton">
-           <button type=>Reset countries</button>
-            </div>
+                <!-- <select id="resetbutton"> -->
+                <div id = "resetbutton">
+                <button type=>Reset countries</button>
+                </div>
 
-            <div id = "resetbuttongenders">
-            <button type=>Reset genders</button>
-             </div>
+                <div id = "resetbuttongenders">
+                <button type=>Reset genders</button>
+                </div>
+<!--
+                <input type="checkbox" class="myCheckbox" value="1965"> 1965 </input>
+                <input type="checkbox" class="myCheckbox" value="1975"> 1975 </input>
+                <input type="checkbox" class="myCheckbox" value="1985"> 1985 </input>
+                <input type="checkbox" class="myCheckbox" value="1995"> 1995 </input>
+                <input type="checkbox" class="myCheckbox" value="2005"> 2005 </input>
+                <input type="checkbox" class="myCheckbox" value="2015"> 2015 </input>
+                <input type="checkbox" class="myCheckbox" value="2016"> 2016 </input>
+                <input type="checkbox" class="myCheckbox" value="2017"> 2017 </input>
+                <input type="checkbox" class="myCheckbox" value="2018"> 2018 </input>
 
-  </body>
+                <div id="checkboxes"></div> -->
+
+            </nav>
+
+        </div>
+        <div class="row align-items-center">
+          <div class="col-sm-2"><p id="value-range"></p></div>
+          <div class="col-sm"><div id="slider-range"></div></div>
+        </div>
+    </body>
 </html>

@@ -2,7 +2,7 @@
 Name: Bente de Bruin
 Studentnumber: 11017503
 */
-
+var legendHeight = 550;
 var marginLegend = 80;
 var superMax = 8083;
 
@@ -22,14 +22,19 @@ var margin = {top: 0, right: 0, bottom: 0, left: -100},
   width = 1000 - margin.left - margin.right,
   height = 600 - margin.top - margin.bottom;
 
-function convert(x){
-return Math.round(x / superMax * maxAmount);
-}
-// als het resultaat van de convert 0 is, dan maakt d3 daar geen ticks voor want dan zouden er meerdere ticks met 0 waarde hebben dus dat maakt geen sense
-// dit komt omdat de domains heel erg verschillen als je de jaren aanpast, domain van 1965-2018 is heel groot in vergelijking met 1965-1985 WHAT TO DO
+// function convert(x){
+// return Math.round(x / superMax * maxAmount);
+// }
+
+var newLegendValues = makeNewLegendValues(maxAmount)
+var newDomain = newLegendValues[0]
+var newRange = newLegendValues[1]
+var newColorRange = newLegendValues[2]
+
+
 var color = d3.scaleThreshold()
-    .domain([0,convert(100),convert(200),convert(300),convert(400),convert(500),convert(1000),convert(2500),maxAmount])
-    .range(['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529', '#292929']);
+    .domain(newDomain)
+    .range(newColorRange);
 
 var path = d3.geoPath();
 
@@ -72,7 +77,7 @@ svg.append("g")
         .style('stroke-width', 1.5)
         .style("opacity",0.8)
 
-// tooltips
+    // tooltips
     .style("stroke","black")
     .style('stroke-width', 0.3)
     .on('mouseover',function(d){
@@ -84,13 +89,9 @@ d3.select(this)
     .style("stroke-width",2);
 })
 .on('click', function(d){
-    // In updatedonut dan weer filterdata aanroepen en daarmee nieuwe donut tekenen
-    // en hetzelfde geldt voor bubblemap
-    // ik kan dus filterdata aanroepen vanuit elke update functie en met die nieuwe data het nieuwe figuur tekenen!!!
     currentCountry = d.id
-    updateDonut(d.id, category, startyear, endyear, dataArtist, dataMapDonut)
-    console.log('gendertjeee', gender)
-    updateBubbles(gender, d.id, dataArtist, startyear, endyear, category)
+    updateDonut(currentCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut)
+    updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory)
     })
 
 .on('mouseout', function(d){
@@ -111,25 +112,25 @@ svg.append("path")
 return [maxAmount, svg, allAmounts]
 };
 
-function drawLegend(maxAmount, svg, allAmounts) {
-
-// LEGEND NOG AANPASSEN ALS ER ANDERE JAREN OF CATEGORIEEN ZIJN
-var height = 550;
-var width = 25;
-var heightRect = height / 9
-
-function convert(x){
+function convert(x, maxAmount){
 return Math.round(x / superMax * maxAmount);
 }
 
+function drawLegend(maxAmount, svg, allAmounts) {
+
+var newLegendValues = makeNewLegendValues(maxAmount)
+var newDomain = newLegendValues[0]
+var newRange = newLegendValues[1]
+var newColorRange = newLegendValues[2]
+var heightRect = newLegendValues[3]
+var legendWidth = 25;
 
 var color = d3.scaleThreshold()
-    .domain([0,convert(100),convert(200),convert(300),convert(400),convert(500),convert(1000),convert(2500),maxAmount])
-    .range(['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529', '#292929']);
-
+    .domain(newDomain)
+    .range(newColorRange);
 
 var legend = svg.selectAll('.legend')
-      .data(color.domain())
+      .data(newDomain)
       .enter()
       .append('g')
           .attr('class', 'legend')
@@ -138,32 +139,27 @@ var legend = svg.selectAll('.legend')
 
 legend.append('rect')
     .attr('x', 0)
-    .attr('width', width)
+    .attr('width', legendWidth)
     .attr('height', heightRect)
     .style('fill', function(d, i) {return color(d)});
 
 
 var yScale = d3.scaleLinear()
-    .range([0, heightRect, (heightRect * 2), (heightRect * 3), (heightRect * 4), (heightRect * 5), (heightRect * 6), (heightRect * 7), (heightRect * 8)])
-    .domain([0,convert(100),convert(200),convert(300),convert(400),convert(500),convert(1000),convert(2500),maxAmount])
-
-var yAxis = d3.axisLeft()
-    .scale(yScale)
-    .ticks(9)
-    .tickValues([0,convert(100),convert(200),convert(300),convert(400),convert(500),convert(1000),convert(2500),maxAmount]);
+    .range([d3.min(newRange), d3.max(newRange)])
+    .domain([d3.min(newDomain), d3.max(newDomain)])
 
 
 svg.append('g')
-    .attr('class', 'y axis')
-    .attr('transform', 'translate(' + marginLegend + ',' +  '20)')
-    .call(yAxis)
+    .call(d3.axisLeft(yScale))
+    .attr('class', 'y-axis')
+    .attr('transform', 'translate(' + marginLegend + ', 20)')
 
 
 svg.append('g')
     .append('text')
         .attr('class', 'legend-text-map')
         .attr('y', marginLegend - 39)
-        .attr('x', - height / 1.7)
+        .attr('x', - legendHeight / 1.7)
         .attr('transform', 'rotate(-90)')
         .text('← More works')
         .attr("font-family", "Helvetica")
@@ -172,21 +168,37 @@ svg.append('g')
 
 function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries){
 
-    var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut)
+
+    var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, currentGender)
     var worksPerCountry = newData[1]
     var maxAmount = newData[2]
     var allAmounts = newData[3]
-
     var path = d3.geoPath();
-
-    function convert(x){
-    return Math.round(x / superMax * maxAmount);
-    }
+    var newLegendValues = makeNewLegendValues(maxAmount)
+    var newDomain = newLegendValues[0]
+    var newRange = newLegendValues[1]
+    var newColorRange = newLegendValues[2]
 
     var color = d3.scaleThreshold()
-        .domain([0,convert(100),convert(200),convert(300),convert(400),convert(500),convert(1000),convert(2500),maxAmount])
-        .range(['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529', '#292929']);
+        .domain(newDomain)
+        .range(newColorRange);
 
+    // updates legend
+    var newYScale = d3.scaleLinear()
+        .range([d3.min(newRange), d3.max(newRange)])
+        .domain([d3.min(newDomain), d3.max(newDomain)])
+
+    d3.select(".y-axis")
+        .transition().duration(1000)
+        .call(d3.axisLeft(newYScale)
+        .tickValues(newDomain))
+
+    d3.select(".legend")
+        .data(newDomain)
+        .selectAll('rect')
+
+
+    // updates worldmap
     worldCountries.features.forEach(function(d){
         if (d.id in worksPerCountry){
             d.Count = worksPerCountry[d.id]
@@ -202,4 +214,26 @@ countries
     .style("fill", function(d) {
         if(d.Count === 0){ return 'white'}
         else{ return color(worksPerCountry[d.id])}})
+}
+
+function makeNewLegendValues(maxAmount){
+
+    var newDomain = []
+    var newRange = []
+    var oldColorRange = ['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529', '#292929']
+    var newColorRange = []
+
+    if(maxAmount >= 9){
+        var numberOfRects = 9
+    } else{
+        var numberOfRects = maxAmount
+    }
+    var heightRect = legendHeight / numberOfRects
+
+    for(var i = 0; i <= numberOfRects; i++){
+        newDomain.push((maxAmount / numberOfRects) * i)
+        newRange.push(heightRect * i)
+        newColorRange.push(oldColorRange[i])
+    }
+    return[newDomain, newRange, newColorRange, heightRect]
 }

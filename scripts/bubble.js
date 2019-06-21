@@ -91,11 +91,20 @@ function drawInitialBubble(childrenDict, startyear, endyear, category){
 }
 
 
-function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, currentCategory){
+function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, category){
 
-var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut)
+console.log('start en end bubble', startyear, endyear)
+var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, gender)
+console.log("uhm hallo", newData[8])
 var childrenDict = newData[8]
+// console.log("childrenDict", childrenDict)
 
+// check if data is available
+for(var key in childrenDict){
+    if(childrenDict[key].length === 0){
+        console.log("NO DATA")
+    }
+}
   var diameter = 600
 
   var color = d3.scaleOrdinal()

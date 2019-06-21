@@ -1,5 +1,5 @@
 
-function filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut){
+function filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, gender){
 
     // copy data so we can filter out only what we need
     dataArtistCopy = JSON.parse(JSON.stringify(dataArtist))
@@ -77,10 +77,6 @@ function filterData(threeLetterCountry, category, startyear, endyear, dataArtist
                     if(!(multipleGenders.includes(gender.toLowerCase()))){
                         indicesToRemoveArtistGender.push(i)
                     }
-                    // WAT MOET IK MET DIE () IN GENDER.....
-                    // if(multipleGenders.includes('()')){
-                    //     console.log("HOIIIII",singleObject)
-                    // }
                 }
                 else{
                     if(!(singleObject.Gender.toLowerCase() === gender.toLowerCase())){
@@ -96,7 +92,6 @@ function filterData(threeLetterCountry, category, startyear, endyear, dataArtist
                 delete dataArtistCopy[key]
             }
         }
-
     }
 
     var createMapValues = createWorksPerCountryDict(dataMapDonutCopy)

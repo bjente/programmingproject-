@@ -44,12 +44,9 @@ Page with visualisations
         <h1>Insights in the collection of MoMA</h1>
         <h4 id = "header">This page gives you insight in the collection of the Museum of Modern Art New York.</h4><br></br>
         <!-- <a href="https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art"> Click to view datasource</a> </h4> -->
-        <div id = "choices"></div>
-        <div class="row align-items-center">
             <nav class='navbar navbar-expand-sm navbar-dark fixed-top' style='background-color: #4a9e5c'>
                 <a class='navbar-brand' href='../startpage.html'>Homepage</a>
                 <ul class='navbar-nav'>
-
                 <!-- Link to visualisations page -->
                 <li class='nav-item'>
                 <a class='nav-link active' href='project.html'>Visualisations</a>
@@ -64,9 +61,8 @@ Page with visualisations
                 <option value="Drawings">Drawings</option>
                 <option value="Painting & Sculpture">Painting & Sculpture</option>
                 </select>
-                <p id="selected-dropdown"></p>
 
-                <!-- <select id="resetbutton"> -->
+                <p id="selected-dropdown"></p>
                 <div id = "resetbutton">
                 <button type=>Reset countries</button>
                 </div>
@@ -74,25 +70,34 @@ Page with visualisations
                 <div id = "resetbuttongenders">
                 <button type=>Reset genders</button>
                 </div>
-<!--
-                <input type="checkbox" class="myCheckbox" value="1965"> 1965 </input>
-                <input type="checkbox" class="myCheckbox" value="1975"> 1975 </input>
-                <input type="checkbox" class="myCheckbox" value="1985"> 1985 </input>
-                <input type="checkbox" class="myCheckbox" value="1995"> 1995 </input>
-                <input type="checkbox" class="myCheckbox" value="2005"> 2005 </input>
-                <input type="checkbox" class="myCheckbox" value="2015"> 2015 </input>
-                <input type="checkbox" class="myCheckbox" value="2016"> 2016 </input>
-                <input type="checkbox" class="myCheckbox" value="2017"> 2017 </input>
-                <input type="checkbox" class="myCheckbox" value="2018"> 2018 </input>
-
-                <div id="checkboxes"></div> -->
-
             </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9" id="heatmap"></div>
+                <div class="col-md-3" id="mapexplanation">
+                <h2 id="explanationmap">Explanation of the map</h2>
+                <p id="explanationtext">
+                  In this project, I visualized where MoMA acquired their works. I looked at the years 1965, 1975, 1985, 1995, 2005, 2015, 2016, 2017 and 2018.
+                  They claim to be inclusive, I questioned this.
+                </p></div>
+            </div>
+            <div class="row">
+              <div class="col-md-9" id="slidermap"><div id="slider-range"></div></div>
+              <div class="col-md-1"><p >Current years:</p></div>
+              <div class="col-md-1 nopadding"><p id="value-range">1965-2018</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" id="donut"></div>
+                <div class="col-md-2" id="bubbledonuttext">
+                    <h2 id="explanationdonutbubbles">Explanation of the charts</h2>
+                    <p id="explanationtextdonutbubbles">
+                      In this project, I visualized where MoMA acquired their works. I looked at the years 1965, 1975, 1985, 1995, 2005, 2015, 2016, 2017 and 2018.
+                      They claim to be inclusive, I questioned this.
+                   </p>
+              </div>
+                <div class="col-md-6" id="bubbles"></div>
+        </div>
 
-        </div>
-        <div class="row align-items-center">
-          <div class="col-sm-2"><p id="value-range"></p></div>
-          <div class="col-sm"><div id="slider-range"></div></div>
-        </div>
+
     </body>
 </html>

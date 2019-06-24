@@ -15,7 +15,7 @@ function drawInitialBubble(childrenDict, startyear, endyear, category){
       .size([diameter, diameter])
       .padding(1.5);
 
-  var svg = d3.select("body")
+  var svg = d3.select("#bubbles")
       .append("svg")
       .attr("id", "bubblechart")
       .attr("width", diameter)

@@ -3,13 +3,14 @@
 function drawSlider(threeLetterCountry, category, dataArtist, dataMapDonut, worldCountries){
 
 var sliderYears = [1965, 1975, 1985, 1995, 2005, 2015, 2016, 2017, 2018]
+var width = document.getElementById("slidermap").clientWidth
+var paddingLeft = 150
 
 var sliderSimple = d3
     .sliderBottom()
     .min(d3.min(sliderYears))
     .max(2018)
-    // .domain(sliderYears)
-    .width(800)
+    .width(width - paddingLeft)
     .ticks(53)
     .tickFormat(d3.format('d'))
     .marks(sliderYears)
@@ -32,10 +33,10 @@ var sliderSimple = d3
 var gSimple = d3
     .select('div#slider-range')
     .append('svg')
-        .attr('width', 1000)
+        .attr('width', width)
         .attr('height', 100)
         .append('g')
-        .attr('transform', 'translate(30,30)');
+        .attr('transform', 'translate(115,10)');
 
 gSimple.call(sliderSimple);
 

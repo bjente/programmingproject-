@@ -5,6 +5,7 @@ Studentnumber: 11017503
 
 function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
 
+
   var margin = {top: 20, right: 20, bottom: 20, left: 20},
       w = 500 - margin.right - margin.left,
       h = 500 - margin.top - margin.bottom,
@@ -40,7 +41,7 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
           .innerRadius(radius - 60);
 
 
-      var svg2 = d3.select("body")
+      var svg2 = d3.select("#donut")
                  .append("svg")
                  .attr("id", 'donutchart')
                  .attr("class", "pie")
@@ -90,7 +91,7 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
                          .attr("fill", function(d, i) {
                            return color(i);
                          })
-                         .attr("stroke", "white")
+                         .attr("stroke", "#ffffe5")
                          .attr("stroke-width", "2px");
 
                   legendG.append("text")
@@ -161,7 +162,7 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
             updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory)
         })
         .attr("d", arc)
-        .attr("stroke", "white")
+        .attr("stroke", '#ffffe5')
         .attr("stroke-width", "6px");
 
     path.exit().remove()

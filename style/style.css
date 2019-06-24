@@ -11,7 +11,7 @@ h4 {
 }
 
 body {
-  background-color: lightgrey;
+  background-image: linear-gradient(#eefdef, #bccbbc);
 }
 /* Tooltip CSS */
    .d3-tip {
@@ -94,15 +94,39 @@ img {
 }
 
 .arc path {
-  stroke: white;
+  stroke: #ffffe5;
   stroke-width: 6px;
 }
 
-/* #rangeslider{ */
-/* position: absolute; */
-/* left:-500px;
-top:680px; */
-/* width:500px;
-height:100px; */
-/* background: blue; */
-/* } */
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#explanationmap {
+    text-align: center;
+    border-style: outset;
+    border-width: 3px;
+    border-color: #4a9e5c;
+}
+
+#explanationtext {
+    text-align: center;
+    border-style: inset;
+    border-width: 2px;
+    border-color: #4a9e5c;
+}
+
+#explanationdonutbubbles {
+    text-align: center;
+    border-style: outset;
+    border-width: 3px;
+    border-color: #4a9e5c;
+}
+
+#explanationtextdonutbubbles {
+    text-align: center;
+    border-style: inset;
+    border-width: 2px;
+    border-color: #4a9e5c;
+}

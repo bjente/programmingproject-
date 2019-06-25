@@ -4,7 +4,7 @@
 ### Proposal programmingproject summer 2019
 
 ### Insights in the collection of the Museum of Modern Art New York
-
+## Link to website: https://bjente.github.io/programmingproject-/
 ### **Introduction**
 The aim of this project is to give insight in the collection of the Museum of Modern Art New York. 
 I want to make three linked visualizations. 

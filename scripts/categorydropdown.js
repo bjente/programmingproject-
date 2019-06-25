@@ -5,8 +5,12 @@
 
 function dropDownChange(dataMapDonut, threeLetterCountry, worldCountries, startyear, endyear, dataArtist){
 
-   d3.select("select")
-     .on("change",function(d){
+    /* In this function, we keep track of changes in dropdown menu and if buttons are clicked on.
+    If a change is noticed, we update the graphs
+    */
+
+    d3.select("select")
+        .on("change",function(d){
          var selected = d3.select("#dropdown-menu").node().value;
          currentCategory = selected;
          updateMap(threeLetterCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut, worldCountries);

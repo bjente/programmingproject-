@@ -5,6 +5,8 @@ Studentnumber: 11017503
 
 function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
 
+    /* This is a function that draws the initial donut chart.
+    */
 
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
         w = 500 - margin.right - margin.left,
@@ -54,7 +56,10 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
         .data(pie(data))
         .enter().append("g")
             .attr("class", "arc")
-
+    // var colors = {
+    //     "Male : #ffddfd",
+    //     "Female" : "#dfdffrc"}
+    // colors[category]
     g.append("path")
         .attr("d", arc)
         .style("fill", function(d){
@@ -79,6 +84,7 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
             updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory);
         });
 
+    // Create legend for donut chart
     var legendG = svg2.selectAll(".legend")
         .data(pie(data))
         .enter().append("g")
@@ -108,6 +114,9 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
     };
 
 function updateDonut(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut){
+
+    /* In this function, donut charts are updated if the user clicked a country, changed the time period or chose a category.
+    */
 
     var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, currentGender);
     var males = newData[5];

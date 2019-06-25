@@ -4,6 +4,10 @@
 
 function drawSlider(threeLetterCountry, category, dataArtist, dataMapDonut, worldCountries){
 
+    /* In this function, a two-handled time slider with a specific range is created.
+    Due to the 'marks' attribute, it only stops at the defined sliderYears.
+    */
+
 var sliderYears = [1965, 1975, 1985, 1995, 2005, 2015, 2016, 2017, 2018]
 var width = document.getElementById("slidermap").clientWidth
 var paddingLeft = 150

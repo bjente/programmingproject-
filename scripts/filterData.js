@@ -1,12 +1,16 @@
 function filterData(startyear, endyear, category, data){
 
+    /* This is a function that is being used for the creation of JSON files.
+    It's not used anymore when running the program.
+    */
+
 var listWithDicts = [];
 var listWithGenderDicts = [];
 var totalFemales = 0;
 var totalMales = 0;
 var totalUnknown = 0;
 
-// werk ALLEEN met het gegeven start en end year en gekozen department
+// Only work with proper start and endyear and correct category
 let actualData = {};
 
 if (category !== 'All categories'){

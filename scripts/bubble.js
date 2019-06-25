@@ -5,16 +5,23 @@ Studentnumber: 11017503
 
 function drawInitialBubble(childrenDict, startyear, endyear, category){
 
+    /* This is a function that draws the initial bubble chart.
+    It creates nodes, nodes containing circles and text.
+    source: http://bl.ocks.org/mmattozzi/7018021
+    */
+
     var diameter = 600;
     format = d3.format(",d");
 
     var color = d3.scaleOrdinal()
         .range(['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529', '#292929']);
 
+    // Create new pack layout
     var bubble = d3.pack(childrenDict)
         .size([diameter, diameter])
         .padding(1.5);
 
+    // Create svg for bubblechart
     var svg = d3.select("#bubbles")
         .append("svg")
             .attr("id", "bubblechart")
@@ -22,6 +29,7 @@ function drawInitialBubble(childrenDict, startyear, endyear, category){
             .attr("height", diameter)
             .attr("class", "bubble");
 
+    // Set tooltips
     var tooltip = d3.select("body")
         .append("div")
             .attr('id', 'bubbletip')
@@ -34,6 +42,9 @@ function drawInitialBubble(childrenDict, startyear, endyear, category){
             .style("border-radius", "6px")
             .style("font", "15px sans-serif");
 
+    // Create nodes. Nodes contain circle and text
+    // The bigger the artistCount, the bigger the circle
+    // Show tooltip when hovering over with mouse
     var nodes = d3.hierarchy(childrenDict)
         .sum(function(d) {
             return d.artistCount
@@ -90,6 +101,11 @@ function drawInitialBubble(childrenDict, startyear, endyear, category){
 
 function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyear, category){
 
+    /* This is a function that updates the bubble chart.
+    It looks at how many circles need to be added, which circles need to be updated according to the new data
+    and if there are circles that need to be removed
+    */
+
     var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, gender);
     var childrenDict = newData[8];
     var diameter = 600
@@ -110,11 +126,12 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
             return d.artistCount
         });
 
+    // Load new data
     var tooltip = d3.select("#bubbletip")
     var newNode = d3.select("#bubblechart").selectAll(".node")
         .data(bubble(nodes).children)
 
-    // kijken hoeveel datapoints we hebben tov het aantal circles
+    // Identify how many nodes need to be added when there are more datapoints than nodes in new data
     var nodeEnter = newNode.enter()
 
     var newGNode = nodeEnter
@@ -124,7 +141,7 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
                 return "translate(" + d.x + "," + d.y + ")";
             });
 
-    // als er meer datapoints zijn dan circles, voegen we meer circles toe
+    // If there are more datapoints, we append new circles to node
     newGNode
         .append("circle")
             .attr("r", function(d){ return d.r;})
@@ -142,7 +159,7 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
                 return tooltip.style("visibility", "hidden");
             });
 
-    // nieuwe tekst wordt toegevoegd
+    // If there are more datapoints, we append new text to node
     newGNode
         .append("text")
             .attr("class", "bubbletext")
@@ -156,7 +173,7 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
             })
     .       attr("fill", "pink");
 
-    // al bestaande circles worden groter of kleiner gemaakt, hangt van nieuwe datawaarde af
+    // Size of existing circles is changed according to new data
     newNode.select("circle")
         .transition().duration(1000)
         .attr("r", function (d) {
@@ -166,7 +183,7 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
     return color(i);
     });
 
-    // al bestaande text wordt aangepast
+    // Text in existing nodes is altered according to new data
     newNode.select("text")
         .text(function (d) {
             return d.data.Artist + ": " + format(d.data.artistCount);
@@ -175,13 +192,13 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
             return d.r/5;
         });
 
-    // al bestaande circles worden verplaatst dmv een transition
+    // Existing nodes are being moved to new location
     newNode.transition().attr("class", "node")
         .attr("transform", function (d) {
             return "translate(" + d.x + "," + d.y + ")";
         });
 
-    // overbodige circles worden weggegooid
+    // If there are fewer datapoints in new data, unnecessary nodes are removed
     newNode.exit().remove()
 
     };

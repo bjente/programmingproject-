@@ -27,11 +27,15 @@ window.onload = function() {
     dataMapDonut = response[0];
     worldCountries = response[1];
     dataArtist = response[2];
+
+    // GEEF NIET OVERAL GLOBALE VARIABELEN MEE BENTE! Liefs Mikkel
     dropDownChange(dataMapDonut, threeLetterCountry, worldCountries, startyear, endyear, dataArtist);
     buttonClick(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries);
     drawSlider(threeLetterCountry, category, dataArtist, dataMapDonut, worldCountries);
+
     var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, currentGender);
     var maxAmountAndSvg = drawMap(newData[1], newData[2], worldCountries, newData[3], dataMapDonut, dataArtist);
+
     drawInitialDonut(newData[4], newData[5], newData[6], newData[7]);
     drawInitialBubble(newData[8], startyear, endyear, category);
     drawLegend(maxAmountAndSvg[0], maxAmountAndSvg[1], maxAmountAndSvg[2]);

@@ -67,7 +67,7 @@ function drawMap(worksPerCountry, maxAmount, worldCountries, allAmounts) {
         }
     });
 
-// Append g, draw countries, fill country according to amount of works they have
+    // Append g, draw countries, fill country according to amount of works they have
     svg.append("g")
         .attr("class", "countries")
         .selectAll("path")
@@ -92,32 +92,32 @@ function drawMap(worksPerCountry, maxAmount, worldCountries, allAmounts) {
         .on('mouseover',function(d){
             tip.show(d);
 
-    d3.select(this)
-        .style("opacity", 1)
-        .style("stroke","#004529")
-        .style("stroke-width",2);
-    })
+            d3.select(this)
+                .style("opacity", 1)
+                .style("stroke","#004529")
+                .style("stroke-width",2);
+            })
 
-    // When a country is being clicked on, donutchart and bubblechart need to update, they only show data from that specific country
-    // set currentCountry to current d.id, so it is updated in the whole program
-    .on('click', function(d){
-        if(d.Count > 0){
-            currentCountry = d.id;
-            updateTexts(currentGender, currentCountry);
-            updateDonut(currentCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut);
-            updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory);
-        };
-    })
+        // When a country is being clicked on, donutchart and bubblechart need to update, they only show data from that specific country
+        // set currentCountry to current d.id, so it is updated in the whole program
+        .on('click', function(d){
+            if(d.Count > 0){
+                currentCountry = d.id;
+                updateTexts(currentGender, currentCountry);
+                updateDonut(currentCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut);
+                updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory);
+            };
+        })
 
-    // Hide tooltip
-    .on('mouseout', function(d){
-        tip.hide(d);
+        // Hide tooltip
+        .on('mouseout', function(d){
+            tip.hide(d);
 
-    d3.select(this)
-        .style("opacity", 0.8)
-        .style("stroke","black")
-        .style("stroke-width",0.3);
-    });
+        d3.select(this)
+            .style("opacity", 0.8)
+            .style("stroke","black")
+            .style("stroke-width",0.3);
+        });
 
     svg.append("path")
         .datum(topojson.mesh(worldCountries.features, function(a, b){
@@ -125,7 +125,7 @@ function drawMap(worksPerCountry, maxAmount, worldCountries, allAmounts) {
         .attr("class", "names")
         .attr("d", path);
 
-return [maxAmount, svg, allAmounts]
+    return [maxAmount, svg, allAmounts]
 };
 
 function drawLegend(maxAmount, svg, allAmounts) {
@@ -186,10 +186,12 @@ function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist,
     var worksPerCountry = newData[1];
     var maxAmount = newData[2];
     var allAmounts = newData[3];
+
     var newLegendValues = makeNewLegendValues(maxAmount);
     var newDomain = newLegendValues[0];
     var newRange = newLegendValues[1];
     var newColorRange = newLegendValues[2];
+    
     var path = d3.geoPath();
 
     var color = d3.scaleThreshold()

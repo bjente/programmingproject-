@@ -8,17 +8,17 @@ h1 {
     text-align: center;
     font-family: 'Helvetica';
     color: #004529;
-};
+}
 
 h4 {
     text-align: center;
     font-family: 'Helvetica';
     color: #004529;
-};
+}
 
 body {
     background-image: linear-gradient(#eefdef, #bccbbc);
-};
+}
 
 /* Tooltip CSS */
 .d3-tip {
@@ -30,7 +30,7 @@ body {
     color: #FFA500;
     border-radius: 1px;
     pointer-events: none;
-};
+}
 
 /* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
@@ -42,7 +42,7 @@ body {
     color: rgba(0, 0, 0, 0.6);
     position: absolute;
     pointer-events: none;
-};
+}
 
 /* Northward tooltips */
 .d3-tip.n:after {
@@ -51,7 +51,7 @@ body {
     top: 100%;
     left: 0;
     text-align: center;
-};
+}
 
 /* Eastward tooltips */
 .d3-tip.e:after {
@@ -59,7 +59,7 @@ body {
     margin: -4px 0 0 0;
     top: 50%;
     left: -8px;
-};
+}
 
 /* Southward tooltips */
 .d3-tip.s:after {
@@ -68,7 +68,7 @@ body {
     top: -8px;
     left: 0;
     text-align: center;
-};
+}
 
 /* Westward tooltips */
 .d3-tip.w:after {
@@ -76,7 +76,7 @@ body {
     margin: -4px 0 0 -1px;
     top: 50%;
     left: 100%;
-};
+}
 
 #header{
     position: absolute;
@@ -85,61 +85,61 @@ body {
     width: 1000px;
     height: 40px;
     font-size: 20px;
-};
+}
 
 img {
     width: 100%;
     height: auto;
-};
+}
 
 #explanation{
     color: white;
     font-family: 'Helvetica';
     font-size: 20px;
-};
+}
 
 .arc path {
     stroke: #ffffe5;
     stroke-width: 6px;
-};
+}
 
 .nopadding {
     padding: 0 !important;
     margin: 0 !important;
-};
+}
 
 #explanationmap {
     text-align: center;
     border-style: outset;
     border-width: 3px;
     border-color: #4a9e5c;
-};
+}
 
 #explanationtext {
     text-align: center;
     border-style: inset;
     border-width: 2px;
     border-color: #4a9e5c;
-};
+}
 
 #explanationdonutbubbles {
     text-align: center;
     border-style: outset;
     border-width: 3px;
     border-color: #4a9e5c;
-};
+}
 
 #explanationtextdonutbubbles {
     text-align: center;
     border-style: inset;
     border-width: 2px;
     border-color: #4a9e5c;
-};
+}
 
 .arc {
     opacity: 0.75;
-};
+}
 
 .arc:hover {
     opacity: 1.0;
-};
+}

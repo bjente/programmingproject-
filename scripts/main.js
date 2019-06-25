@@ -18,9 +18,9 @@ var currentGender = 'All';
 
 window.onload = function() {
 
-  var newData = "../data/concfilesmapdonut.json";
-  var newDataArtist = "../data/concfilesartist.json";
-  var worldCountries = "../data/world_countries.json";
+  var newData = "data/concfilesmapdonut.json";
+  var newDataArtist = "data/concfilesartist.json";
+  var worldCountries = "data/world_countries.json";
   var requests = [d3.json(newData), d3.json(worldCountries), d3.json(newDataArtist)];
 
   Promise.all(requests).then(function(response) {

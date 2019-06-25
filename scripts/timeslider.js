@@ -1,4 +1,6 @@
-
+/* Javascript file to manage dropdown menu and buttons
+   Name: Bente de Bruin
+   Student number: 11017503 */
 
 function drawSlider(threeLetterCountry, category, dataArtist, dataMapDonut, worldCountries){
 
@@ -17,18 +19,18 @@ var sliderSimple = d3
     .fill('#4a9e5c')
     .default([d3.min(sliderYears),d3.max(sliderYears)])
     .on('onchange', val => {
-      d3.select('p#value-range').text(val.map(d3.format('d')).join('-'));
-    })
+        d3.select('p#value-range').text(val.map(d3.format('d')).join('-'));
+        })
     .on('end', function(values){
-        startyear = values[0]
-        endyear = values[1]
-        currentCategory = d3.select("#dropdown-menu").node().value
-        currentStartyear = values[0]
-        currentEndyear = values[1]
-        updateMap(currentCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut, worldCountries)
-        updateDonut(currentCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut)
-        updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory)
-    })
+        startyear = values[0];
+        endyear = values[1];
+        currentCategory = d3.select("#dropdown-menu").node().value;
+        currentStartyear = values[0];
+        currentEndyear = values[1];
+        updateMap(currentCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut, worldCountries);
+        updateDonut(currentCountry, currentCategory, currentStartyear, currentEndyear, dataArtist, dataMapDonut);
+        updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory);
+    });
 
 var gSimple = d3
     .select('div#slider-range')
@@ -40,10 +42,11 @@ var gSimple = d3
 
 gSimple.call(sliderSimple);
 
-var ticks = d3.select('#slider-range').selectAll('text')
-            .attr("y", 0)
-            .attr("x", 9)
-            .attr("dy", ".35em")
-            .attr("transform", "rotate(90)")
-            .style("text-anchor", "start");
-}
+var ticks = d3
+    .select('#slider-range').selectAll('text')
+    .attr("y", 0)
+    .attr("x", 9)
+    .attr("dy", ".35em")
+    .attr("transform", "rotate(90)")
+    .style("text-anchor", "start");
+};

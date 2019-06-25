@@ -1,178 +1,178 @@
 
 function filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, gender){
 
-    // copy data so we can filter out only what we need
-    dataArtistCopy = JSON.parse(JSON.stringify(dataArtist))
-    dataMapDonutCopy = JSON.parse(JSON.stringify(dataMapDonut))
+    // Copy data so we can filter out only what we need
+    dataArtistCopy = JSON.parse(JSON.stringify(dataArtist));
+    dataMapDonutCopy = JSON.parse(JSON.stringify(dataMapDonut));
 
     // Filter 1: Filter categories. Delete categories we don't need
     if(category !== 'All categories'){
         for(var key in dataArtistCopy){
             if(dataArtistCopy[key].department !== category){
-                delete dataArtistCopy[key]
-            }
-        }
+                delete dataArtistCopy[key];
+            };
+        };
         for(var key in dataMapDonutCopy){
             if(dataMapDonutCopy[key].department !== category){
-                delete dataMapDonutCopy[key]
-            }
-        }
-    }
+                delete dataMapDonutCopy[key];
+            };
+        };
+    };
 
     // Filter 2: Filter out years we don't need
     for(var key in dataArtistCopy){
         if(!(dataArtistCopy[key].year >= startyear && dataArtistCopy[key].year <= endyear)){
-            delete dataArtistCopy[key]
-        }
-    }
+            delete dataArtistCopy[key];
+        };
+    };
     for(var key in dataMapDonutCopy){
         if(!(dataMapDonutCopy[key].year >= startyear && dataMapDonutCopy[key].year <= endyear)){
-            delete dataMapDonutCopy[key]
-        }
-    }
+            delete dataMapDonutCopy[key];
+        };
+    };
 
     // Filter 3: Filter out nationalities we don't need
     if(threeLetterCountry !== 'All'){
         for(var key in dataMapDonutCopy){
-            var indicesToRemove = []
+            var indicesToRemove = [];
             dataMapDonutCopy[key].values.forEach(function(singleObject, i){
                 if(singleObject.Nationality !== threeLetterCountry){
-                    indicesToRemove.push(i)
-                }
-            })
-            indicesToRemove = indicesToRemove.reverse()
+                    indicesToRemove.push(i);
+                };
+            });
+            indicesToRemove = indicesToRemove.reverse();
             indicesToRemove.forEach(function(index){
-                dataMapDonutCopy[key].values.splice(index, 1)
+                dataMapDonutCopy[key].values.splice(index, 1);
             })
             if(dataMapDonutCopy[key].values.length === 0){
-                delete dataMapDonutCopy[key]
-            }
-        }
+                delete dataMapDonutCopy[key];
+            };
+        };
 
         for(var key in dataArtistCopy){
-            var indicesToRemoveArtist = []
+            var indicesToRemoveArtist = [];
             dataArtistCopy[key].values.forEach(function(singleObject, i){
-                var multipleNationalities = singleObject.Nationality.split(" ")
+                var multipleNationalities = singleObject.Nationality.split(" ");
                 if(!(multipleNationalities.includes(threeLetterCountry))){
-                    indicesToRemoveArtist.push(i)
-                }
-            })
-            indicesToRemoveArtist = indicesToRemoveArtist.reverse()
+                    indicesToRemoveArtist.push(i);
+                };
+            });
+            indicesToRemoveArtist = indicesToRemoveArtist.reverse();
             indicesToRemoveArtist.forEach(function(index){
-                dataArtistCopy[key].values.splice(index, 1)
+                dataArtistCopy[key].values.splice(index, 1);
             })
             if(dataArtistCopy[key].values.length === 0){
-                delete dataArtistCopy[key]
-            }
-        }
-    }
+                delete dataArtistCopy[key];
+            };
+        };
+    };
 
     //Filter 4: Filter out genders we don't need
     if(gender !== 'All'){
         for(var key in dataArtistCopy){
-            var indicesToRemoveArtistGender = []
+            var indicesToRemoveArtistGender = [];
             dataArtistCopy[key].values.forEach(function(singleObject, i){
-                var multipleGenders = singleObject.Gender.split(" ")
+                var multipleGenders = singleObject.Gender.split(" ");
                 if(multipleGenders.length > 1){
                     if(!(multipleGenders.includes(gender.toLowerCase()))){
-                        indicesToRemoveArtistGender.push(i)
-                    }
+                        indicesToRemoveArtistGender.push(i);
+                    };
                 }
                 else{
                     if(!(singleObject.Gender.toLowerCase() === gender.toLowerCase())){
                         indicesToRemoveArtistGender.push(i)
-                    }
-                }
-            })
-            indicesToRemoveArtistGender.reverse()
+                    };
+                };
+            });
+            indicesToRemoveArtistGender.reverse();
             indicesToRemoveArtistGender.forEach(function(index){
-                dataArtistCopy[key].values.splice(index, 1)
+                dataArtistCopy[key].values.splice(index, 1);
             })
             if(dataArtistCopy[key].values.length === 0){
-                delete dataArtistCopy[key]
-            }
-        }
-    }
+                delete dataArtistCopy[key];
+            };
+        };
+    };
 
-    var createMapValues = createWorksPerCountryDict(dataMapDonutCopy)
-    var donutValues = createDonutValues(dataMapDonutCopy)
-    var bubbleValues = createBubbleValues(dataArtistCopy)
+    var createMapValues = createWorksPerCountryDict(dataMapDonutCopy);
+    var donutValues = createDonutValues(dataMapDonutCopy);
+    var bubbleValues = createBubbleValues(dataArtistCopy);
 
 return[dataArtistCopy, createMapValues[0], createMapValues[1], createMapValues[2], dataMapDonutCopy,
         donutValues[1], donutValues[2], donutValues[3], bubbleValues]
-}
+};
 
 function createWorksPerCountryDict(dataMapDonutCopy){
 
-    var values = []
-    var worksPerCountry = {}
-    var allAmounts = []
+    var values = [];
+    var worksPerCountry = {};
+    var allAmounts = [];
 
     for(var key in dataMapDonutCopy){
-        values.push(dataMapDonutCopy[key].values)
-    }
+        values.push(dataMapDonutCopy[key].values);
+    };
 
     values.forEach(function(singleRow){
         singleRow.forEach(function(singleElement){
             if(singleElement.Nationality in worksPerCountry){
-                worksPerCountry[singleElement.Nationality] += singleElement.Count
-                allAmounts.push(worksPerCountry[singleElement.Nationality])
+                worksPerCountry[singleElement.Nationality] += singleElement.Count;
+                allAmounts.push(worksPerCountry[singleElement.Nationality]);
             }
             else{
-                worksPerCountry[singleElement.Nationality] = +singleElement.Count
-                allAmounts.push(worksPerCountry[singleElement.Nationality])
-            }
-        })
-    })
+                worksPerCountry[singleElement.Nationality] = +singleElement.Count;
+                allAmounts.push(worksPerCountry[singleElement.Nationality]);
+            };
+        });
+    });
     var maxAmount = Math.max.apply(Math, allAmounts);
 
 return[worksPerCountry, maxAmount, allAmounts]
-}
+};
 
 function createDonutValues(dataMapDonutCopy){
 
-    var donutValues = []
-    var totalMales = 0
-    var totalFemales = 0
-    var totalUnknown = 0
+    var donutValues = [];
+    var totalMales = 0;
+    var totalFemales = 0;
+    var totalUnknown = 0;
 
     for(var key in dataMapDonutCopy){
-        donutValues.push(dataMapDonutCopy[key].values)
-    }
+        donutValues.push(dataMapDonutCopy[key].values);
+    };
 
     donutValues.forEach(function(singleRow){
         singleRow.forEach(function(singleElement){
-            totalMales += singleElement.Males
-            totalFemales += singleElement.Females
-            totalUnknown += singleElement.Unknown
-        })
-    })
+            totalMales += singleElement.Males;
+            totalFemales += singleElement.Females;
+            totalUnknown += singleElement.Unknown;
+        });
+    });
     return[donutValues, totalMales, totalFemales, totalUnknown]
-}
+};
 
 function createBubbleValues(dataArtistCopy){
 
-    var bubbleValues = []
-    var bubbleList = []
+    var bubbleValues = [];
+    var bubbleList = [];
 
     for(var key in dataArtistCopy){
-        bubbleValues.push(dataArtistCopy[key].values)
-    }
+        bubbleValues.push(dataArtistCopy[key].values);
+    };
 
     bubbleValues.forEach(function(singleRow){
         singleRow.forEach(function(singleElement){
-            var multipleGenders = singleElement.Gender.split(" ")
+            var multipleGenders = singleElement.Gender.split(" ");
             if(multipleGenders.length > 1){
                 if(multipleGenders.includes(gender.toLowerCase()) || gender === 'All'){
-                    bubbleList.push(singleElement)
-                }
+                    bubbleList.push(singleElement);
+                };
             }
             else if(singleElement.Gender.toLowerCase() === gender.toLowerCase() || gender === 'All'){
                 bubbleList.push(singleElement)
-            }
-        })
-    })
-    var childrenBubble = {children: bubbleList}
+            };
+        });
+    });
+    var childrenBubble = {children: bubbleList};
 
     return childrenBubble
-}
+};

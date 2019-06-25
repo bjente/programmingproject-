@@ -13,9 +13,6 @@ with open (csvFilePath) as csvFile:
         del csvRow["ObjectID"]
         data[id] = csvRow
 
-
-# print(data)
-
 # write the data to a json file
 with open(jsonFilePath, "w") as jsonFile:
     jsonFile.write(json.dumps(data, indent = 4))

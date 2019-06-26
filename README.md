@@ -51,6 +51,7 @@ The dataset used was downloaded from Kaggle. Not all data from this dataset is u
 - The update function for the bubblechart is inspired by: https://bl.ocks.org/HarryStevens/54d01f118bc8d1f2c4ccd98235f33848
 - The timeslider is inspired by: https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518
 - The dropdown menu is inspired by: https://codepen.io/tarsusi/pen/reovOV
+
 Dataset source: https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art
 
 #### Plug - ins

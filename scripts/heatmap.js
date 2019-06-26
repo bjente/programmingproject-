@@ -204,7 +204,6 @@ function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist,
     var newDomain = newLegendValues[0];
     var newRange = newLegendValues[1];
     var newColorRange = newLegendValues[2];
-
     var path = d3.geoPath();
 
     var color = d3.scaleThreshold()
@@ -218,11 +217,15 @@ function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist,
 
     var heatmapSelect = d3.select("#heatmap").select("svg");
 
-    // Add a transition to the y-axis and change tickvalues to new domain
-    heatmapSelect.select(".y-axis")
-        .transition().duration(1000)
-        .call(d3.axisLeft(newYScale)
-        .tickValues(newDomain));
+    // Make sure there IS a new domain, if there is no data, there is no domain
+    // Only draw new y-axis of legend if there is a new domain
+    if(newDomain.length !== 0){
+        // Add a transition to the y-axis and change tickvalues to new domain
+        heatmapSelect.select(".y-axis")
+            .transition().duration(1000)
+            .call(d3.axisLeft(newYScale)
+            .tickValues(newDomain));
+    }
 
     // Iterate over worldCountries id's, check if id exists in new data
     // if so, amount of works of that specific country is d.Count

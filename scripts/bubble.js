@@ -111,6 +111,11 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
     var childrenDict = newData[8];
     var diameter = 600
 
+    // Make bubblechart appear again if there is any new data to draw bubblechart with
+    d3.select('#bubblechart')
+        .transition().duration(1000)
+        .style("opacity", 1.0)
+
     // Check if new data !== 0. Otherwise, don't execute the update bubbles function
     if(newData[8].children.length !== 0){
 
@@ -204,6 +209,12 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
         // If there are fewer datapoints in new data, unnecessary nodes are removed
         newNode.exit().remove()
 
+    }
+    // Make bubblechart disappear if there is no data available
+    else {
+        d3.select('#bubblechart')
+            .transition().duration(1000)
+            .style("opacity", 0.0);
     };
 
 };

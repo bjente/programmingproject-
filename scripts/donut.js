@@ -108,14 +108,25 @@ function updateDonut(threeLetterCountry, category, startyear, endyear, dataArtis
     /* In this function, donut charts are updated if the user clicked a country, changed the time period or chose a category.
     */
 
+    // Make the donutchart appear again once there is new data
+    d3.select("#donutchart")
+        .transition().duration(1000)
+        .style("opacity", 1.0)
+
     // Pass data to the filterdata function, it returns the new amount of males, females and unknown artists.
     // With these new amounts, we update the donutchart.
     var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, currentGender);
     var males = newData[5];
     var females = newData[6];
     var unknown = newData[7];
+    var amounts = 0
 
     data = [{"category": "Male", "amount": males}, {"category": "Female", "amount": females}, {"category": "Unknown", "amount": unknown}];
+
+    // Iterate over new data to check if there is at least one amount that is > 0
+    for(var key in data){
+        amounts += data[key].amount
+    }
 
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
         w = 500 - margin.right - margin.left,
@@ -125,51 +136,60 @@ function updateDonut(threeLetterCountry, category, startyear, endyear, dataArtis
     var color = d3.scaleOrdinal()
         .range(["#5f93ef", "#f1b7ff", "black"]);
 
-    var pie = d3.pie()
-        .sort(null)
-        .value(function(d){
-            return d.amount});
+    // If there is at least one value in new data that is bigger than 0, we update the donutchart
+    if(amounts !== 0){
 
-    var arc = d3.arc()
-        .outerRadius(radius - 40)
-        .innerRadius(radius - 80);
+        var pie = d3.pie()
+            .sort(null)
+            .value(function(d){
+                return d.amount});
 
-    var labelArc = d3.arc()
-        .outerRadius(radius - 60)
-        .innerRadius(radius - 60);
+        var arc = d3.arc()
+            .outerRadius(radius - 40)
+            .innerRadius(radius - 80);
 
-    // Attach new data to paths
-    var path = d3.select("#donutchart").select("g").selectAll(".path")
-        .data(pie(data));
+        var labelArc = d3.arc()
+            .outerRadius(radius - 60)
+            .innerRadius(radius - 60);
 
-    // Select and update tooltip
-    var tooltip = d3.select("#donuttip");
+        // Attach new data to paths
+        var path = d3.select("#donutchart").select("g").selectAll(".path")
+            .data(pie(data));
 
-    // We append a new path if there are more datapoints than paths
-    // We update the current texts in the navigation bar and the bubblechart if someone clicks on a path.
-    path.enter()
-        .append("path")
-            .style("fill", function(d, i){
-                    return color(i)})
-                .on("mouseover", function(d) {
-                    tooltip.text(d.data.category + " " + "artists" + " " + "Amount of works:" + " " + d.data.amount);
-                    tooltip.style("visibility", "visible");
-                })
-                .on("mousemove", function() {
-                    return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
-                })
-                .on("mouseout", function(){
-                    return tooltip.style("visibility", "hidden");})
-                .on('click', function(d){
-                    currentGender = d.data.category;
-                    updateTexts(currentGender, currentCountry);
-                    updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory);
-                })
-                .attr("d", arc)
-                .attr("stroke", '#ffffe5')
-                .attr("stroke-width", "6px");
+        // Select and update tooltip
+        var tooltip = d3.select("#donuttip");
 
-    // Remove paths we don't need anymore.
-    path.exit().remove();
+        // We append a new path if there are more datapoints than paths
+        // We update the current texts in the navigation bar and the bubblechart if someone clicks on a path.
+        path.enter()
+            .append("path")
+                .style("fill", function(d, i){
+                        return color(i)})
+                    .on("mouseover", function(d) {
+                        tooltip.text(d.data.category + " " + "artists" + " " + "Amount of works:" + " " + d.data.amount);
+                        tooltip.style("visibility", "visible")
+                    })
+                    .on("mousemove", function() {
+                        return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+                    })
+                    .on("mouseout", function(){
+                        return tooltip.style("visibility", "hidden");})
+                    .on('click', function(d){
+                        currentGender = d.data.category;
+                        updateTexts(currentGender, currentCountry);
+                        updateBubbles(currentGender, currentCountry, dataArtist, currentStartyear, currentEndyear, currentCategory);
+                    })
+                    .attr("d", arc)
+                    .attr("stroke", '#ffffe5')
+                    .attr("stroke-width", "6px");
 
+        // Remove paths we don't need anymore.
+        path.exit().remove();
+    }
+    // Make the donutchart disappear if there is no data available
+    else {
+        d3.select("#donutchart")
+            .transition().duration(1000)
+            .style("opacity", 0.0);
+    };
 };

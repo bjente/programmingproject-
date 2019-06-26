@@ -19,7 +19,7 @@ h4 {
 body {
     background-image: linear-gradient(#eefdef, #bccbbc);
 }
-
+ /* Copyright tooltip style: Copyright (c) 2013 Justin Palmer */
 /* Tooltip CSS */
 .d3-tip {
     line-height: 1.5;
@@ -153,4 +153,24 @@ img {
     background-color: rgba(0, 0, 0, 0.75);
     border-radius: 6px;
     font-style: 15px sans-serif;
+}
+
+#currentgendertext {
+    padding-top: 5px;
+    padding-right: 3px;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+}
+
+#currentcountrytext {
+    padding-top: 5px;
+    padding-right: 3px;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
 }

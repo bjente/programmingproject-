@@ -11,6 +11,7 @@ var superMax = 8083;
 function drawMap(worksPerCountry, maxAmount, worldCountries, allAmounts) {
 
     /* In this function, the initial worldmap is drawn.
+    Source: https://bl.ocks.org/piwodlaiwo/3734a1357696dcff203a94012646e932
     */
 
     var format = d3.format(",");

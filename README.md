@@ -6,7 +6,7 @@ Student number: 11017503
 ### Link to website: https://bjente.github.io/programmingproject-/
 ### Github page: https://github.com/bjente
 
-### **Page walkthrough**
+## **Page walkthrough**
 This page gives the user insight in the collection of the Museum of Modern Art New York, abbreviated as MoMA. MoMA is one of the worlds leading museums in introducing the public to contemporary art. In my opinion, art can influence the way you see the world. Therefore, it is important to have an understanding of where MoMA acquired their works. Important questions to ask are for example: how culturally diverse is their collection? In what way are female artists represented in the collection? Which artists are overly represented, what is their gender and where do they come from? This page tries to formulate an answer to these questions. 
 
 The website contains of two pages. The first page is the homepage. A caroussel with pictures from highlights of the collection is shown. The user can scroll down to read a little background information on the project, view the datasource that is used and read the bio of MoMA. The user can navigate to the visualisation page by clicking 'Visualisations' in the navigationbar on top.

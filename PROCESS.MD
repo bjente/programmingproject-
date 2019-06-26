@@ -32,9 +32,9 @@
 
 #### 04-06-2019
 - I tried to fix the slider, didn't succeed yet.
-- I started with the donut charts, they're not finished yet. If you click on a country, it is not drawing the right donut chart yet. 
+- I started with the donut charts, they're not finished yet. If you click on a country, it is not drawing the right donut chart yet. It makes new donuts if you click multiple countries.
 - I thought about how to preprocess the data for the bubble chart.
-![https://github.com/bjente/programmingproject-/blob/master/doc/uitsnededonuts.jpg]
+![Donut charts](https://github.com/bjente/programmingproject-/blob/master/doc/uitsnededonuts.jpg)
 
 #### 11-06-2019
 - I fixed the on click method for the worldmap. Donuts are not properly shown yet.
@@ -42,8 +42,8 @@
 - I did some designing for the look of my website.
 - I have to discuss with a tutor about filtering data: when should I do it?
 
-![https://github.com/bjente/programmingproject-/blob/master/doc/startpage.jpg]
-![https://github.com/bjente/programmingproject-/blob/master/doc/startpage2.jpg]
+![Donuts](https://github.com/bjente/programmingproject-/blob/master/doc/startpage.jpg)
+![Img](https://github.com/bjente/programmingproject-/blob/master/doc/startpage2.jpg)
 
 #### 12-06-2019
 - I made a demo of the bubble chart, I decided that I would let in multiple artists in for now because otherwise it'd get too complicated.
@@ -52,7 +52,7 @@
 #### Weekend 14-06-2019/16-06-2019
 - I decided to completely change my datastructure. I made JSON files with the help of the functions I wrote in filterdata.js. I saved and concatenated these files into two big JSON files. One for the map and the donut and one for the bubblechart.  After consultation with student assistants, we came to the conclusion that my program was a bit slow. To solve this, I needed to pre-calculate values and I had to write them to a JSON file. This enabled me to completely remove filterdata.js. Since the data was in a different format, I had to make a couple of changes to the functions that draw the map, the donut and the bubbles. Most of the calculations are already done on forehand now. This makes the program a bit faster, but it still has to do some calculations when running, so it's still not super fast. 
 
-![https://github.com/bjente/programmingproject-/blob/master/doc/newdata.jpg]
+![Data](https://github.com/bjente/programmingproject-/blob/master/doc/newdata.jpg)
 
 #### 18-06-2019
 - I made an update function for both the bubble and the donutchart. The update function for the bubble chart is not working properly yet. I have an idea why, I will discuss this tomorrow with a tutor.
@@ -63,7 +63,7 @@
 - I created an update function for the colors of the map. 
 - I added a dropdown menu. The colors of the map respond to which category is chosen from the dropdown menu. 
 
-![https://github.com/bjente/programmingproject-/blob/master/doc/dropdown.jpg]
+![Dropdown](https://github.com/bjente/programmingproject-/blob/master/doc/dropdown.jpg)
 
 #### 20-06-2019
 - Today, I made some huge steps. I decided that I wasn't filtering my data correctly. I had to inverse my logic and I decided to copy my programmingproject folder to made some drastic changes to the program. In stead of adding data to a new list, I decided to begin with copying the JSON data and removing entries I didn't need. Every update function now uses my filterdata function. Filterdata calls different functions to get data in the proper format for the specific graphs. The updatefunctions are all working. Every graph responds to the dropdown menu, both the donut- and the bubblechart change according to which country has been clicked in the map, and my bubblechart changes if you click on the donutchart. 
@@ -71,8 +71,8 @@
 - I still have to add checkboxes to specify the time range. 
 - I want to add text blocks with some explanation on the graphs.
 
-![https://github.com/bjente/programmingproject-/blob/master/doc/versie1.jpg]
-![https://github.com/bjente/programmingproject-/blob/master/doc/versie1_2.jpg]
+![Version 1](https://github.com/bjente/programmingproject-/blob/master/doc/versie1.jpg)
+![Version 1](https://github.com/bjente/programmingproject-/blob/master/doc/versie1_2.jpg)
 
 #### 23-06-2019
 - I implemented a bootstrap grid system to organize my page. 
@@ -92,5 +92,5 @@
 - Started writing final report
 - Handed in code
 
-![https://github.com/bjente/programmingproject-/blob/master/doc/siteaf.jpg]
-![https://github.com/bjente/programmingproject-/blob/master/doc/siteaf_2.jpg]
+![Final version](https://github.com/bjente/programmingproject-/blob/master/doc/siteaf.jpg)
+![Final version](https://github.com/bjente/programmingproject-/blob/master/doc/siteaf_2.jpg)

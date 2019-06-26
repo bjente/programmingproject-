@@ -5,10 +5,12 @@
 
 function dropDownChange(dataMapDonut, threeLetterCountry, worldCountries, startyear, endyear, dataArtist){
 
-    /* In this function, we keep track of changes in dropdown menu and if buttons are clicked on.
+    /* This function keeps track of changes in the dropdown menu.
     If a change is noticed, we update the graphs
     */
 
+    // If the value in dropdown menu changes, currentCategory changes.
+    // We update all the graphs using this new category
     d3.select("select")
         .on("change",function(d){
          var selected = d3.select("#dropdown-menu").node().value;
@@ -20,6 +22,10 @@ function dropDownChange(dataMapDonut, threeLetterCountry, worldCountries, starty
 };
 
 function buttonClick(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries){
+
+    /* This function notices when one of two resetbuttons is being clicked on.
+    If so, we set the graphs to their default modes (= all countries, all genders)
+    */
 
     var button = d3.select("#resetbutton")
     button.on("click", function(d){
@@ -43,6 +49,9 @@ function buttonClick(threeLetterCountry, category, startyear, endyear, dataArtis
 };
 
 function getCurrentCategory(){
+
+    /* In this function, we acquire the currentCategory in the dropdown menu.
+    */
 
     var currentCategory = d3.select("#dropdown-menu").node().value;
 

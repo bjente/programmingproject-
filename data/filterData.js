@@ -1,7 +1,14 @@
+/* Name: Bente de Bruin
+Studentnumber: 11017503
+This is a file that filters data
+*/
+
+
 function filterData(startyear, endyear, category, data){
 
-    /* This is a function that is being used for the creation of JSON files.
-    It's not used anymore when running the program.
+    /* This is a function that is used for the creation of JSON files.
+    It pre-calculates values so that we don't have to do that anymore in the actual program.
+    It outputs JSON files which I saved locally.
     */
 
 var listWithDicts = [];
@@ -15,7 +22,6 @@ let actualData = {};
 
 if (category !== 'All categories'){
     for (let a in data){
-        // maak int van dateacquired en blijf binnen range van start en end en de gekozen department
         if ((+data[a]["DateAcquired"] >= +startyear && +data[a]["DateAcquired"] <= +endyear) && data[a]['Department'] === category){
             actualData[a] = data[a];
         }
@@ -30,14 +36,14 @@ else {
 };
 
 for (artwork in actualData){
-    // eerst alle landen die we nu al hebben opgeslagen in een lijst zetten
+
+    // Put all countries we've seen so far in a list
     allcountries = [];
     for (i = 0; i < listWithDicts.length; i++) {
         allcountries.push(listWithDicts[i].Nationality.trim())
     };
 
-    // als huidige nationality nog niet in allcountries staat, maken we een nieuwe dict en stoppen
-    // we deze in listWithDicts
+    // If current nationality is not in allcountries, make a new countrydict and put this in listWithDicts
     if (!(allcountries.indexOf(data[artwork].Nationality.trim()) >= 0)){
         var countryDict = {};
         countryDict.Nationality = data[artwork].Nationality.trim();
@@ -47,7 +53,7 @@ for (artwork in actualData){
         countryDict.Unknown = 0;
         listWithDicts.push(countryDict);
     }
-    // als de nationality er al wel in staat, verhogen we de count met 1
+    // If current nationality does exist, we increase the count of that nationality with 1
     else {
         for (i = 0; i < listWithDicts.length; i++) {
             if (listWithDicts[i].Nationality === data[artwork].Nationality.trim()) {
@@ -56,17 +62,15 @@ for (artwork in actualData){
         }
     };
 
+// Make a seperate dictionary for the genders
 var genderDict = {};
 genderDict.Nationality = data[artwork].Nationality.trim();
 genderDict.Genders = data[artwork].Gender.trim()
 listWithGenderDicts.push(genderDict);
 }
-// check of er meerdere nationaliteiten in een nationaliteit zitten
-// n is elke individuele nationaliteit in nationalities
-// je loopt over elke individuele nationaliteit met nationalities.forEach(function(n))
-// Daarna kijk je per kunstwerk(= singleNat) (nationaliteit van het kunstwerk = singleNat.Nationality)
-// in de listWithDicts of dit gelijk is aan n. Als dat zo is tel je het aandeel van die nationaliteit van het totaal
-// nationailteiten VAN het kunstwerk op bij de count van dat land in listWithDicts
+
+// Check if there are multiple nationalities in nationality
+// If so, we count how many nationalities there are and increase the Count of that nationality by nationality divided by total nationalities
 listWithDicts.forEach(function(potentialMultipleNat){
 
     let nationalities = potentialMultipleNat.Nationality.split(" ");
@@ -82,7 +86,7 @@ listWithDicts.forEach(function(potentialMultipleNat){
     }
 })
 
-// verwijder dubbele nationaliteiten uit listWithDicts
+// Remove double nationalities
 var finalListWithDicts = []
 listWithDicts.forEach(function(potentialMultipleNat){
     let nationalities = potentialMultipleNat.Nationality.split(" ");
@@ -109,8 +113,10 @@ if (genders.length > 1){
 potentialMultipleValues.Genders = genders
 potentialMultipleValues.Nationality = nationalities
 
-// vergelijk lengte van arrays met elkaar, genders[0] hoor bij nationalities[0] etc
-// we tellen 1 bij males females of unknown op van het juiste land
+
+// Compare length of gender array with nationality array, if it is the same length,
+// the female/male/unknown count of that country is increased.
+// Genders[0] belongs to Nationality[i] etc...
 if (potentialMultipleValues.Genders.length === potentialMultipleValues.Nationality.length){
     for (i = 0; i < potentialMultipleValues.Genders.length; i++){
         if (potentialMultipleValues.Genders[i] === 'female' || potentialMultipleValues.Genders[i] === 'Female'){
@@ -191,11 +197,12 @@ else {
         if (country.Nationality === potentialMultipleValues.Nationality[i]){
             country.Unknown += 1
             totalUnknown += 1
-        }
-    })
-    }
- }
-}
-})
-return [finalListWithDicts, totalFemales, totalUnknown, totalMales]
+         };
+       });
+      };
+    };
+   };
+ });
+ // To make JSON object:
+ // finalJSON = JSON.stringify(finalListWithDicts)
 };

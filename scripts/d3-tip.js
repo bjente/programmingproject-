@@ -1,3 +1,10 @@
+/* Name: Bente de Bruin
+Studentnumber: 11017503
+This is a file for the creation of tooltips in D3.
+*/
+
+
+
 /**
  * d3.tip
  * Copyright (c) 2013 Justin Palmer

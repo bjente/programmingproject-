@@ -5,7 +5,8 @@ Studentnumber: 11017503
 
 function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
 
-    /* This is a function that draws the initial donut chart.
+    /* This is a function that draws the initial donut chart with the default data.
+    Default data being all countries, all categories, all years.
     */
 
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
@@ -25,14 +26,6 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
     var tooltip = d3.select("body")
         .append("div")
             .attr('id', 'donuttip')
-            .style("position", "absolute")
-            .style("z-index", "10")
-            .style("visibility", "hidden")
-            .style("color", "white")
-            .style("padding", "8px")
-            .style("background-color", "rgba(0, 0, 0, 0.75)")
-            .style("border-radius", "6px")
-            .style("font", "15px sans-serif");
 
     var arc = d3.arc()
         .outerRadius(radius - 40)

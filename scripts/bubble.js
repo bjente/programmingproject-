@@ -42,7 +42,7 @@ function drawInitialBubble(childrenDict, startyear, endyear, category){
             .style("border-radius", "6px")
             .style("font", "15px sans-serif");
 
-    // Create nodes. Nodes contain circle and text
+    // Create nodes. Nodes contain circles and text
     // The bigger the artistCount, the bigger the circle
     // Show tooltip when hovering over with mouse
     var nodes = d3.hierarchy(childrenDict)
@@ -117,7 +117,6 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
         .size([diameter, diameter])
         .padding(1.5);
 
-
     var t = d3.transition()
         .duration(750);
 
@@ -126,7 +125,7 @@ function updateBubbles(gender, threeLetterCountry, dataArtist, startyear, endyea
             return d.artistCount
         });
 
-    // Load new data
+    // Attach new data
     var tooltip = d3.select("#bubbletip")
     var newNode = d3.select("#bubblechart").selectAll(".node")
         .data(bubble(nodes).children)

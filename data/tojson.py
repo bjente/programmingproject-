@@ -1,3 +1,8 @@
+# Name: Bente de Bruin
+# Studentnumber: 11017503
+# A program to convert a csv file to a JSON file
+
+
 import csv, json
 
 csvFilePath = "cleanedmoma2.csv"

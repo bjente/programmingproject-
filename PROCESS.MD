@@ -24,6 +24,8 @@
 - I decided that the dropdown menu would consist out of categories in stead of male/female, because a piece of art can be a collaboration between males and females. This was getting too complex. An artwork can only belong to one category (i.e. photography, sculpture, etc).
 - I also created the first version of the world map.
 
+![Worldmap first version](https://github.com/bjente/programmingproject-/blob/master/doc/uitsnedeworldmap.jpg)
+
 #### 29-05-2019
 - I altered the Nationality in my JSON file. I used the ISO code of each country, since that comes in handy using topoJSON.
 - I added a stylesheet.
@@ -69,3 +71,13 @@
 #### 24-06-0291
 - I added textboxes so that the user can keep track of current gender and current country.
 - I cleaned up my code and added comments
+
+#### 25-06-2019
+- I was busy cleaning up my code
+- I did a code review with fellow student Michael Stroet
+
+#### 26--6-2019
+- Still busy cleaning up my code, removing global variables
+- Final touch to style document
+- Started writing final report
+- Handed in code

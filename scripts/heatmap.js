@@ -10,6 +10,9 @@ var superMax = 8083;
 
 function drawMap(worksPerCountry, maxAmount, worldCountries, allAmounts) {
 
+    /* In this function, the initial worldmap is drawn.
+    */
+
     var format = d3.format(",");
 
     // Set tooltips
@@ -130,6 +133,9 @@ function drawMap(worksPerCountry, maxAmount, worldCountries, allAmounts) {
 
 function drawLegend(maxAmount, svg, allAmounts) {
 
+    /* In this function, the initial legend corresponding to the initial worldmap is drawn.
+    */
+
     // Create variables to create values for domain and range of legend
     var newLegendValues = makeNewLegendValues(maxAmount);
     var newDomain = newLegendValues[0];
@@ -138,10 +144,12 @@ function drawLegend(maxAmount, svg, allAmounts) {
     var heightRect = newLegendValues[3];
     var legendWidth = 25;
 
+    // Define colors for legend
     var color = d3.scaleThreshold()
         .domain(newDomain)
         .range(newColorRange);
 
+    // Attach domain to legend, append rects
     var legend = svg.selectAll('.legend')
         .data(newDomain)
         .enter()
@@ -157,16 +165,19 @@ function drawLegend(maxAmount, svg, allAmounts) {
         .style('fill', function(d, i){
             return color(d)});
 
+    // Define y scale
     var yScale = d3.scaleLinear()
         .range([d3.min(newRange), d3.max(newRange)])
         .domain([d3.min(newDomain), d3.max(newDomain)]);
 
+    // Make y axis with new domain as ticks
     svg.append('g')
         .call(d3.axisLeft(yScale)
         .tickValues(newDomain))
         .attr('class', 'y-axis')
         .attr('transform', 'translate(' + marginLegend + ', 20)');
 
+    // Append text to legend
     svg.append('g')
         .append('text')
         .attr('class', 'legend-text-map')
@@ -179,7 +190,9 @@ function drawLegend(maxAmount, svg, allAmounts) {
 
 function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries){
 
-    // This is a function which updates the map and the legend
+    /* In this function, the map and its corresponding legend are updated.
+    */
+
     // First filterData is called, it filters out data we don't need
     // Below, we acquire needed data to draw new map and legend
     var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, currentGender);
@@ -191,7 +204,7 @@ function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist,
     var newDomain = newLegendValues[0];
     var newRange = newLegendValues[1];
     var newColorRange = newLegendValues[2];
-    
+
     var path = d3.geoPath();
 
     var color = d3.scaleThreshold()
@@ -205,15 +218,11 @@ function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist,
 
     var heatmapSelect = d3.select("#heatmap").select("svg");
 
+    // Add a transition to the y-axis and change tickvalues to new domain
     heatmapSelect.select(".y-axis")
         .transition().duration(1000)
         .call(d3.axisLeft(newYScale)
         .tickValues(newDomain));
-
-    // deze kan misschien weg??
-    heatmapSelect.select(".legend")
-        .data(newDomain)
-        .selectAll('rect');
 
     // Iterate over worldCountries id's, check if id exists in new data
     // if so, amount of works of that specific country is d.Count
@@ -240,13 +249,16 @@ function updateMap(threeLetterCountry, category, startyear, endyear, dataArtist,
 
 function makeNewLegendValues(maxAmount){
 
-    // This is a function that calculates a new domain and a new range for the legend
+    /* This is a function that calculates a new domain, range and a new color range for the legend and the map
+    */
+
     // newColorRange is used to color countries
     var newDomain = [];
     var newRange = [];
     var oldColorRange = ['#ffffe5','#f7fcb9','#d9f0a3','#addd8e', '#78c679','#41ab5d', '#238443','#006837','#004529', '#292929'];
     var newColorRange = [];
 
+    // Height of rects is defined by dividing the height of the legend by the amount of rects
     if(maxAmount >= 9){
         var numberOfRects = 9;
     }
@@ -256,6 +268,9 @@ function makeNewLegendValues(maxAmount){
 
     var heightRect = legendHeight / numberOfRects;
 
+    // Domain changes according to new maximum amount
+    // We divide the amount of rectangles by the max amount and multiply this by the index of the rectangle
+    // This provides the new  domain
     for(var i = 0; i <= numberOfRects; i++){
         newDomain.push((maxAmount / numberOfRects) * i);
         newRange.push(heightRect * i);

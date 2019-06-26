@@ -1,7 +1,7 @@
 <!--
 Name: Bente de Bruin
 Studentnumber: 11017503
-Page with visualisations
+HTML page with visualisations
     -->
 
 <!DOCTYPE html>
@@ -9,12 +9,15 @@ Page with visualisations
   <head>
     <meta charset="utf-8">
     <title>Collection of MoMA</title>
+
+    <!-- Import stylesheets, bootstrap and jquery -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='style/style.css'>
+
     <!-- Import D3 V5 -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src='scripts/d3-tip.js'></script>
@@ -24,7 +27,7 @@ Page with visualisations
     <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
 
-
+    <!-- Import scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="scripts/categorydropdown.js"></script>
@@ -35,8 +38,6 @@ Page with visualisations
     <script type="text/javascript" src="scripts/donut.js"></script>
     <script type="text/javascript" src="scripts/bubble.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
-    <!-- <script type="text/javascript" src="scripts/filterData.js"></script> -->
-
 
     <title>Insights in the collection of MoMA</title>
   </head>
@@ -99,7 +100,7 @@ Page with visualisations
             </div>
         </nav>
 
-    <!-- Create grid system to organize visualisation page-->
+    <!-- Create grid system to organize visualisation page, add explanation textboxes -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9" id="heatmap"></div>
@@ -113,10 +114,13 @@ Page with visualisations
                     1965, 1975, 1985, 1995, 2005, 2015, 2016, 2017, 2018. I decided to only represent these years because otherwise the dataset would be too large.
                     In the navigation bar on top, you can specify the category (i.e. photography, film, etc...).
                     If you wish to reset the country and the gender you clicked on, you can do so by clicking the reset buttons in the navigation bar.
+                    Some countries have a decimal amount of works, this is because some works are created by artists with multiple nationalities. In this case, every country got their fair share of credits.
+                    If you wish to reset the filters you clicked on, you can do so by clicking the resetbuttons in the navigation bar.
                 </p>
             </div>
         </div>
 
+        <!-- Make a column with text to keep track of selected years -->
         <div class="row">
             <div class="col-md-9" id="slidermap"><div id="slider-range"></div></div>
             <div class="col-md-1"><p >Current years:</p></div>

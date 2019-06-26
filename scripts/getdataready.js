@@ -1,6 +1,11 @@
 
 function filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, gender){
 
+    /* This function is being called when an update function is being called.
+    It filters out data that's not necessary to draw new graphs.
+    It returns only data we need to draw the new graphs.
+    */
+
     // Copy data so we can filter out only what we need
     dataArtistCopy = JSON.parse(JSON.stringify(dataArtist));
     dataMapDonutCopy = JSON.parse(JSON.stringify(dataMapDonut));
@@ -104,6 +109,10 @@ return[dataArtistCopy, createMapValues[0], createMapValues[1], createMapValues[2
 
 function createWorksPerCountryDict(dataMapDonutCopy){
 
+    /* This is a function that creates a dictionary for drawing the new worldmap.
+    It iterates over the filtered data and returns a dictionary containing how many works each country had in the updated situation.
+    */
+
     var values = [];
     var worksPerCountry = {};
     var allAmounts = [];
@@ -131,6 +140,10 @@ return[worksPerCountry, maxAmount, allAmounts]
 
 function createDonutValues(dataMapDonutCopy){
 
+    /* This is a function that calculates the new amounts for drawing a new donutchart.
+    It iterates over the filtered data and returns the new values.
+    */
+
     var donutValues = [];
     var totalMales = 0;
     var totalFemales = 0;
@@ -151,6 +164,10 @@ function createDonutValues(dataMapDonutCopy){
 };
 
 function createBubbleValues(dataArtistCopy){
+
+    /* This is a function that calculates new values for the new bubblechart.
+    It iterates over the filtered data and returns a new dictionary.
+    */
 
     var bubbleValues = [];
     var bubbleList = [];

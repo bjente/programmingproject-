@@ -1,5 +1,6 @@
 /* Name: Bente de Bruin
    Studentnumber: 11017503
+   Main file to display initial page
 */
 
 // Initialize values for initial graphs
@@ -28,7 +29,6 @@ window.onload = function() {
     worldCountries = response[1];
     dataArtist = response[2];
 
-    // GEEF NIET OVERAL GLOBALE VARIABELEN MEE BENTE! Liefs Mikkel
     dropDownChange(dataMapDonut, threeLetterCountry, worldCountries, startyear, endyear, dataArtist);
     buttonClick(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, worldCountries);
     drawSlider(threeLetterCountry, category, dataArtist, dataMapDonut, worldCountries);

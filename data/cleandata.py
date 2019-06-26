@@ -3,7 +3,6 @@
 # This is a file to clean up the initial csv dataset
 
 
-
 import pandas as pd
 import csv
 import json

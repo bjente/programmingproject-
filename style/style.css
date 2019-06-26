@@ -153,11 +153,4 @@ img {
     background-color: rgba(0, 0, 0, 0.75);
     border-radius: 6px;
     font-style: 15px sans-serif;
-    /* .style("z-index", "10")
-    .style("visibility", "hidden")
-    .style("color", "white")
-    .style("padding", "8px")
-    .style("background-color", "rgba(0, 0, 0, 0.75)")
-    .style("border-radius", "6px")
-    .style("font", "15px sans-serif"); */
 }

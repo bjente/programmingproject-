@@ -1,4 +1,4 @@
-/* JavaScript program to draw donut chart
+/* JavaScript program to draw  and update donut chart
 Name: Bente de Bruin
 Studentnumber: 11017503
 */
@@ -9,6 +9,7 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
     Default data being all countries, all categories, all years.
     */
 
+    // Set margin, width, height and radius for svg and circle
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
         w = 500 - margin.right - margin.left,
         h = 500 - margin.top - margin.bottom,
@@ -23,6 +24,7 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
         .sort(null)
         .value(function(d) { return d.amount});
 
+    // Make div foor tooltips
     var tooltip = d3.select("body")
         .append("div")
             .attr('id', 'donuttip')
@@ -35,7 +37,7 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
         .outerRadius(radius - 60)
         .innerRadius(radius - 60);
 
-
+    // Create svg for donutchart
     var svg2 = d3.select("#donut")
         .append("svg")
             .attr("id", 'donutchart')
@@ -45,23 +47,18 @@ function drawInitialDonut(donutValues, totalMales, totalFemales, totalUnknown){
             .append("g")
             .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
 
+    // Create paths according to data.amount
+    // Create hover events to show and hide tooltip
+    // When a path is clicked on, we update the current texts in the navigation bar and the bubblechart according to current gender.
     var g = svg2.selectAll(".arc")
         .data(pie(data))
         .enter().append("g")
             .attr("class", "arc")
-    // var colors = {
-    //     "Male : #ffddfd",
-    //     "Female" : "#dfdffrc"}
-    // colors[category]
+
     g.append("path")
         .attr("d", arc)
-        .style("fill", function(d){
-            if (d.data.category === 'Male'){
-                return "#5f93ef"}
-            else if(d.data.category === 'Female'){
-                return "#f1b7ff"}
-            else{
-                return "black"}
+        .style("fill", function(d, i){
+            return color(i)
             })
         .on("mouseover", function(d) {
             tooltip.text(d.data.category + " " + "artists" + " " + "Amount of works:" + " " + d.data.amount);
@@ -111,6 +108,8 @@ function updateDonut(threeLetterCountry, category, startyear, endyear, dataArtis
     /* In this function, donut charts are updated if the user clicked a country, changed the time period or chose a category.
     */
 
+    // Pass data to the filterdata function, it returns the new amount of males, females and unknown artists.
+    // With these new amounts, we update the donutchart.
     var newData = filterData(threeLetterCountry, category, startyear, endyear, dataArtist, dataMapDonut, currentGender);
     var males = newData[5];
     var females = newData[6];
@@ -122,6 +121,9 @@ function updateDonut(threeLetterCountry, category, startyear, endyear, dataArtis
         w = 500 - margin.right - margin.left,
         h = 500 - margin.top - margin.bottom,
         radius = w/2;
+
+    var color = d3.scaleOrdinal()
+        .range(["#5f93ef", "#f1b7ff", "black"]);
 
     var pie = d3.pie()
         .sort(null)
@@ -136,21 +138,19 @@ function updateDonut(threeLetterCountry, category, startyear, endyear, dataArtis
         .outerRadius(radius - 60)
         .innerRadius(radius - 60);
 
+    // Attach new data to paths
     var path = d3.select("#donutchart").select("g").selectAll(".path")
         .data(pie(data));
 
+    // Select and update tooltip
     var tooltip = d3.select("#donuttip");
 
+    // We append a new path if there are more datapoints than paths
+    // We update the current texts in the navigation bar and the bubblechart if someone clicks on a path.
     path.enter()
         .append("path")
-            .style("fill", function(d){
-                if (d.data.category === 'Male'){
-                    return "#5f93ef";
-                }else if( d.data.category === 'Female'){
-                    return "#f1b7ff";
-                }else {
-                    return "black";
-                }})
+            .style("fill", function(d, i){
+                    return color(i)})
                 .on("mouseover", function(d) {
                     tooltip.text(d.data.category + " " + "artists" + " " + "Amount of works:" + " " + d.data.amount);
                     tooltip.style("visibility", "visible");
@@ -169,6 +169,7 @@ function updateDonut(threeLetterCountry, category, startyear, endyear, dataArtis
                 .attr("stroke", '#ffffe5')
                 .attr("stroke-width", "6px");
 
+    // Remove paths we don't need anymore.
     path.exit().remove();
 
 };

@@ -7,6 +7,7 @@ function dropDownChange(dataMapDonut, threeLetterCountry, worldCountries, starty
 
     /* This function keeps track of changes in the dropdown menu.
     If a change is noticed, we update the graphs
+    Source: https://codepen.io/tarsusi/pen/reovOV
     */
 
     // If the value in dropdown menu changes, currentCategory changes.
@@ -50,7 +51,7 @@ function buttonClick(threeLetterCountry, category, startyear, endyear, dataArtis
 
 function getCurrentCategory(){
 
-    /* In this function, we acquire the currentCategory in the dropdown menu.
+    /* In this function, we retrieve the currentCategory in the dropdown menu.
     */
 
     var currentCategory = d3.select("#dropdown-menu").node().value;

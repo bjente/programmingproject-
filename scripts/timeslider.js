@@ -6,8 +6,12 @@ function drawSlider(threeLetterCountry, category, dataArtist, dataMapDonut, worl
 
     /* In this function, a two-handled time slider with a specific range is created.
     Due to the 'marks' attribute, it only stops at the defined sliderYears.
+    When one handle is released, the map, the donutchart and the bubble chart are being updated.
+    Source: https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518
     */
 
+// Define years where slider can stop.
+// Make width of the slider the same as the width of the map.
 var sliderYears = [1965, 1975, 1985, 1995, 2005, 2015, 2016, 2017, 2018]
 var width = document.getElementById("slidermap").clientWidth
 var paddingLeft = 150
@@ -46,6 +50,7 @@ var gSimple = d3
 
 gSimple.call(sliderSimple);
 
+// Rotate text ticks 90 degrees so that they are readable.
 var ticks = d3
     .select('#slider-range').selectAll('text')
     .attr("y", 0)

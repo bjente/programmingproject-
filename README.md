@@ -44,7 +44,7 @@ The repository consists of several folders.
 - Scripts folder: In this folder you can find all the JavaScript files to draw visualisations, manage dropdown menu and buttons and timeslider.
 - Style folder: In this folder, you can find the css file which I use to style my page.
 
-### **Dataset and plug-ins**
+## **Dataset and plug-ins**
 The dataset used was downloaded from Kaggle. Not all data from this dataset is used, because the file size was too large.
 - The worldmap is inspired by: https://bl.ocks.org/piwodlaiwo/3734a1357696dcff203a94012646e932
 - The bubblechart is inspired by: http://bl.ocks.org/mmattozzi/7018021
@@ -54,7 +54,7 @@ The dataset used was downloaded from Kaggle. Not all data from this dataset is u
 
 Dataset source: https://www.kaggle.com/tboyle10/new-york-museum-of-modern-art
 
-#### Plug - ins
+### Plug - ins
 - Bootstrap
 - D3 tooltip
 - D3 simple slider

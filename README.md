@@ -24,16 +24,16 @@ This worldmap represents how many works a country has in the collection of MoMA.
 ![Buttons](https://github.com/bjente/programmingproject-/blob/master/doc/buttons.jpg)
 
 
-## Donutchart
+## Donut chart
 ![Donutchart](https://github.com/bjente/programmingproject-/blob/master/doc/donut.jpg)
-The donutchart illustrates how the genders are represented in the collection. By default, it shows how the genders are represented for all countries, in all years in all categories. If the user clicks on a country, the chart updates to show only information about that specific country. Idem when the category or the years are specified. If a user clicks on, for example, the pink part of the chart, only female artists are shown in the bubblechart.
+The donut chart illustrates how the genders are represented in the collection. By default, it shows how the genders are represented for all countries, in all years in all categories. If the user clicks on a country, the chart updates to show only information about that specific country. Idem when the category or the years are specified. If a user clicks on, for example, the pink part of the chart, only female artists are shown in the bubblechart.
 
-## Bubblechart
+## Bubble chart
 ![Bubblechart1](https://github.com/bjente/programmingproject-/blob/master/doc/bubble2.jpg)
 ![Bubblechart2](https://github.com/bjente/programmingproject-/blob/master/doc/bubble1.jpg)
-The bubblechar illustrates how many works from specific artists are in the collection of MoMA. The user can specify this by applying different filters to it: country, gender, category and years.
+The bubble chart illustrates how many works from specific artists are in the collection of MoMA. The user can specify this by applying different filters to it: country, gender, category and years.
 
-If there is no data available, countries in the worldmap are colored white. Both the donut- and the bubblechart disappear when there is no data. They re-appear when there is data again.
+If there is no data available, countries in the worldmap are colored white. Both the donut- and the bubble chart disappear when there is no data. They re-appear when there is data again.
 
 ## Repository explained
 The repository consists of several folders. 

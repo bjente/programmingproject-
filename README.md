@@ -2,7 +2,7 @@ Name: Bente de Bruin
 
 Student number: 11017503
 
-## Insights in the collection of the Museum of Modern Art New York
+# Insights in the collection of the Museum of Modern Art New York
 ### Link to website: https://bjente.github.io/programmingproject-/
 ### Github page: https://github.com/bjente
 

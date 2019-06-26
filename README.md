@@ -1,4 +1,5 @@
 Name: Bente de Bruin
+
 Student number: 11017503
 
 ## Insights in the collection of the Museum of Modern Art New York

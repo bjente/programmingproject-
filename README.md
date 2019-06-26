@@ -43,6 +43,7 @@ The repository consists of several folders.
 - Doc folder: In this folder you can find all the images used in this repository.
 - Scripts folder: In this folder you can find all the JavaScript files to draw visualisations, manage dropdown menu and buttons and timeslider.
 - Style folder: In this folder, you can find the css file which I use to style my page.
+- In the repository you'll also find two html files: index.html which is the homepage of the website and project.html which is the html file for the visualisations page.
 
 ## **Dataset and plug-ins**
 The dataset used was downloaded from Kaggle. Not all data from this dataset is used, because the file size was too large.

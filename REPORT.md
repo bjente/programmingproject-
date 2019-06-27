@@ -94,28 +94,7 @@ How it eventually turned out:
 - Like I stated in the paragraph 'Dataprocessing' above, I used both Python and JavaScript for processing my data. This was not my intention in the first place.
 I started processing the dataset with Python and Pandas. Initially, I started working with the JSON file 'newjson.json'. This file was the result of my preprocessing in Python.
 At first, the data was in the following format:
-
-"2552": {
-        "Artist": "The Aluminum Cooking Utensil Co., New York, NY",
-        "Nationality": "USA",
-        "Gender": "unknown",
-        "Department": "Architecture & Design",
-        "DateAcquired": "1955"
-    },
-    "2555": {
-        "Artist": "Thomas Lamb",
-        "Nationality": "USA",
-        "Gender": "Male",
-        "Department": "Architecture & Design",
-        "DateAcquired": "1955"
-    },
-    "2558": {
-        "Artist": "Irving Harper",
-        "Nationality": "USA",
-        "Gender": "Male",
-        "Department": "Architecture & Design",
-        "DateAcquired": "1955"
-    }
+![Old data structure](https://github.com/bjente/programmingproject-/blob/master/doc/Schermafbeelding%202019-06-27%20om%2017.44.32.png)
     
 But when I started creating the graphs, I discovered that a lot of calculations had to be made when running the program. 
 For every update, the program needed to iterate over the entire dataset and it had to do a lot of calculations. 
@@ -124,86 +103,8 @@ I had already written a function, called filterData, which can be found in the d
 This function ran everytime the user requested an update. A technical assistant adviced me to still use this function, but only once, for the creation of the new JSON files: concfilesmapdonut.json and concfilesartist.json.
 With these new json files, my program would be a lot faster due to calculations that were made on forehand.
 
-The data for the creation of the map and the donut chart now looked like this:
-    
-{
-	"0": {
-		"year": "1965",
-		"department": "Architecture & Design",
-		"values": [{
-			"Nationality": "USA",
-			"Count": 39.99,
-			"Males": 37,
-			"Females": 6,
-			"Unknown": 1
-		}, {
-			"Nationality": "ITA",
-			"Count": 23,
-			"Males": 22,
-			"Females": 2,
-			"Unknown": 0
-		}, {
-			"Nationality": "DEU",
-			"Count": 21.99,
-			"Males": 24,
-			"Females": 0,
-			"Unknown": 1
-		}, {
-			"Nationality": "CHE",
-			"Count": 6,
-			"Males": 7,
-			"Females": 0,
-			"Unknown": 0
-		}, {
-			"Nationality": "FRA",
-			"Count": 4,
-			"Males": 4,
-			"Females": 0,
-			"Unknown": 0
-		}, {
-			"Nationality": "AUT",
-			"Count": 2,
-			"Males": 2,
-			"Females": 0,
-			"Unknown": 0
-		}, {
-			"Nationality": "JPN",
-			"Count": 1,
-			"Males": 1,
-			"Females": 0,
-			"Unknown": 0
-		}]
-	},
-	"1": {
-		"year": "1975",
-		"department": "Architecture & Design",
-		"values": [{
-			"Nationality": "ITA",
-			"Count": 2,
-			"Males": 2,
-			"Females": 0,
-			"Unknown": 0
-		}, {
-			"Nationality": "USA",
-			"Count": 5,
-			"Males": 5,
-			"Females": 0,
-			"Unknown": 0
-		}, {
-			"Nationality": "GBR",
-			"Count": 10,
-			"Males": 2,
-			"Females": 8,
-			"Unknown": 0
-		}, {
-			"Nationality": "GRC",
-			"Count": 1,
-			"Males": 1,
-			"Females": 0,
-			"Unknown": 0
-		}]
-	}
-}
+The data for the creation of the map and the donut chart now look like this:
+![New data structure](https://github.com/bjente/programmingproject-/blob/master/doc/Schermafbeelding%202019-06-27%20om%2017.44.02.png)
 
 As you can see the data is first organized by year and department (i.e. category). 
 It is a lot easier to see how many works in the department 'Architecture & Design' in the year 1965 were produced by American male artists.

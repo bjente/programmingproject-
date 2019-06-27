@@ -5,6 +5,8 @@ Student number: 11017503
 # Insights in the collection of the Museum of Modern Art New York
 ### Link to website: https://bjente.github.io/programmingproject-/
 ### Github page: https://github.com/bjente
+### Link to demo video: https://youtu.be/40ekOdn-uXo
+
 
 ## **Page walkthrough**
 This page gives the user insight in the collection of the Museum of Modern Art New York, abbreviated as MoMA. MoMA is one of the worlds leading museums in introducing the public to contemporary art. In my opinion, art can influence the way you see the world. Therefore, it is important to have an understanding of where MoMA acquired their works. Important questions to ask are for example: how culturally diverse is their collection? In what way are female artists represented in the collection? Which artists are overly represented, what is their gender and where do they come from? This page tries to formulate an answer to these questions. 
